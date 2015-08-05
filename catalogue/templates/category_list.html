@@ -1,0 +1,11 @@
+<html>
+	
+<h1>Categories</h1>
+<ul>
+{% for category in category_list %}
+    <li>{{ category.name }} </li>
+{% empty %}
+    <li>No Categories present</li>
+{% endfor %}
+</ul>
+</html>

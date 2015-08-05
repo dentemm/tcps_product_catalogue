@@ -1,0 +1,41 @@
+ 
+{% extends 'tcps_dashboard.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1 panel panel-default">
+			<div class="form-group">
+			
+			<h1>Nieuwe Categorie</h1> 
+
+				<form action="{% url 'category-new' %}" method="POST">
+				  {% csrf_token %}
+				  <ul class="list-unstyled">
+				    {{ form|crispy }}
+				  </ul>
+					{% if object %}
+						<input class="btn btn-default" id="save_contact" type="submit" value="Bijwerken" />
+					{% else %}
+						<input class="btn btn-default"  id="save_contact" type="submit" value="Bewaren" />
+					{% endif %}	
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<a href="#">Ga terug</a>
+		</div>
+	</div>
+</div>
+
+
+{% endblock content %}
+
+
+
+

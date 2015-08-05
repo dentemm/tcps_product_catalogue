@@ -1,0 +1,200 @@
+<html>
+    <head>
+        <title>TCPS Dashboard</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/dashboardstyle.css">
+
+    </head>
+
+    <body>
+        <nav class="navbar navbar-static-top navbar-inverse navbar-accounts">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".nav-accounts">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="navbar-brand">TCPS</span>
+                </div>
+                <div class="collapse navbar-collapse nav-accounts">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><span>{% trans "Welcome" %} <em>{{ user.get_full_name|default:request.user.email }}</em></span></li>
+                        <li><a href="{{ homepage_url }}"><i class="icon-home"></i> {% trans "Return to site" %}</a></li>
+                        <li><a href="{% url 'customer:summary' %}"><i class="icon-user"></i> {% trans "Account" %}</a></li>
+                        <li><a href="{% url 'customer:logout' %}"><i class="icon-signout"></i> {% trans "Log out" %}</a></li>
+                    </ul>
+                </div>
+            </div><!-- /navbar-inner -->
+        </nav><!-- /navbar -->
+
+        <nav class="navbar navbar-static-top navbar-inverse main-navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".nav-primary">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse nav-primary">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/dashboard/">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role-"button" aria-expanded="false">
+                            <span class="glyphicon glyphicon-list-alt " aria-hidden="true"></span> Catalogue<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ subitem.url }}">
+                                    Categories
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ subitem.url }}">
+                                    Brands
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ subitem.url }}">
+                                    Products
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role-"button" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Accounts<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ subitem.url }}">
+                                    Users
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ subitem.url }}">
+                                    Brands
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ subitem.url }}">
+                                    Products
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Tweede</a></li>
+                        <li class="active">Derde</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading clearfix">
+                            <h5 class="panel-title pull-left">Categories</h5>
+                            <div class="pull-right">
+                                <a href="#" class="btn btn-default btn-sm">Add</a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            Panel content
+                        </div>
+
+                        <ul class="list-group">
+                            <li class="list-group-item">Euismod Quam Fringilla</li>
+                            <li class="list-group-item">EAenean Dolor</li>
+                            <li class="list-group-item">Mattis Dapibus Lorem</li>
+                            <li class="list-group-item">Euismod Quam Fringilla</li>
+                            <li class="list-group-item">Aenean Dolor</li>
+                            <li class="list-group-item">Sit Egestas Cras</li>
+                            <li class="list-group-item">Sit Euismod Condimentum Vulputate</li>
+
+                        </ul>
+
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        <a href="#">Ipsum Elit Fringilla</a>
+                                    </td>
+                                    <td class="text-right text-nowrap">
+                                        <button class="btn btn-info">andere</button>
+                                        <button class="btn btn-warning">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        <a href="#">Malesuada Justo Aenean</a>
+                                    </td>
+                                    <td class="text-right text-nowrap">
+                                        <button class="btn btn-xs btn-info">eerste</button>
+                                        <button class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file"></span>
+                                        <a href="#">rrgeg Justrgero </a>
+                                    </td>
+                                    <td class="text-right text-nowrap">
+                                        <button class="btn btn-info">
+                                            <span class="glyphicon glyphicon-edit"> </span>Eerste
+                                        </button>
+                                        <button class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                        <a href="#" class="btn btn-warning">
+                                            <span class="glyphicon glyphicon-search"></span> Search
+                                        </a>
+                                    </td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    </body>
+</html>
+
+
+
+    
+
+
+
+

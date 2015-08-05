@@ -1,0 +1,27 @@
+
+{% extends 'dashboard_base.html' %}
+
+{% block content %}
+<h1>Add Contact waarom gebeurt er niets???</h1> testtest
+
+
+
+<form action="{% url 'category-new' %}" method="POST">
+  {% csrf_token %}
+  <ul>
+    {{ form.as_ul }}
+  </ul>
+	{% if object %}
+		<input id="save_contact" type="submit" value="Update" />
+	{% else %}
+		<input id="save_contact" type="submit" value="Save" />
+	{% endif %}	
+</form>
+
+<a href="#">back to list</a>
+
+{% endblock content %}
+
+
+
+
