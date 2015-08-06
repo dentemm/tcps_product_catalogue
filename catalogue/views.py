@@ -1,48 +1,45 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, ListView, TemplateView
+from django.core.urlresolvers import reverse_lazy
 
 from .models import *
 
 
 # Create your views here.
 
-class DashboardView(TemplateView):
-	template_name = 'dashboard_home.html'
-
-
 class CategoryActionMixin(object):
 
 	fields = ['name', 'slug', 'image']
 
-	@property
+	'''@property
 	def success_msg(self):
 		return NotImplemented
 
 	def form_valid(self, form):
 		messages.info(self.request, self.success_msg)
-		return super(CategoryActionMixin, self).form_valid(form)
-
-
+		return super(CategoryActionMixin, self).form_valid(form)'''
 
 class SubCategoryActionMixin(object):
-
 	fields = ['name', 'description', 'parent_category', 'suppliers']
 
 class SupplierActionMixin(object):
-
 	fields = ['name', 'description', 'website', 'logo']
 
+class DashboardView(TemplateView):
+	template_name = 'dashboard_home.html'
+
+
+#Category views
 class CategoryDetailView(DetailView):
 
 	model = Category
-
 	template_name = 'category_detail.html'
 
 class CategoryListView(ListView):
 
 	model = Category
-	context_object_name = 'category_list'
+	context_object_name = 'item_list'
 	template_name = 'category_list.html'
 
 	def get_queryset(self):
@@ -53,28 +50,29 @@ class CategoryListView(ListView):
 class CategoryCreateView(CategoryActionMixin, CreateView):
 
 	model = Category
-
-	#template_name = 'edit_category.html'
 	template_name = 'category_edit.html'
 
-	'''def get_succes_url(self):
+	success_url = reverse_lazy('category-list')
 
-		return '''
+
+	def get_context_data(self, **kwargs):
+		ctx = super(CategoryCreateView, self).get_context_data(**kwargs)
+		ctx['modelname'] = 'category'
+		return ctx
+
 
 class CategoryUpdateView(CategoryActionMixin, UpdateView):
 
 	model = Category
-	fields = ['name', 'image', 'slug']
-
-	#template_name = 'edit_category.html'
 	template_name = 'category_edit.html'
 
+	success_url = reverse_lazy('category-list')
 
 
 class CategoryDeleteView(DeleteView):
 
 	model = Category
-	success_url = 'www.google.be'
+	success_url = reverse_lazy('category-list')
 
 	template_name = 'delete_category.html'
 

@@ -1,6 +1,16 @@
-{% extends 'dashboard_base.html' %}
+{% extends 'base.html' %}
 
 {% load staticfiles i18n widget_tweaks %}
+
+{% block title %}
+    TCPS Dashboard
+{% endblock title %}
+
+
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/dashboardstyle.css' %}">
+{% endblock extra_css %}
 
 {% block navbar %}
     <nav class="navbar navbar-static-top navbar-inverse navbar-accounts">
@@ -15,10 +25,10 @@
             </div>
             <div class="collapse navbar-collapse nav-accounts">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><span>{% trans "Welcome" %} <em>{{ user.get_full_name|default:request.user.email }}</em></span></li>
-                    <li><a href="{{ homepage_url }}"><i class="icon-home"></i> {% trans "Return to site" %}</a></li>
-                    <li><a href="url 'customer:summary' "><i class="icon-user"></i> {% trans "Account" %}</a></li>
-                    <li><a href=" url 'customer:logout' %}"><i class="icon-signout"></i> {% trans "Log out" %}</a></li>
+                    <li id="welcome"><span>{% trans "Welcome" %} <em>{{ user.get_full_name|default:request.user.email }}</em></span></li>
+                    <li><a href="{{ homepage_url }}"><i class="glyphicon glyphicon-home"></i> {% trans "Return to site" %}</a></li>
+                    <li><a href="url 'customer:summary' "><i class="glyphicon glyphicon-user"></i> {% trans "Account" %}</a></li>
+                    <li><a href=" url 'customer:logout' %}"><i class="glyphicon glyphicon-log-out"></i> {% trans "Log out" %}</a></li>
                 </ul>
             </div>
         </div><!-- /navbar-inner -->

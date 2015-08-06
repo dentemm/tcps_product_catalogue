@@ -1,5 +1,4 @@
- 
-{% extends 'tcps_dashboard.html' %}
+{% extends 'dashboard_layout.html' %}
 
 {% load crispy_forms_tags %}
 
@@ -8,21 +7,22 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1 panel panel-default">
 			<div class="form-group">
-			
-			<h1>Nieuwe Categorie</h1> 
-
-				<form action="{% url 'category-new' %}" method="POST">
+			{% if object %}
+				<h2>Wijzig categorie</h2>
+			{% else %}
+				<h2>Nieuwe categorie</h2> 
+			{% endif %}
+			<form method="POST">
 				  {% csrf_token %}
 				  <ul class="list-unstyled">
 				    {{ form|crispy }}
 				  </ul>
 					{% if object %}
-						<input class="btn btn-default" id="save_contact" type="submit" value="Bijwerken" />
+						<input class="btn btn-default" type="submit" value="Bijwerken" />
 					{% else %}
-						<input class="btn btn-default"  id="save_contact" type="submit" value="Bewaren" />
+						<input class="btn btn-default" type="submit" value="Bewaren" />
 					{% endif %}	
 				</form>
-
 			</div>
 		</div>
 	</div>
@@ -32,8 +32,6 @@
 		</div>
 	</div>
 </div>
-
-
 {% endblock content %}
 
 

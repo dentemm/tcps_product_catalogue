@@ -23,12 +23,9 @@ from . import settings
 from .views import DashboardView
 
 
-
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-
-    url(r'^dashboard/', DashboardView.as_view(), name='dashboard'),
-
+    #url(r'^dashboard/', DashboardView.as_view(), name='dashboard'),
     url(r'^products/', include('catalogue.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

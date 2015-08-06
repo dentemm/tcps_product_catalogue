@@ -3,24 +3,36 @@ from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.template.defaultfilters import slugify
 
+
 #from autoslug import AutoSlugField
 
 # Create your models here.
+class MetaOptionsMixin(object):
+
+ 	def get_verbose_name(self):
+ 		return self._meta.verbose_name
+
+  	def get_verbose_name_plural(self):
+ 		return self._meta.verbose_name_plural
+
+	def get_class_name(self):
+		return self._meta.object_name
 
 
-class Category(models.Model):
 
-	name = models.CharField(_('Name'), max_length=255, unique=True)
+class Category(MetaOptionsMixin, models.Model):
+
+	name = models.CharField(_('Naam'), max_length=255, unique=True)
 	# description = models.TextField(_('Description'), null=True, blank=True) //Provided by django cms
-	image = models.ImageField(_('Image'), upload_to='categories', blank=True, null=True, max_length=255)
+	image = models.ImageField(_('Afbeelding'), upload_to='categories', blank=True, null=True, max_length=255)
 	slug = models.SlugField(_('Slug'), unique=True, max_length=255)
 
 
 	class Meta:
 		app_label = 'catalogue'
 		ordering = ['name']
-		verbose_name = _('category')
-		verbose_name_plural = _('categories')
+		verbose_name = _('categorie')
+		verbose_name_plural = _('categorieen')
 
 	def __unicode__(self):
 		return self.name

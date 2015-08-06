@@ -1,5 +1,5 @@
  
-{% extends 'tcps_dashboard.html' %}
+{% extends 'dashboard_layout.html' %}
 
 {% load crispy_forms_tags %}
 
@@ -8,9 +8,13 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1 panel panel-default">
 			<div class="form-group">
-			
-			<h1>Nieuwe Subcategorie</h1> 
 
+			{% if object %}
+				<h2>Wijzig Subcategorie</h2> 
+			{% else %}
+				<h2>Nieuwe tt Subcategorie</h2> 
+			{% endif %}
+			
 				<form action="{% url 'category-new' %}" method="POST">
 				  {% csrf_token %}
 				  <ul class="list-unstyled">
