@@ -74,7 +74,13 @@ class CategoryDeleteView(DeleteView):
 	model = Category
 	success_url = reverse_lazy('category-list')
 
-	template_name = 'delete_category.html'
+	template_name = 'category_delete.html'
+
+	def dispatch(self, *args, **kwargs): #View part of view: accepteert request en retourneert response
+
+		self.slug = kwargs['slug']
+		return super(CategoryDeleteView, self).dispatch(*args, **kwargs)
+
 
 
 class SubCategoryDetailView(DetailView):
