@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, ListView, TemplateView
 from django.core.urlresolvers import reverse_lazy
+from django.http import JsonResponse
 
 from .models import *
 
@@ -12,13 +13,70 @@ class CategoryActionMixin(object):
 
 	fields = ['name', 'slug', 'image']
 
-	'''@property
-	def success_msg(self):
-		return NotImplemented
+class AjaxResponseMixin(object):
+    """
+    Mixin allows you to define alternative methods for ajax requests. Similar
+    to the normal get, post, and put methods, you can use get_ajax, post_ajax,
+    and put_ajax.
+    """
+    def dispatch(self, request, *args, **kwargs):
+        request_method = request.method.lower()
+
+        if request.is_ajax() and request_method in self.http_method_names:
+            handler = getattr(self, "{0}_ajax".format(request_method),
+                              self.http_method_not_allowed)
+            self.request = request
+            self.args = args
+            self.kwargs = kwargs
+            return handler(request, *args, **kwargs)
+
+        return super(AjaxResponseMixin, self).dispatch(
+            request, *args, **kwargs)
+
+    def get_ajax(self, request, *args, **kwargs):
+        return self.get(request, *args, **kwargs)
+
+    def post_ajax(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+
+    def put_ajax(self, request, *args, **kwargs):
+        return self.get(request, *args, **kwargs)
+
+    def delete_ajax(self, request, *args, **kwargs):
+        return self.get(request, *args, **kwargs)
+
+class AjaxableResponseMixin(object):
+	'''
+	Allow our forms to support ajax calls as well
+	'''
+
+	print 'in ajax call'
+
+	def form_invalid(self, form):
+
+		response = super(AjaxableResponseMixin, self).form_invalid(form)
+
+		if self.request.is_ajax():
+			return JsonResponse(form.errors, status=400)
+
+		else:
+			return response
 
 	def form_valid(self, form):
-		messages.info(self.request, self.success_msg)
-		return super(CategoryActionMixin, self).form_valid(form)'''
+
+		response = super(AjaxableResponseMixin, self).form_valid(form)
+
+		if self.request.is_ajax():
+			data = {
+				'pk': self.object.pk,
+			}
+			return JsonResponse(data)
+
+		else:
+			return response
+
+
+
 
 class SubCategoryActionMixin(object):
 	fields = ['name', 'description', 'parent_category', 'suppliers']
@@ -69,17 +127,64 @@ class CategoryUpdateView(CategoryActionMixin, UpdateView):
 	success_url = reverse_lazy('category-list')
 
 
-class CategoryDeleteView(DeleteView):
+class CategoryDeleteView(AjaxResponseMixin, DeleteView):
 
 	model = Category
 	success_url = reverse_lazy('category-list')
+	template_name = 'item_delete.html'
 
-	template_name = 'category_delete.html'
+	def post_ajax(self, request, *args, **kwargs):
+		print 'ajax great succes!'
+
+	def post(self, request, *args, **kwargs):
+		print 'great succes!'
+
+	def delete_ajax(self, request, *args, **kwargs):
+		print 'ajax delete CategoryDeleteView'
+
+		self.object = self.get_object()
+		self.object.delete()
+		payload = {'delete': 'ok'}
+		return JsonResponse(payload)
+
 
 	def dispatch(self, *args, **kwargs): #View part of view: accepteert request en retourneert response
 
 		self.slug = kwargs['slug']
 		return super(CategoryDeleteView, self).dispatch(*args, **kwargs)
+
+class ItemDeleteView(AjaxResponseMixin, DeleteView):
+
+	model = Category
+	success_url = reverse_lazy('category-list')
+	template_name = 'item_delete.html'
+
+	def dispatch(self, *args, **kwargs): 
+		self.item_id = kwargs['pk'] 
+		print self.item_id
+		return super(ItemUpdateView, self).dispatch(*args, **kwargs)
+
+	def post(self, request, *args, **kwargs):
+		print 'great succes!'
+
+	def post_ajax(self, request, *args, **kwargs):
+		print 'ajax great succes!'
+
+		reponse = JsonResponse({'foo': 'bar'})
+
+		print 'error?'
+
+		return response
+
+	def delete_ajax(self, request, *args, **kwargs):
+
+		self.object = self.get_object()
+
+		print 'delete ajax'
+		print self.object
+		print 'test'
+
+
 
 
 

@@ -9,6 +9,7 @@ urlpatterns = [
 
     url(r'^category/new/$', CategoryCreateView.as_view(), name='category-new'),
     url(r'^category/list/$', CategoryListView.as_view(), name='category-list'),
+    url(r'^category/list/delete/$', ItemDeleteView.as_view(), name='item-delete'),
     url(r'^category/(?P<slug>[\w]+)/$', CategoryDetailView.as_view(), name='category-detail'),
     url(r'^category/delete/(?P<slug>[\w-]+)/$', CategoryDeleteView.as_view(), name='category-delete'),
     url(r'^category/update/(?P<slug>[\w-]+)/$', CategoryUpdateView.as_view(), name='category-update'),
@@ -17,5 +18,7 @@ urlpatterns = [
 
     url(r'^supplier/new$', SupplierCreateView.as_view(), name='supplier-new'),
     url(r'^supplier/update/(?P<slug>[\w-]+)/$', SupplierUpdateView.as_view(), name='supplier-update'),
+
+
 
 ]
