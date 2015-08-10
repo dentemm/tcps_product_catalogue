@@ -12,7 +12,7 @@
         		<h4 class="modal-title">Opgelet!</h4>
       		</div>
       		<div class="modal-body">
-        		<p>Ben je zeker dat je de {{ item_list.0.get_verbose_name }} <span id='vulin'>'{{ obj.name }}'</span> wil verwijderen?</p>
+        		<p>Ben je zeker dat je de {{ modalname }} <span id='vulin'>'{{ obj.name }}'</span> wil verwijderen?</p>
       		</div>
       		<div class="modal-footer">
         		<button type="button" class="btn btn-info" data-dismiss="modal">Neen</button>
@@ -34,7 +34,7 @@
 				<div class="panel-heading clearfix">
 					<h5 class="panel-title pull-left">Alle {{ item_list.0.get_verbose_name_plural }}</h5>
 					<div class="pull-right">
-                        <a href="/products/{{ item_list.0.get_class_name | lower }}/new/" class="btn btn-default btn-sm">Voeg toe</a>
+                        <a href="/products/dashboard/{{ modelname | lower }}/new/" class="btn btn-default btn-sm">Voeg toe</a>
                 	</div>
 				</div>
                 <table class="table table-hover">
@@ -42,10 +42,10 @@
                     	{% for item in item_list %}
                         <tr>
                             <td>
-                                &emsp;<a href="#">{{ item.name }}</a>{{ item.slug }}
+                                &emsp;<a href="#">{{ item.name | capfirst }}</a>
                             </td>
                             <td class="text-right text-nowrap">
-                            	<a class="btn btn-info btn-xs" href="/products/{{ item_list.0.get_class_name | lower }}/update/{{ item.slug }}" role="button">Wijzig</a>
+                            	<a class="btn btn-info btn-xs" href="/products/dashboard/{{ modelname }}/update/{{ item.slug }}" role="button">Wijzig</a>
                             	<a id="item-{{ item.slug }}" class="btn btn-danger btn-xs modalDelete" data-toggle="modal" role="button" data-target="#myModaal">
                             		<span class="glyphicon glyphicon-trash"></span>
                         		</a>
@@ -65,7 +65,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
-			<a href="#">Ga terug</a>
+			<a href="{{request.META.HTTP_REFERER}}">Ga terug</a>
 		</div>
 	</div>
 </div>

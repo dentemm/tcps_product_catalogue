@@ -8,10 +8,14 @@ from .models import *
 
 
 # Create your views here.
-
 class CategoryActionMixin(object):
 
 	fields = ['name', 'slug', 'image']
+
+	def get_context_data(self, **kwargs):
+		ctx = super(CategoryActionMixin, self).get_context_data(**kwargs)
+		ctx['modelname'] = 'categorie'
+		return ctx
 
 class AjaxResponseMixin(object):
     """
@@ -76,8 +80,6 @@ class AjaxableResponseMixin(object):
 			return response
 
 
-
-
 class SubCategoryActionMixin(object):
 	fields = ['name', 'description', 'parent_category', 'suppliers']
 
@@ -96,6 +98,8 @@ class CategoryDetailView(DetailView):
 
 class CategoryListView(ListView):
 
+	print 'category list view'
+
 	model = Category
 	context_object_name = 'item_list'
 	template_name = 'category_list.html'
@@ -105,18 +109,23 @@ class CategoryListView(ListView):
 		print 'test'
 		return Category.objects.all()
 
+	def get_context_data(self, **kwargs):
+		ctx = super(CategoryListView, self).get_context_data(**kwargs)
+		ctx['modelname'] = 'categorie'
+		return ctx
+
 class CategoryCreateView(CategoryActionMixin, CreateView):
 
 	model = Category
 	template_name = 'category_edit.html'
-
 	success_url = reverse_lazy('category-list')
 
-
+	'''
 	def get_context_data(self, **kwargs):
 		ctx = super(CategoryCreateView, self).get_context_data(**kwargs)
 		ctx['modelname'] = 'category'
 		return ctx
+	'''
 
 
 class CategoryUpdateView(CategoryActionMixin, UpdateView):
@@ -183,9 +192,6 @@ class ItemDeleteView(AjaxResponseMixin, DeleteView):
 		print 'delete ajax'
 		print self.object
 		print 'test'
-
-
-
 
 
 class SubCategoryDetailView(DetailView):

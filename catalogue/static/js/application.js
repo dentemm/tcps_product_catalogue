@@ -20,9 +20,9 @@ $('#confirmDelete').on('click', function(e) {
 
 function delete_item(slug) {
 	console.log("Delete functie opgeroepen");
-	console.log("products/category/delete/"+slug) // sanity check
+	console.log("products/categorie/delete/"+slug) // sanity check
 	$.ajax({
-		url: "/products/category/delete/" + slug,
+		url: "/products/dashboard/categorie/delete/" + slug,
 		type: "DELETE",
 		data: {
 			test: "test"
@@ -31,7 +31,7 @@ function delete_item(slug) {
 			console.log(json);
 			$('#myModaal').modal('hide')
 			console.log(slug);
-			$('#item-'+slug).parents('tr').remove();
+			$('#item-'+slug).parents('tr').remove(); //Remove tr visueel, zodat page refresh niet nodig is
 		}
 	});
 
