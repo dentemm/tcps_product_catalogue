@@ -45,17 +45,17 @@ class Category(MetaOptionsMixin, models.Model):
 
 class SubCategory(models.Model):
 
-	name = models.CharField(_('Name'), max_length=255, unique=True)
-	description = models.TextField(_('Description'), null=True, blank=True)
+	name = models.CharField(_('Naam'), max_length=255, unique=True)
+	slug = models.CharField(_('Slug'), max_length=255, unique=False)
+	description = models.TextField(_('Beschrijving'), null=True, blank=True)
 	parent_category = models.ForeignKey(Category, verbose_name='Parent Category', related_name='subcategories')
 	suppliers = models.ManyToManyField('Supplier', related_name='categories')
 
-	subcategories = models.Manager
-
 	class Meta:
 		app_label = 'catalogue'
-		verbose_name = _('Subcategory')
-		verbose_name_plural = _('Subcategories')
+		ordering = ['name']
+		verbose_name = _('subcategorie')
+		verbose_name_plural = _('subcategorieen')
 
 	def __unicode__(self):
 		return self.name
@@ -66,12 +66,17 @@ class SubCategory(models.Model):
 
 class Supplier(models.Model):
 
-	name = models.CharField(_('Name'), max_length=255, unique=True)
+	name = models.CharField(_('Naam'), max_length=255, unique=True)
+	slug = models.CharField(_('Slug'), max_length=255, unique=False)
 	description = models.TextField(_('Description'), null=True, blank=True)
 	website = models.URLField(blank=True)
 	logo = models.ImageField(max_length=255, blank=True)
 
-	suppliers = models.Manager()
+	class Meta:
+		app_label = 'catalogue'
+		ordering = ['name']
+		verbose_name = _('leverancier')
+		verbose_name_plural = _('leveranciers')
 
 	def __unicode__(self):
 		return self.name

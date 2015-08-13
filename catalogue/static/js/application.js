@@ -12,13 +12,14 @@ $('#confirmDelete').on('click', function(e) {
 
 	console.log("Confirm delete knop gedrukt");
 	var item_slug = $('#vulin').text();
+	var item_modelname = 
 	console.log(item_slug)
 	delete_item(item_slug);
 });
 
 
 
-function delete_item(slug) {
+function delete_item(modelname, slug) {
 	console.log("Delete functie opgeroepen");
 	console.log("products/categorie/delete/"+slug) // sanity check
 	$.ajax({

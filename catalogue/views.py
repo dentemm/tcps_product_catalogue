@@ -26,6 +26,14 @@ class SubCategoryActionMixin(object):
 		ctx['modelname'] = subcategorie
 		return ctx
 
+class SupplierActionMixin(object):
+	fields = ['name', 'slug', 'description', 'website', 'logo']
+
+	def get_context_data(self, **kwargs):
+		ctx = super(SupplierActionMixin, self).get_context_data(**kwargs)
+		ctx['modelname'] = supplier
+		return ctx
+
 
 class AjaxResponseMixin(object):
     """
@@ -91,10 +99,9 @@ class AjaxableResponseMixin(object):
 
 
 class SubCategoryActionMixin(object):
-	fields = ['name', 'description', 'parent_category', 'suppliers']
+	fields = ['name', 'slug', 'description', 'parent_category', 'suppliers']
 
-class SupplierActionMixin(object):
-	fields = ['name', 'description', 'website', 'logo']
+
 
 class DashboardView(TemplateView):
 	template_name = 'dashboard_home.html'
@@ -112,11 +119,9 @@ class CategoryListView(ListView):
 
 	model = Category
 	context_object_name = 'item_list'
-	template_name = 'category_list.html'
+	template_name = 'item_list.html'
 
 	def get_queryset(self):
-
-		print 'test'
 		return Category.objects.all()
 
 	def get_context_data(self, **kwargs):
@@ -127,7 +132,7 @@ class CategoryListView(ListView):
 class CategoryCreateView(CategoryActionMixin, CreateView):
 
 	model = Category
-	template_name = 'category_edit.html'
+	template_name = 'item_edit.html'
 	success_url = reverse_lazy('category-list')
 
 	'''
@@ -141,8 +146,7 @@ class CategoryCreateView(CategoryActionMixin, CreateView):
 class CategoryUpdateView(CategoryActionMixin, UpdateView):
 
 	model = Category
-	template_name = 'category_edit.html'
-
+	template_name = 'item_edit.html'
 	success_url = reverse_lazy('category-list')
 
 
@@ -166,7 +170,6 @@ class CategoryDeleteView(AjaxResponseMixin, DeleteView):
 		payload = {'delete': 'ok'}
 		return JsonResponse(payload)
 
-
 	def dispatch(self, *args, **kwargs): #View part of view: accepteert request en retourneert response
 
 		self.slug = kwargs['slug']
@@ -179,19 +182,90 @@ class SubCategoryListView(ListView):
 	context_object_name = 'item_list'
 	template_name = 'item_list.html'
 
+	def get_queryset(self):
+		return SubCategory.objects.all()
+
 	def get_context_data(self, **kwargs):
 		ctx = super(SubCategoryListView, self).get_context_data(**kwargs)
 		ctx['modelname'] = 'subcategorie'
 		return ctx
 
-
 class SubCategoryCreateView(SubCategoryActionMixin, CreateView):
 
 	model = SubCategory
 	template_name = 'item_edit.html'
-
 	success_url = reverse_lazy('subcategory-list')
 
+
+class SubCategoryUpdateView(SubCategoryActionMixin, UpdateView):
+
+	model = SubCategory
+	template_name = 'item_edit.html'
+	success_url = reverse_lazy('subcategory-list')
+
+class SubCategoryDeleteView(AjaxResponseMixin, DeleteView):
+
+	model = SubCategory
+	success_url = reverse_lazy('subcategory-list')
+	template_name = 'item_delete.html'
+
+	def delete_ajax(self, request, *args, **kwargs):
+		print 'ajax delete SubCategoryDeleteView'
+
+		self.object = self.get_object()
+		self.object.delete()
+		payload = {'delete': 'ok'}
+		return JsonResponse(payload)
+
+	def dispatch(self, *args, **kwargs): #View part of view: accepteert request en retourneert response
+
+		self.slug = kwargs['slug']
+		return super(SubCategoryDeleteView, self).dispatch(*args, **kwargs)
+
+
+#Supplier views
+class SupplierListView(ListView):
+
+	model = Supplier
+	context_object_name = 'item_list'
+	template_name = 'item_list.html'
+
+	def get_queryset(self):
+		return Supplier.objects.all()
+
+	def get_context_data(self, **kwargs):
+		ctx = super(SupplierListView, self).get_context_data(**kwargs)
+		ctx['modelname'] = 'leverancier'
+		return ctx
+
+class SupplierCreateView(SupplierActionMixin, CreateView):
+
+	model = Supplier
+	template_name = 'item_edit.html'
+
+class SupplierUpdateView(SupplierActionMixin, UpdateView):
+
+	model = Supplier
+	template_name = 'item_edit.html'
+
+class SupplierDeleteView(AjaxResponseMixin, DeleteView):
+
+	model = Supplier
+	success_url = reverse_lazy('supplier-list')
+	template_name = 'item_delete.html'
+
+	def delete_ajax(self, request, *args, **kwargs):
+		print 'ajax delete SupplierDeleteView'
+
+		self.object = self.get_object()
+		self.object.delete()
+		payload = {'delete': 'ok'}
+		return JsonResponse(payload)
+
+	def dispatch(self, *args, **kwargs): #View part of view: accepteert request en retourneert response
+
+		self.slug = kwargs['slug']
+		return super(SubCategoryDeleteView, self).dispatch(*args, **kwargs)
 
 
 class ItemDeleteView(AjaxResponseMixin, DeleteView):
@@ -231,19 +305,4 @@ class SubCategoryDetailView(DetailView):
 	model = SubCategory
 
 
-
-
-
-
-class SupplierCreateView(SupplierActionMixin, CreateView):
-
-	model = Supplier
-
-	template_name = 'supplier_edit.html'
-
-class SupplierUpdateView(SupplierActionMixin, UpdateView):
-
-	model = Category
-
-	template_name = 'supplier_edit.html'
 

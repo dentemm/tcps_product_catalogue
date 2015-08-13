@@ -9,15 +9,19 @@ urlpatterns = [
 
     url(r'^dashboard/categorie/list/$', CategoryListView.as_view(), name='category-list'),
     url(r'^dashboard/categorie/new/$', CategoryCreateView.as_view(), name='category-new'),
-    url(r'^dashboard/categorie/list/delete/$', CategoryDeleteView.as_view(), name='category-delete'),
+    #url(r'^dashboard/categorie/list/delete/$', CategoryDeleteView.as_view(), name='category-delete'),
     url(r'^dashboard/categorie/delete/(?P<slug>[\w-]+)/$', CategoryDeleteView.as_view(), name='category-delete'),
     url(r'^dashboard/categorie/update/(?P<slug>[\w-]+)/$', CategoryUpdateView.as_view(), name='category-update'),
 
     url(r'^dashboard/subcategorie/list/$', SubCategoryListView.as_view(), name='subcategory-list'),
     url(r'^dashboard/subcategorie/new/$', SubCategoryCreateView.as_view(), name='subcategory-new'),
+    url(r'^dashboard/subcategorie/delete/(?P<slug>[\w-]+)/$', SubCategoryDeleteView.as_view(), name='subcategory-delete'),
+    url(r'^dashboard/subcategorie/update/(?P<slug>[\w-]+)/$', SubCategoryUpdateView.as_view(), name='subcategory-update'),
 
-
-
+    url(r'^dashboard/leverancier/list/$', SupplierListView.as_view(), name='supplier-list'),
+    url(r'^dashboard/leverancier/new/$', SupplierCreateView.as_view(), name='supplier-new'),
+    url(r'^dashboard/leverancier/delete/(?P<slug>[\w-]+)/$', SupplierDeleteView.as_view(), name='supplier-delete'),
+    url(r'^dashboard/leverancier/update/(?P<slug>[\w-]+)/$', SupplierUpdateView.as_view(), name='supplier-update'),
 
 
     #url(r'^category/new/$', CategoryCreateView.as_view(), name='category-new'),
