@@ -17,6 +17,16 @@ class CategoryActionMixin(object):
 		ctx['modelname'] = 'categorie'
 		return ctx
 
+class SubCategoryActionMixin(object):
+	
+	fields = ['name', 'description', 'parent_category', 'suppliers']
+
+	def get_context_data(self, **kwargs):
+		ctx = super(SubCategoryActionMixin, self).get_context_data(**kwargs)
+		ctx['modelname'] = subcategorie
+		return ctx
+
+
 class AjaxResponseMixin(object):
     """
     Mixin allows you to define alternative methods for ajax requests. Similar
@@ -162,6 +172,28 @@ class CategoryDeleteView(AjaxResponseMixin, DeleteView):
 		self.slug = kwargs['slug']
 		return super(CategoryDeleteView, self).dispatch(*args, **kwargs)
 
+#Subcategorie views
+class SubCategoryListView(ListView):
+
+	model = SubCategory
+	context_object_name = 'item_list'
+	template_name = 'item_list.html'
+
+	def get_context_data(self, **kwargs):
+		ctx = super(SubCategoryListView, self).get_context_data(**kwargs)
+		ctx['modelname'] = 'subcategorie'
+		return ctx
+
+
+class SubCategoryCreateView(SubCategoryActionMixin, CreateView):
+
+	model = SubCategory
+	template_name = 'item_edit.html'
+
+	success_url = reverse_lazy('subcategory-list')
+
+
+
 class ItemDeleteView(AjaxResponseMixin, DeleteView):
 
 	model = Category
@@ -198,15 +230,9 @@ class SubCategoryDetailView(DetailView):
 
 	model = SubCategory
 
-class SubCategoryListView(ListView):
 
-	model = SubCategory
 
-class SubCategoryCreateView(SubCategoryActionMixin, CreateView):
 
-	model = SubCategory
-
-	template_name = 'subcategory_edit.html'
 
 
 class SupplierCreateView(SupplierActionMixin, CreateView):

@@ -1,0 +1,77 @@
+{% extends 'dashboard_layout.html' %}
+
+{% load staticfiles crispy_forms_tags %}
+
+{% block content %}
+
+<div class="modal fade" id="myModaal">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title">Opgelet!</h4>
+      		</div>
+      		<div class="modal-body">
+        		<p>Ben je zeker dat je de {{ modalname }} <span id='vulin'>'{{ obj.name }}'</span> wil verwijderen?</p>
+      		</div>
+      		<div class="modal-footer">
+        		<button type="button" class="btn btn-info" data-dismiss="modal">Neen</button>
+        		<button id="confirmDelete" type="button" class="btn btn-danger">Ja</button>
+      		</div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal --> 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
+<!-- /.modal -->
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="panel panel-primary">
+				<div class="panel-heading clearfix">
+					<h5 class="panel-title pull-left">Alle {{ item_list.0.get_verbose_name_plural }}</h5>
+					<div class="pull-right">
+                        <a href="/products/dashboard/{{ modelname | lower }}/new/" class="btn btn-default btn-sm">Voeg toe</a>
+                	</div>
+				</div>
+                <table class="table table-hover">
+                    <tbody>
+                    	{% for item in item_list %}
+                        <tr>
+                            <td>
+                                &emsp;<a href="#">{{ item.name | capfirst }}</a>
+                            </td>
+                            <td class="text-right text-nowrap">
+                            	<a class="btn btn-info btn-xs" href="/products/dashboard/{{ modelname }}/update/{{ item.slug }}" role="button">Wijzig</a>
+                            	<a id="item-{{ item.slug }}" class="btn btn-danger btn-xs modalDelete" data-toggle="modal" role="button" data-target="#myModaal">
+                            		<span class="glyphicon glyphicon-trash"></span>
+                        		</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        	<tr>
+                        		<td>
+                        			Deze lijst is leeg, gelieve items toe te voegen
+                        		</td>
+                        	</tr>
+                    	{% endfor %}
+                    </tbody>
+                </table>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<a href="{{request.META.HTTP_REFERER}}">Ga terug</a>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'js/application.js' %}"></script>
+{% endblock extra_js %}
+
