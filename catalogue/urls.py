@@ -23,6 +23,11 @@ urlpatterns = [
     url(r'^dashboard/leverancier/delete/(?P<slug>[\w-]+)/$', SupplierDeleteView.as_view(), name='supplier-delete'),
     url(r'^dashboard/leverancier/update/(?P<slug>[\w-]+)/$', SupplierUpdateView.as_view(), name='supplier-update'),
 
+    url(r'^dashboard/product/list/$', ProductListView.as_view(), name='product-list'),
+    url(r'^dashboard/product/new/$', ProductCreateView.as_view(), name='product-new'),
+    url(r'^dashboard/product/delete/(?P<slug>[\w-]+)/$', ProductDeleteView.as_view(), name='product-delete'),
+    url(r'^dashboard/product/update/(?P<slug>[\w-]+)/$', ProductUpdateView.as_view(), name='product-update'),
+
 
     #url(r'^category/new/$', CategoryCreateView.as_view(), name='category-new'),
     #url(r'^category/list/$', CategoryListView.as_view(), name='category-list'),

@@ -43,7 +43,7 @@ class Category(MetaOptionsMixin, models.Model):
 	def get_absolute_url(self):
 		return '/dashboard/' 
 
-class SubCategory(models.Model):
+class SubCategory(MetaOptionsMixin, models.Model):
 
 	name = models.CharField(_('Naam'), max_length=255, unique=True)
 	slug = models.CharField(_('Slug'), max_length=255, unique=False)
@@ -64,7 +64,7 @@ class SubCategory(models.Model):
 		return self.name
 
 
-class Supplier(models.Model):
+class Supplier(MetaOptionsMixin, models.Model):
 
 	name = models.CharField(_('Naam'), max_length=255, unique=True)
 	slug = models.CharField(_('Slug'), max_length=255, unique=False)
@@ -86,7 +86,7 @@ class Supplier(models.Model):
 
 
 
-class Product(models.Model):
+class Product(MetaOptionsMixin, models.Model):
 
 	product_code = models.CharField(max_length=128, blank=True, unique=True)
 	name = models.CharField(max_length=255, verbose_name=_('Name'))
@@ -98,7 +98,11 @@ class Product(models.Model):
 	user_manual = models.FileField(_('User manual'), upload_to='documentation', null=True, blank=True)
 	#technical_manual = models.FileField(_('Technical manual'), upload_to='documentation', null=True, blank=True) //rejected by tcps
 
-	products = models.Manager()
+	class Meta:
+
+		app_label = 'catalogue'
+		verbose_name = _('product')
+		verbose_name_plural = _('producten')
 
 	def __unicode__(self):
 		return self.name
@@ -106,7 +110,7 @@ class Product(models.Model):
 	def __str__(self):
 		return self.name
 
-class ProductPhoto(models.Model):
+class ProductPhoto(MetaOptionsMixin, models.Model):
 
 	product = models.ForeignKey(Product, verbose_name=_('Product'), related_name='images')
 	image = models.ImageField(upload_to='test', max_length=255)
@@ -118,8 +122,8 @@ class ProductPhoto(models.Model):
 	class Meta:
 
 		app_label = 'catalogue'
-		verbose_name = _('Product image')
-		verbose_name_plural = _('Product images')
+		verbose_name = _('product afbeelding')
+		verbose_name_plural = _('product afbeeldingen')
 
 	def __string__(self):
 

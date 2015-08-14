@@ -36,6 +36,11 @@ class Migration(migrations.Migration):
                 ('product_folder', models.FileField(upload_to=b'documentation', null=True, verbose_name='Product folder', blank=True)),
                 ('user_manual', models.FileField(upload_to=b'documentation', null=True, verbose_name='User manual', blank=True)),
             ],
+            options={
+                'verbose_name': 'product',
+                'verbose_name_plural': 'producten',
+            },
+            bases=(catalogue.models.MetaOptionsMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ProductPhoto',
@@ -48,16 +53,17 @@ class Migration(migrations.Migration):
                 ('product', models.ForeignKey(related_name='images', verbose_name='Product', to='catalogue.Product')),
             ],
             options={
-                'verbose_name': 'Product image',
-                'verbose_name_plural': 'Product images',
+                'verbose_name': 'product afbeelding',
+                'verbose_name_plural': 'product afbeeldingen',
             },
+            bases=(catalogue.models.MetaOptionsMixin, models.Model),
         ),
         migrations.CreateModel(
             name='SubCategory',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(unique=True, max_length=255, verbose_name='Naam')),
-                ('slug', models.CharField(default=models.CharField(unique=True, max_length=255, verbose_name='Naam'), max_length=255, verbose_name='Slug')),
+                ('slug', models.CharField(max_length=255, verbose_name='Slug')),
                 ('description', models.TextField(null=True, verbose_name='Beschrijving', blank=True)),
                 ('parent_category', models.ForeignKey(related_name='subcategories', verbose_name=b'Parent Category', to='catalogue.Category')),
             ],
@@ -66,13 +72,14 @@ class Migration(migrations.Migration):
                 'verbose_name': 'subcategorie',
                 'verbose_name_plural': 'subcategorieen',
             },
+            bases=(catalogue.models.MetaOptionsMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Supplier',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(unique=True, max_length=255, verbose_name='Naam')),
-                ('slug', models.CharField(default=models.CharField(unique=True, max_length=255, verbose_name='Naam'), unique=True, max_length=255, verbose_name='Leverancier')),
+                ('slug', models.CharField(max_length=255, verbose_name='Slug')),
                 ('description', models.TextField(null=True, verbose_name='Description', blank=True)),
                 ('website', models.URLField(blank=True)),
                 ('logo', models.ImageField(max_length=255, upload_to=b'', blank=True)),
@@ -82,6 +89,7 @@ class Migration(migrations.Migration):
                 'verbose_name': 'leverancier',
                 'verbose_name_plural': 'leveranciers',
             },
+            bases=(catalogue.models.MetaOptionsMixin, models.Model),
         ),
         migrations.AddField(
             model_name='subcategory',

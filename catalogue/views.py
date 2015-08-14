@@ -27,6 +27,7 @@ class SubCategoryActionMixin(object):
 		return ctx
 
 class SupplierActionMixin(object):
+
 	fields = ['name', 'slug', 'description', 'website', 'logo']
 
 	def get_context_data(self, **kwargs):
@@ -34,6 +35,14 @@ class SupplierActionMixin(object):
 		ctx['modelname'] = supplier
 		return ctx
 
+class ProductActionMixin(object):
+
+	fields = ['name', 'product_code', 'description', 'supplier', 'subcategory', 'product_folder', 'user_manual']
+
+	def get_context_data(self, **kwargs):
+		ctx = super(ProductActionMixin, self).get_context_data(**kwargs)
+		ctx['modelname'] = 'product'
+		return ctx
 
 class AjaxResponseMixin(object):
     """
@@ -267,42 +276,49 @@ class SupplierDeleteView(AjaxResponseMixin, DeleteView):
 		self.slug = kwargs['slug']
 		return super(SubCategoryDeleteView, self).dispatch(*args, **kwargs)
 
+#Product views
+class ProductListView(ListView):
 
-class ItemDeleteView(AjaxResponseMixin, DeleteView):
+	model = Product
+	context_object_name = 'item_list'
+	template_name = 'item_list.html'
 
-	model = Category
-	success_url = reverse_lazy('category-list')
+	def get_queryset(self):
+		return Product.objects.all()
+
+	def get_context_data(self, **kwargs):
+		ctx = super(ProductListView, self).get_context_data(**kwargs)
+		ctx['modelname'] = 'product'
+		return ctx
+
+class ProductCreateView(ProductActionMixin, CreateView):
+
+	model = Product
+	template_name = 'item_edit.html'
+
+class ProductUpdateView(ProductActionMixin, UpdateView):
+
+	model = Product
+	template_name = 'item_edit.html'
+
+class ProductDeleteView(AjaxResponseMixin, DeleteView):
+
+	model = Product
+	success_url = reverse_lazy('product-list')
 	template_name = 'item_delete.html'
 
-	def dispatch(self, *args, **kwargs): 
-		self.item_id = kwargs['pk'] 
-		print self.item_id
-		return super(ItemUpdateView, self).dispatch(*args, **kwargs)
-
-	def post(self, request, *args, **kwargs):
-		print 'great succes!'
-
-	def post_ajax(self, request, *args, **kwargs):
-		print 'ajax great succes!'
-
-		reponse = JsonResponse({'foo': 'bar'})
-
-		print 'error?'
-
-		return response
-
 	def delete_ajax(self, request, *args, **kwargs):
+		print 'ajax delete ProductDeleteView'
 
 		self.object = self.get_object()
+		self.object.delete()
+		payload = {'delete': 'ok'}
+		return JsonResponse(payload)
 
-		print 'delete ajax'
-		print self.object
-		print 'test'
+	def dispatch(self, *args, **kwargs): #View part of view: accepteert request en retourneert response
 
-
-class SubCategoryDetailView(DetailView):
-
-	model = SubCategory
+		self.slug = kwargs['slug']
+		return super(ProductDeleteView, self).dispatch(*args, **kwargs)
 
 
 
