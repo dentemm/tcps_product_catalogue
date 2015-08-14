@@ -44,6 +44,15 @@ class ProductActionMixin(object):
 		ctx['modelname'] = 'product'
 		return ctx
 
+class ProductPhotoActionMixin(object):
+
+	fields = ['image', 'product', 'alt_text', 'display_order']
+
+	def get_context_data(self, **kwargs):
+		ctx = super(ProductPhotoActionMixin, self).get_context_data(**kwargs)
+		ctx['modelname'] = 'productphoto'
+		return ctx
+
 class AjaxResponseMixin(object):
     """
     Mixin allows you to define alternative methods for ajax requests. Similar
@@ -114,7 +123,6 @@ class SubCategoryActionMixin(object):
 
 class DashboardView(TemplateView):
 	template_name = 'dashboard_home.html'
-
 
 #Category views
 class CategoryDetailView(DetailView):
@@ -320,5 +328,70 @@ class ProductDeleteView(AjaxResponseMixin, DeleteView):
 		self.slug = kwargs['slug']
 		return super(ProductDeleteView, self).dispatch(*args, **kwargs)
 
+#ProductPhoto views
+class ProductPhotoDetailView(DetailView):
+
+	model = ProductPhoto
+	template_name = 'productphoto_detail.html'
+
+class ProductPhotoListView(ListView):
+
+	print 'product photo list view'
+
+	model = ProductPhoto
+	context_object_name = 'item_list'
+	template_name = 'item_list.html'
+
+	def get_queryset(self):
+		return ProductPhoto.objects.all()
+
+	def get_context_data(self, **kwargs):
+		ctx = super(ProductPhotoListView, self).get_context_data(**kwargs)
+		ctx['modelname'] = 'productphoto'
+		return ctx
+
+class ProductPhotoCreateView(ProductPhotoActionMixin, CreateView):
+
+	model = ProductPhoto
+	template_name = 'item_edit.html'
+	success_url = reverse_lazy('productphoto-list')
+
+	
+	def get_context_data(self, **kwargs):
+		ctx = super(ProductPhotoCreateView, self).get_context_data(**kwargs)
+		ctx['modelname'] = 'productphoto'
+		return ctx
+
+class ProductPhotoUpdateView(ProductPhotoActionMixin, UpdateView):
+
+	model = ProductPhoto
+	template_name = 'item_edit.html'
+	success_url = reverse_lazy('productphoto-list')
+
+
+class ProductPhotoDeleteView(AjaxResponseMixin, DeleteView):
+
+	model = Category
+	success_url = reverse_lazy('productphoto-list')
+	template_name = 'item_delete.html'
+
+	def post_ajax(self, request, *args, **kwargs):
+		print 'ajax great succes!'
+
+	def post(self, request, *args, **kwargs):
+		print 'great succes!'
+
+	def delete_ajax(self, request, *args, **kwargs):
+		print 'ajax delete ProductPhotoDeleteView'
+
+		self.object = self.get_object()
+		self.object.delete()
+		payload = {'delete': 'ok'}
+		return JsonResponse(payload)
+
+	def dispatch(self, *args, **kwargs): #View part of view: accepteert request en retourneert response
+
+		self.slug = kwargs['slug']
+		return super(ProductPhotoDeleteView, self).dispatch(*args, **kwargs)
 
 
