@@ -23,7 +23,7 @@ class SubCategoryActionMixin(object):
 
 	def get_context_data(self, **kwargs):
 		ctx = super(SubCategoryActionMixin, self).get_context_data(**kwargs)
-		ctx['modelname'] = subcategorie
+		ctx['modelname'] = 'subcategorie'
 		return ctx
 
 class SupplierActionMixin(object):
@@ -32,7 +32,7 @@ class SupplierActionMixin(object):
 
 	def get_context_data(self, **kwargs):
 		ctx = super(SupplierActionMixin, self).get_context_data(**kwargs)
-		ctx['modelname'] = supplier
+		ctx['modelname'] = 'supplier'
 		return ctx
 
 class ProductActionMixin(object):
@@ -114,12 +114,6 @@ class AjaxableResponseMixin(object):
 
 		else:
 			return response
-
-
-class SubCategoryActionMixin(object):
-	fields = ['name', 'slug', 'description', 'parent_category', 'suppliers']
-
-
 
 class DashboardView(TemplateView):
 	template_name = 'dashboard_home.html'
@@ -259,6 +253,7 @@ class SupplierCreateView(SupplierActionMixin, CreateView):
 
 	model = Supplier
 	template_name = 'item_edit.html'
+	success_url = reverse_lazy('supplier-list')
 
 class SupplierUpdateView(SupplierActionMixin, UpdateView):
 
@@ -347,7 +342,7 @@ class ProductPhotoListView(ListView):
 
 	def get_context_data(self, **kwargs):
 		ctx = super(ProductPhotoListView, self).get_context_data(**kwargs)
-		ctx['modelname'] = 'productphoto'
+		ctx['modelname'] = 'productafbeelding'
 		return ctx
 
 class ProductPhotoCreateView(ProductPhotoActionMixin, CreateView):
@@ -359,7 +354,7 @@ class ProductPhotoCreateView(ProductPhotoActionMixin, CreateView):
 	
 	def get_context_data(self, **kwargs):
 		ctx = super(ProductPhotoCreateView, self).get_context_data(**kwargs)
-		ctx['modelname'] = 'productphoto'
+		ctx['modelname'] = 'productafbeelding'
 		return ctx
 
 class ProductPhotoUpdateView(ProductPhotoActionMixin, UpdateView):

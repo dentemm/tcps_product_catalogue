@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.template.defaultfilters import slugify
+from django.core.urlresolvers import reverse_lazy
+
 
 
 #from autoslug import AutoSlugField
@@ -84,15 +86,13 @@ class Supplier(MetaOptionsMixin, models.Model):
 	def __str__(self):
 		return self.name
 
-
-
 class Product(MetaOptionsMixin, models.Model):
 
 	product_code = models.CharField(max_length=128, blank=True, unique=True)
 	name = models.CharField(max_length=255, verbose_name=_('Name'))
 	description = models.TextField(null=True, blank=True, verbose_name=_('Description'))
-	supplier = models.ForeignKey(Supplier, verbose_name=_('Supplier'), related_name='products')
-	subcategory = models.ForeignKey(SubCategory, verbose_name=_('Subcategory'), related_name='products')
+	supplier = models.ForeignKey(Supplier, verbose_name=_('leverancier'), related_name='products')
+	subcategory = models.ForeignKey(SubCategory, verbose_name=_('subcategorie'), related_name='products')
 
 	product_folder = models.FileField(_('Product folder'), upload_to='documentation', null=True, blank=True)
 	user_manual = models.FileField(_('User manual'), upload_to='documentation', null=True, blank=True)
@@ -109,6 +109,9 @@ class Product(MetaOptionsMixin, models.Model):
 
 	def __str__(self):
 		return self.name
+
+	def get_absolute_url(self):
+		return reverse_lazy('product-list')
 
 class ProductPhoto(MetaOptionsMixin, models.Model):
 
