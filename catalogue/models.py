@@ -20,8 +20,6 @@ class MetaOptionsMixin(object):
 	def get_class_name(self):
 		return self._meta.object_name
 
-
-
 class Category(MetaOptionsMixin, models.Model):
 
 	name = models.CharField(_('Naam'), max_length=255, unique=True)
@@ -90,6 +88,7 @@ class Product(MetaOptionsMixin, models.Model):
 
 	product_code = models.CharField(max_length=128, blank=True, unique=True)
 	name = models.CharField(max_length=255, verbose_name=_('Name'))
+	slug = models.CharField(max_length=255, unique=False)
 	description = models.TextField(null=True, blank=True, verbose_name=_('Description'))
 	supplier = models.ForeignKey(Supplier, verbose_name=_('leverancier'), related_name='products')
 	subcategory = models.ForeignKey(SubCategory, verbose_name=_('subcategorie'), related_name='products')

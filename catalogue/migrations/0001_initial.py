@@ -32,6 +32,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('product_code', models.CharField(unique=True, max_length=128, blank=True)),
                 ('name', models.CharField(max_length=255, verbose_name='Name')),
+                ('slug', models.CharField(max_length=255)),
                 ('description', models.TextField(null=True, verbose_name='Description', blank=True)),
                 ('product_folder', models.FileField(upload_to=b'documentation', null=True, verbose_name='Product folder', blank=True)),
                 ('user_manual', models.FileField(upload_to=b'documentation', null=True, verbose_name='User manual', blank=True)),
@@ -99,11 +100,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='subcategory',
-            field=models.ForeignKey(related_name='products', verbose_name='Subcategory', to='catalogue.SubCategory'),
+            field=models.ForeignKey(related_name='products', verbose_name='subcategorie', to='catalogue.SubCategory'),
         ),
         migrations.AddField(
             model_name='product',
             name='supplier',
-            field=models.ForeignKey(related_name='products', verbose_name='Supplier', to='catalogue.Supplier'),
+            field=models.ForeignKey(related_name='products', verbose_name='leverancier', to='catalogue.Supplier'),
         ),
     ]
