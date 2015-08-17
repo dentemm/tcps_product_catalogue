@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.contrib import messages
-from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, ListView, TemplateView
+from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, ListView, TemplateView, View
 from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 
 from .models import *
 
@@ -85,36 +86,6 @@ class AjaxResponseMixin(object):
     def delete_ajax(self, request, *args, **kwargs):
         return self.get(request, *args, **kwargs)
 
-class AjaxableResponseMixin(object):
-	'''
-	Allow our forms to support ajax calls as well
-	'''
-
-	print 'in ajax call'
-
-	def form_invalid(self, form):
-
-		response = super(AjaxableResponseMixin, self).form_invalid(form)
-
-		if self.request.is_ajax():
-			return JsonResponse(form.errors, status=400)
-
-		else:
-			return response
-
-	def form_valid(self, form):
-
-		response = super(AjaxableResponseMixin, self).form_valid(form)
-
-		if self.request.is_ajax():
-			data = {
-				'pk': self.object.pk,
-			}
-			return JsonResponse(data)
-
-		else:
-			return response
-
 class DashboardView(TemplateView):
 	template_name = 'dashboard_home.html'
 
@@ -146,14 +117,6 @@ class CategoryCreateView(CategoryActionMixin, CreateView):
 	template_name = 'item_edit.html'
 	success_url = reverse_lazy('category-list')
 
-	'''
-	def get_context_data(self, **kwargs):
-		ctx = super(CategoryCreateView, self).get_context_data(**kwargs)
-		ctx['modelname'] = 'category'
-		return ctx
-	'''
-
-
 class CategoryUpdateView(CategoryActionMixin, UpdateView):
 
 	model = Category
@@ -166,12 +129,6 @@ class CategoryDeleteView(AjaxResponseMixin, DeleteView):
 	model = Category
 	success_url = reverse_lazy('category-list')
 	template_name = 'item_delete.html'
-
-	def post_ajax(self, request, *args, **kwargs):
-		print 'ajax great succes!'
-
-	def post(self, request, *args, **kwargs):
-		print 'great succes!'
 
 	def delete_ajax(self, request, *args, **kwargs):
 		print 'ajax delete CategoryDeleteView'
@@ -370,12 +327,6 @@ class ProductPhotoDeleteView(AjaxResponseMixin, DeleteView):
 	success_url = reverse_lazy('productphoto-list')
 	template_name = 'item_delete.html'
 
-	def post_ajax(self, request, *args, **kwargs):
-		print 'ajax great succes!'
-
-	def post(self, request, *args, **kwargs):
-		print 'great succes!'
-
 	def delete_ajax(self, request, *args, **kwargs):
 		print 'ajax delete ProductPhotoDeleteView'
 
@@ -389,4 +340,17 @@ class ProductPhotoDeleteView(AjaxResponseMixin, DeleteView):
 		self.slug = kwargs['slug']
 		return super(ProductPhotoDeleteView, self).dispatch(*args, **kwargs)
 
+class CategoryView(AjaxResponseMixin, View):
+
+	model = Category
+
+	def get(self, request, *args, **kwargs):
+
+		item = get_object_or_404(self.model, slug=kwargs['slug'])
+
+		print 'test view: ' + item.__str__()
+
+		return render(request, 'item_edit.html', 
+			{"item": item}
+			)
 

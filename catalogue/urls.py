@@ -7,6 +7,8 @@ urlpatterns = [
 
     url(r'^dashboard/$', DashboardView.as_view(), name='dashboard'),
 
+    url(r'^test/(?P<slug>[\w-]+)/$', CategoryView.as_view(), name='test'),
+
     url(r'^dashboard/categorie/list/$', CategoryListView.as_view(), name='category-list'),
     url(r'^dashboard/categorie/new/$', CategoryCreateView.as_view(), name='category-new'),
     #url(r'^dashboard/categorie/list/delete/$', CategoryDeleteView.as_view(), name='category-delete'),
