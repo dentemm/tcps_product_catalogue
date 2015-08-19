@@ -26,7 +26,7 @@
                     <li id="welcome"><span>{% trans "Welcome" %} <em>{{ user.get_full_name|default:request.user.email }}</em></span></li>
                     <li><a href="{{ homepage_url }}"><i class="glyphicon glyphicon-home"></i> {% trans "Return to site" %}</a></li>
                     <li><a href="url 'customer:summary' "><i class="glyphicon glyphicon-user"></i> {% trans "Account" %}</a></li>
-                    <li><a href=" url 'customer:logout' %}"><i class="glyphicon glyphicon-log-out"></i> {% trans "Log out" %}</a></li>
+                    <li><a href="{% url 'logout' %}"><i class="glyphicon glyphicon-log-out"></i> {% trans "Log out" %}</a></li>
                 </ul>
             </div>
         </div><!-- /navbar-inner -->

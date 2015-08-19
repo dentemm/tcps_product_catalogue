@@ -1,15 +1,20 @@
 from django.shortcuts import render
 #from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, logout
 from django.contrib import messages
 from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, ListView, TemplateView, View
 from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
-from braces import views
+
+from braces.views import LoginRequiredMixin
 
 from .models import *
+
+
+def logout_view(request):
+    logout(request)
 
 
 # Create your views here.
@@ -99,7 +104,7 @@ class AjaxResponseMixin(object):
     def delete_ajax(self, request, *args, **kwargs):
         return self.get(request, *args, **kwargs)
 
-class DashboardView(TemplateView):
+class DashboardView(LoginRequiredMixin, TemplateView):
 	template_name = 'dashboard_home.html'
 
 #Category views
@@ -108,7 +113,7 @@ class CategoryDetailView(DetailView):
 	model = Category
 	template_name = 'category_detail.html'
 
-class CategoryListView(ListView):
+class CategoryListView(LoginRequiredMixin, ListView):
 
 	print 'category list view'
 
