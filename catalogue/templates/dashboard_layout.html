@@ -44,7 +44,7 @@
         <div class="collapse navbar-collapse nav-primary">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="/dashboard/">
+                    <a href="/products/dashboard/">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
                     </a>
                 </li>
@@ -85,7 +85,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="{{ subitem.url }}">
+                            <a href="{% url 'user-list' %}">
                                 Users
                             </a>
                         </li>

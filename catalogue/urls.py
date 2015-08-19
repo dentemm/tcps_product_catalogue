@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
 from .views import *
+from . import views
 
 urlpatterns = [
     #url(r'^(?P<slug>[^/]+)/$', CategoryCreateView.as_view(), name='category_detail'),
@@ -47,6 +48,8 @@ urlpatterns = [
 
     url(r'^supplier/new$', SupplierCreateView.as_view(), name='supplier-new'),
     url(r'^supplier/update/(?P<slug>[\w-]+)/$', SupplierUpdateView.as_view(), name='supplier-update'),
+
+    url(r'^dashboard/user/list/$', views.UserListView.as_view(), name='user-list'),
 
 
 

@@ -42,7 +42,7 @@
                     	{% for item in item_list %}
                         <tr>
                             <td>
-                                &emsp;<a href="#">{{ item.name | capfirst }}</a>
+                                &emsp;<a href="#">{{ item.name | capfirst }} testtesttest {{ item.username}}</a>
                             </td>
                             <td class="text-right text-nowrap">
                             	<a class="btn btn-info btn-xs" href="/products/dashboard/{{ modelname }}/update/{{ item.slug }}" role="button">Wijzig</a>

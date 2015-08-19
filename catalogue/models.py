@@ -4,8 +4,6 @@ from django.conf import settings
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse_lazy
 
-
-
 #from autoslug import AutoSlugField
 
 # Create your models here.

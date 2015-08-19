@@ -1,4 +1,6 @@
 from django.shortcuts import render
+#from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, ListView, TemplateView, View
 from django.core.urlresolvers import reverse_lazy
@@ -344,7 +346,7 @@ class CategoryView(AjaxResponseMixin, View):
 
 	model = Category
 
-	def get(self, request, *args, **kwargs):
+	def put(self, request, *args, **kwargs):
 
 		item = get_object_or_404(self.model, slug=kwargs['slug'])
 
@@ -353,4 +355,25 @@ class CategoryView(AjaxResponseMixin, View):
 		return render(request, 'item_edit.html', 
 			{"item": item}
 			)
+
+class UserListView(ListView):
+
+	print 'user list view' 
+
+	User = get_user_model()
+	context_object_name = 'item_list'
+	template_name = 'item_list.html'
+
+	print 'hier?'
+
+	def get_queryset(self):
+
+		return self.User.objects.all()
+
+	def get_context_data(self, **kwargs):
+		ctx = super(UserListView, self).get_context_data(**kwargs)
+		ctx['modelname'] = 'user'
+		return ctx
+
+
 
