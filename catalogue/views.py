@@ -7,6 +7,8 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
+from braces import views
+
 from .models import *
 
 
@@ -54,6 +56,15 @@ class ProductPhotoActionMixin(object):
 	def get_context_data(self, **kwargs):
 		ctx = super(ProductPhotoActionMixin, self).get_context_data(**kwargs)
 		ctx['modelname'] = 'productphoto'
+		return ctx
+
+class UserActionMixin(object):
+
+	fields = ['name', 'product_code', 'description', 'supplier', 'subcategory', 'product_folder', 'user_manual']
+
+	def get_context_data(self, **kwargs):
+		ctx = super(UserActionMixin, self).get_context_data(**kwargs)
+		ctx['modelname'] = 'user'
 		return ctx
 
 class AjaxResponseMixin(object):

@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     #Third party apps
     'widget_tweaks',
     'crispy_forms',
+    'braces',
 
     #Custom apps
     'catalogue',
