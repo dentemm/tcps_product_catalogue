@@ -20,12 +20,11 @@ class MetaOptionsMixin(object):
 
 class Category(MetaOptionsMixin, models.Model):
 
-	name = models.CharField(_('naam'), max_length=255, unique=True)
-	slug = models.SlugField(_('slug'), unique=True, max_length=255)
+	name = models.CharField(_('naam'), max_length=255, blank=False, unique=True)
+	slug = models.SlugField(_('slug'), unique=True, blank=True, max_length=255)
 	image = models.ImageField(_('afbeelding'), upload_to='category/images/', blank=True, null=True)
 	icon = models.ImageField(_('icoontje'), upload_to='category/icons/', blank=True, null=True)
 	# description = models.TextField(_('Description'), null=True, blank=True) //Provided by django cms
-
 
 	class Meta:
 		app_label = 'catalogue'
