@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+
+    'django_admin_bootstrapped',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +47,7 @@ INSTALLED_APPS = (
     'widget_tweaks',
     'crispy_forms',
     'braces',
+    'apptemplates',
 
     #Custom apps
     'catalogue',
@@ -65,7 +69,7 @@ ROOT_URLCONF = 'tcps.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR+'templates/'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,7 +99,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'nl-be'
 
 TIME_ZONE = 'UTC'
 
@@ -119,6 +123,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #TEMPLATE_DIRS = (
 #    os.path.join(BASE_DIR, 'templates'),
 #)
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    'apptemplates.Loader',
+)
 
 #Third party applications settings
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
