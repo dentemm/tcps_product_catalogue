@@ -6,11 +6,19 @@ from .models import Category, SubCategory, Supplier, Product, ProductPhoto
 class CategoryAdmin(admin.ModelAdmin):
 	exclude = ('slug', )
 
+@admin.register(SubCategory)
+class SubCategoryAdmin(admin.ModelAdmin):
+	pass
 
+@admin.register(Supplier)
+class SupplierCategoryAdmin(admin.ModelAdmin):
+	pass
 
-# Register your models here.
-#admin.site.register(Category)
-admin.site.register(SubCategory)
-admin.site.register(Supplier)
-admin.site.register(Product)
-admin.site.register(ProductPhoto)
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+	pass
+
+@admin.register(ProductPhoto)
+class ProductPhotoAdmin(admin.ModelAdmin):
+	pass
+
