@@ -63,7 +63,7 @@ class SubCategory(MetaOptionsMixin, models.Model):
 		return self.name
 
 	def get_ancestor_and_self(self):
-		return list(self.parent_category.slug) + [self.slug]
+		return [self.parent_category.slug, self.slug]
 
 
 class Supplier(MetaOptionsMixin, models.Model):
@@ -116,7 +116,7 @@ class Product(MetaOptionsMixin, models.Model):
 
 	def full_slug(self):
 		slugs = self.subcategory.get_ancestor_and_self() + [self.slug]
-		return = self._slug_separator.join(slugs)
+		return self._slug_separator.join(slugs)
 
 
 class ProductPhoto(MetaOptionsMixin, models.Model):

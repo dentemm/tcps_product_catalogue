@@ -259,7 +259,8 @@ class SupplierDeleteView(AjaxResponseMixin, DeleteView):
 class ProductDetailView(views.generic.DetailView):
 
 	model = Product
-	
+	template_name = 'product_detail.html'
+
 
 
 class ProductListView(ListView):
@@ -344,7 +345,6 @@ class ProductPhotoUpdateView(ProductPhotoActionMixin, UpdateView):
 	model = ProductPhoto
 	template_name = 'item_edit.html'
 	success_url = reverse_lazy('productphoto-list')
-
 
 class ProductPhotoDeleteView(AjaxResponseMixin, DeleteView):
 
