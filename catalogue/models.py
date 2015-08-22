@@ -20,10 +20,11 @@ class MetaOptionsMixin(object):
 
 class Category(MetaOptionsMixin, models.Model):
 
-	name = models.CharField(_('Naam'), max_length=255, unique=True)
+	name = models.CharField(_('naam'), max_length=255, unique=True)
+	slug = models.SlugField(_('slug'), unique=True, max_length=255)
+	image = models.ImageField(_('afbeelding'), upload_to='category/images/', blank=True, null=True)
+	icon = models.ImageField(_('icoontje'), upload_to='category/icons/', blank=True, null=True)
 	# description = models.TextField(_('Description'), null=True, blank=True) //Provided by django cms
-	image = models.ImageField(_('Afbeelding'), upload_to='categories', blank=True, null=True, max_length=255)
-	slug = models.SlugField(_('Slug'), unique=True, max_length=255)
 
 
 	class Meta:
@@ -43,11 +44,12 @@ class Category(MetaOptionsMixin, models.Model):
 
 class SubCategory(MetaOptionsMixin, models.Model):
 
-	name = models.CharField(_('Naam'), max_length=255, unique=True)
-	slug = models.CharField(_('Slug'), max_length=255, unique=False)
-	description = models.TextField(_('Beschrijving'), null=True, blank=True)
-	parent_category = models.ForeignKey(Category, verbose_name='Parent Category', related_name='subcategories')
-	suppliers = models.ManyToManyField('Supplier', related_name='categories')
+	name = models.CharField(_('naam'), max_length=255, unique=True)
+	slug = models.CharField(_('slug'), max_length=255, unique=True)
+	parent_category = models.ForeignKey('Category', verbose_name='hoofdcategorie', related_name='subcategories')
+	suppliers = models.ManyToManyField('Supplier', verbose_name=_('leverancier'), related_name='categories')
+	image = models.ImageField(_('afbeelding'), upload_to='subcategory/images', blank=True, null=True)
+	# description = models.TextField(_('beschrijving'), null=True, blank=True) //Provided by django cms
 
 	class Meta:
 		app_label = 'catalogue'
@@ -64,11 +66,11 @@ class SubCategory(MetaOptionsMixin, models.Model):
 
 class Supplier(MetaOptionsMixin, models.Model):
 
-	name = models.CharField(_('Naam'), max_length=255, unique=True)
-	slug = models.CharField(_('Slug'), max_length=255, unique=False)
-	description = models.TextField(_('Description'), null=True, blank=True)
-	website = models.URLField(blank=True)
-	logo = models.ImageField(max_length=255, blank=True)
+	name = models.CharField(_('naam'), max_length=255, unique=True)
+	slug = models.CharField(_('slug'), max_length=255, unique=True)
+	website = models.URLField(_('website url'), blank=True)
+	logo = models.ImageField(_('logo'), max_length=255, blank=True)
+	#description = models.TextField(_('beschrijving'), null=True, blank=True) //Provided by django cms
 
 	class Meta:
 		app_label = 'catalogue'
@@ -84,16 +86,14 @@ class Supplier(MetaOptionsMixin, models.Model):
 
 class Product(MetaOptionsMixin, models.Model):
 
-	product_code = models.CharField(max_length=128, blank=True, unique=True)
-	name = models.CharField(max_length=255, verbose_name=_('Name'))
-	slug = models.CharField(max_length=255, unique=False)
-	description = models.TextField(null=True, blank=True, verbose_name=_('Description'))
-	supplier = models.ForeignKey(Supplier, verbose_name=_('leverancier'), related_name='products')
-	subcategory = models.ForeignKey(SubCategory, verbose_name=_('subcategorie'), related_name='products')
-
-	product_folder = models.FileField(_('Product folder'), upload_to='documentation', null=True, blank=True)
-	user_manual = models.FileField(_('User manual'), upload_to='documentation', null=True, blank=True)
-	#technical_manual = models.FileField(_('Technical manual'), upload_to='documentation', null=True, blank=True) //rejected by tcps
+	name = models.CharField(_('naam'), max_length=255)
+	slug = models.CharField(_('slug'), max_length=255, unique=False)
+	product_code = models.CharField(_('product code'), max_length=128, blank=True, unique=True)
+	supplier = models.ForeignKey(Supplier, verbose_name='leverancier', related_name='products')
+	subcategory = models.ForeignKey(SubCategory, verbose_name='subcategorie', related_name='products')
+	product_folder = models.FileField(_('Product folder'), upload_to='product/documentation/', null=True, blank=True)
+	user_manual = models.FileField(_('User manual'), upload_to='product/documentation/', null=True, blank=True)
+	# description = models.TextField(_('beschrijving'), null=True, blank=True) //Provided by django cmss
 
 	class Meta:
 
@@ -112,12 +112,11 @@ class Product(MetaOptionsMixin, models.Model):
 
 class ProductPhoto(MetaOptionsMixin, models.Model):
 
+	image = models.ImageField(_('foto'), upload_to='test/', max_length=255)
+	alt_text = models.CharField(_('korte beschrijving'), max_length=255, null=True, blank=True)
 	product = models.ForeignKey(Product, verbose_name=_('Product'), related_name='images')
-	image = models.ImageField(upload_to='test', max_length=255)
-	alt_text = models.CharField(max_length=255, null=True, blank=True)
-
-	display_order = models.PositiveIntegerField(_('Display order'), default=0, unique=True)
-	date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
+	display_order = models.PositiveIntegerField(_('weergave volgorde'), default=0, unique=True)
+	date_created = models.DateTimeField(_('datum toegevoegd'), auto_now_add=True)
 
 	class Meta:
 
@@ -127,10 +126,10 @@ class ProductPhoto(MetaOptionsMixin, models.Model):
 
 	def __string__(self):
 
-		return "Image %s of %s" % (self.display_order + 1, self.product)
+		return "Afbeelding %s van %s" % (self.display_order + 1, self.product)
 
 	def __unicode__(self):
-		return "Image %s of %s" % (self.display_order + 1, self.product)
+		return "Afbeelding %s van %s" % (self.display_order + 1, self.product)
 
 	def is_primary(self):
 		'''
@@ -167,7 +166,6 @@ class ProductPhoto(MetaOptionsMixin, models.Model):
 		'''
 		Aantal afbeeldingen die momenteel in stock zijn
 		'''
-
 		return len(self.product.images.all())
 
 
