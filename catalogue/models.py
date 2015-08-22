@@ -62,6 +62,9 @@ class SubCategory(MetaOptionsMixin, models.Model):
 	def __str__(self):
 		return self.name
 
+	def get_ancestor_and_self(self):
+		return list(self.parent_category.slug) + [self.slug]
+
 
 class Supplier(MetaOptionsMixin, models.Model):
 
@@ -94,6 +97,8 @@ class Product(MetaOptionsMixin, models.Model):
 	user_manual = models.FileField(_('User manual'), upload_to='product/documentation/', null=True, blank=True)
 	# description = models.TextField(_('beschrijving'), null=True, blank=True) //Provided by django cmss
 
+	_slug_separator = '/'
+
 	class Meta:
 
 		app_label = 'catalogue'
@@ -108,6 +113,11 @@ class Product(MetaOptionsMixin, models.Model):
 
 	def get_absolute_url(self):
 		return reverse_lazy('product-list')
+
+	def full_slug(self):
+		slugs = self.subcategory.get_ancestor_and_self() + [self.slug]
+		return = self._slug_separator.join(slugs)
+
 
 class ProductPhoto(MetaOptionsMixin, models.Model):
 

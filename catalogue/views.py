@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import get_user_model, logout
 from django.contrib import messages
 from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, ListView, TemplateView, View
+from django import views
 from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
@@ -255,6 +256,12 @@ class SupplierDeleteView(AjaxResponseMixin, DeleteView):
 		return super(SubCategoryDeleteView, self).dispatch(*args, **kwargs)
 
 #Product views
+class ProductDetailView(views.generic.DetailView):
+
+	model = Product
+	
+
+
 class ProductListView(ListView):
 
 	model = Product
