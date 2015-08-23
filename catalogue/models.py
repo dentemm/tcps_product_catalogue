@@ -22,8 +22,8 @@ class Category(MetaOptionsMixin, models.Model):
 
 	name = models.CharField(_('naam'), max_length=255, blank=False, unique=True)
 	slug = models.SlugField(_('slug'), unique=True, blank=True, max_length=255)
-	image = models.ImageField(_('afbeelding'), upload_to='category/images/', blank=True, null=True)
-	icon = models.ImageField(_('icoontje'), upload_to='category/icons/', blank=True, null=True)
+	image = models.ImageField(_('afbeelding'), upload_to='category/images', blank=True, null=True)
+	icon = models.ImageField(_('icoontje'), upload_to='category/icons', blank=True, null=True)
 	# description = models.TextField(_('Description'), null=True, blank=True) //Provided by django cms
 
 	class Meta:
@@ -93,11 +93,12 @@ class Product(MetaOptionsMixin, models.Model):
 	product_code = models.CharField(_('product code'), max_length=128, blank=True, unique=True)
 	supplier = models.ForeignKey(Supplier, verbose_name='leverancier', related_name='products')
 	subcategory = models.ForeignKey(SubCategory, verbose_name='subcategorie', related_name='products')
-	product_folder = models.FileField(_('Product folder'), upload_to='product/documentation/', null=True, blank=True)
-	user_manual = models.FileField(_('User manual'), upload_to='product/documentation/', null=True, blank=True)
+	product_folder = models.FileField(_('Product folder'), upload_to='product/documentation', null=True, blank=True)
+	user_manual = models.FileField(_('User manual'), upload_to='product/documentation', null=True, blank=True)
 	# description = models.TextField(_('beschrijving'), null=True, blank=True) //Provided by django cmss
 
 	_slug_separator = '/'
+	_category_separator = ' - '
 
 	class Meta:
 
@@ -114,14 +115,20 @@ class Product(MetaOptionsMixin, models.Model):
 	def get_absolute_url(self):
 		return reverse_lazy('product-list')
 
-	def full_slug(self):
+	def get_full_slug(self):
 		slugs = self.subcategory.get_ancestor_and_self() + [self.slug]
 		return self._slug_separator.join(slugs)
+
+	def get_category_subcategory(self):
+		'''
+		Returns: <Category - SubCategory> (first letters uppercased)
+		'''
+		return (self.subcategory.parent_category.name + self._category_separator + self.subcategory.name).title()
 
 
 class ProductPhoto(MetaOptionsMixin, models.Model):
 
-	image = models.ImageField(_('foto'), upload_to='test/', max_length=255)
+	image = models.ImageField(_('foto'), upload_to='product/photos', max_length=255)
 	alt_text = models.CharField(_('korte beschrijving'), max_length=255, null=True, blank=True)
 	product = models.ForeignKey(Product, verbose_name=_('Product'), related_name='images')
 	display_order = models.PositiveIntegerField(_('weergave volgorde'), default=0, unique=True)

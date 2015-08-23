@@ -5,6 +5,12 @@
 {% block content %}
 
 {{ object.slug }} <br>
-{{ object.full_slug }}
+{{ object.get_full_slug }} <br>
+{{ object.name }} <br>
+{{ object.product_code }} <br>
+{{ object.supplier }} <br>
+{{ object.subcategory }} <br>
+{{ object.product_folder }} <br>
+{{ object.get_category_subcategory }} <br>
 
 {% endblock content %}
