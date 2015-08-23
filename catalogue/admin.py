@@ -8,15 +8,15 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(SubCategory)
 class SubCategoryAdmin(admin.ModelAdmin):
-	pass
+	exclude = ('slug', )
 
 @admin.register(Supplier)
 class SupplierCategoryAdmin(admin.ModelAdmin):
-	pass
+	exclude = ('slug', )
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-	pass
+	exclude = ('slug', )
 
 @admin.register(ProductPhoto)
 class ProductPhotoAdmin(admin.ModelAdmin):

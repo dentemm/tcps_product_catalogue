@@ -33,9 +33,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-
+    #Third party apps
     'django_admin_bootstrapped',
 
+    #Default django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -99,7 +100,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'nl-be'
+LANGUAGE_CODE = 'nl'
 
 TIME_ZONE = 'UTC'
 

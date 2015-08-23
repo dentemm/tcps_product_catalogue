@@ -1,4 +1,5 @@
 from django.conf.urls import url
+from django.conf.urls.i18n import i18n_patterns
 
 from . import views
 
@@ -53,6 +54,4 @@ urlpatterns = [
     url(r'^dashboard/user/list/$', views.UserListView.as_view(), name='user-list'),
 
     url(r'^temm/(?P<slug>[\w-]+)$', views.ProductDetailView.as_view(), name='user-detail'),
-
-
 ]

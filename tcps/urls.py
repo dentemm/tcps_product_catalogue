@@ -13,16 +13,16 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
+from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
-
+from django.conf.urls.i18n import i18n_patterns
 
 from . import settings
 from .views import DashboardView
 
-
+'''
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     #url(r'^dashboard/', DashboardView.as_view(), name='dashboard'),
@@ -30,4 +30,17 @@ urlpatterns = [
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+urlpatterns += staticfiles_urlpatterns()'''
+
+urlpatterns = patterns('',
+    url(r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),
+)
+
 urlpatterns += staticfiles_urlpatterns()
+
+urlpatterns += i18n_patterns('',
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^products/', include('catalogue.urls')),
+)
+
+urlpatterns += i18n_patterns('',)
