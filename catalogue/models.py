@@ -38,13 +38,20 @@ class Category(MetaOptionsMixin, models.Model):
 	def __str__(self):
 		return self.name
 
+	def save(self, *args, **kwargs):
+
+		if not self.id:
+			self.slug = slugify(self.name)
+
+		super(Category, self).save(*args, **kwargs)
+
 	def get_absolute_url(self):
 		return '/dashboard/' 
 
 class SubCategory(MetaOptionsMixin, models.Model):
 
 	name = models.CharField(_('naam'), max_length=255, unique=True)
-	slug = models.CharField(_('slug'), max_length=255, unique=True)
+	slug = models.SlugField(_('slug'), blank=True, unique=True)
 	parent_category = models.ForeignKey('Category', verbose_name='hoofdcategorie', related_name='subcategories')
 	suppliers = models.ManyToManyField('Supplier', verbose_name=_('leverancier'), related_name='categories')
 	image = models.ImageField(_('afbeelding'), upload_to='subcategory/images', blank=True, null=True)
@@ -62,6 +69,13 @@ class SubCategory(MetaOptionsMixin, models.Model):
 	def __str__(self):
 		return self.name
 
+	def save(self, *args, **kwargs):
+
+		if not self.id:
+			self.slug = slugify(self.name)
+
+		super(SubCategory, self).save(*args, **kwargs)
+
 	def get_ancestor_and_self(self):
 		return [self.parent_category.slug, self.slug]
 
@@ -69,9 +83,9 @@ class SubCategory(MetaOptionsMixin, models.Model):
 class Supplier(MetaOptionsMixin, models.Model):
 
 	name = models.CharField(_('naam'), max_length=255, unique=True)
-	slug = models.CharField(_('slug'), max_length=255, unique=True)
+	slug = models.SlugField(_('slug'), blank=True, unique=True)
 	website = models.URLField(_('website url'), blank=True)
-	logo = models.ImageField(_('logo'), max_length=255, blank=True)
+	logo = models.ImageField(_('logo'), upload_to='supplier/logo', max_length=255, blank=True)
 	#description = models.TextField(_('beschrijving'), null=True, blank=True) //Provided by django cms
 
 	class Meta:
@@ -86,10 +100,17 @@ class Supplier(MetaOptionsMixin, models.Model):
 	def __str__(self):
 		return self.name
 
+	def save(self, *args, **kwargs):
+
+		if not self.id:
+			self.slug = slugify(self.name)
+
+		super(Supplier, self).save(*args, **kwargs)
+
 class Product(MetaOptionsMixin, models.Model):
 
 	name = models.CharField(_('naam'), max_length=255)
-	slug = models.CharField(_('slug'), max_length=255, unique=False)
+	slug = models.SlugField(_('slug'), blank=True, unique=False)
 	product_code = models.CharField(_('product code'), max_length=128, blank=True, unique=True)
 	supplier = models.ForeignKey(Supplier, verbose_name='leverancier', related_name='products')
 	subcategory = models.ForeignKey(SubCategory, verbose_name='subcategorie', related_name='products')
@@ -114,6 +135,13 @@ class Product(MetaOptionsMixin, models.Model):
 
 	def get_absolute_url(self):
 		return reverse_lazy('product-list')
+
+	def save(self, *args, **kwargs):
+
+		if not self.id:
+			self.slug = slugify(self.name)
+
+		super(Product, self).save(*args, **kwargs)
 
 	def get_full_slug(self):
 		slugs = self.subcategory.get_ancestor_and_self() + [self.slug]

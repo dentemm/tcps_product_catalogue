@@ -13,4 +13,8 @@
 {{ object.product_folder }} <br>
 {{ object.get_category_subcategory }} <br>
 
+---
+{{ object.subcategory.parent_category.slug }}
+---
+
 {% endblock content %}
