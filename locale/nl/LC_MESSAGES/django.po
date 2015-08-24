@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-22 10:02+0200\n"
+"POT-Creation-Date: 2015-08-23 17:57+0000\n"
 "PO-Revision-Date: 2015-04-13 15:01+0000\n"
 "Last-Translator: Sander Steffann <sander@steffann.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/django/language/"
@@ -23,87 +23,101 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: catalogue/models.py:23 catalogue/models.py:46 catalogue/models.py:67
-msgid "Naam"
+#: catalogue/models.py:22 catalogue/models.py:52 catalogue/models.py:84
+#: catalogue/models.py:111
+msgid "naam"
+msgstr ""
+
+#: catalogue/models.py:23 catalogue/models.py:53 catalogue/models.py:85
+#: catalogue/models.py:112
+msgid "slug"
+msgstr ""
+
+#: catalogue/models.py:24 catalogue/models.py:56
+msgid "afbeelding"
 msgstr ""
 
 #: catalogue/models.py:25
-msgid "Afbeelding"
+msgid "icoontje"
 msgstr ""
 
-#: catalogue/models.py:26 catalogue/models.py:47 catalogue/models.py:68
-msgid "Slug"
-msgstr ""
-
-#: catalogue/models.py:32
+#: catalogue/models.py:31
 msgid "categorie"
 msgstr ""
 
-#: catalogue/models.py:33
+#: catalogue/models.py:32
 msgid "categorieen"
 msgstr ""
 
-#: catalogue/models.py:48
-msgid "Beschrijving"
-msgstr ""
-
-#: catalogue/models.py:55 catalogue/models.py:92
-msgid "subcategorie"
-msgstr ""
-
-#: catalogue/models.py:56
-msgid "subcategorieen"
-msgstr ""
-
-#: catalogue/models.py:69 catalogue/models.py:90
-msgid "Description"
-msgstr ""
-
-#: catalogue/models.py:76 catalogue/models.py:91
+#: catalogue/models.py:55 catalogue/models.py:93
 msgid "leverancier"
 msgstr ""
 
-#: catalogue/models.py:77
-msgid "leveranciers"
+#: catalogue/models.py:62
+msgid "subcategorie"
 msgstr ""
 
-#: catalogue/models.py:88
-msgid "Name"
+#: catalogue/models.py:63
+msgid "subcategorieen"
+msgstr ""
+
+#: catalogue/models.py:86
+msgid "website url"
+msgstr ""
+
+#: catalogue/models.py:87
+msgid "logo"
 msgstr ""
 
 #: catalogue/models.py:94
+msgid "leveranciers"
+msgstr ""
+
+#: catalogue/models.py:113
+msgid "product code"
+msgstr ""
+
+#: catalogue/models.py:116
 msgid "Product folder"
 msgstr ""
 
-#: catalogue/models.py:95
+#: catalogue/models.py:117
 msgid "User manual"
 msgstr ""
 
-#: catalogue/models.py:101
+#: catalogue/models.py:126
 msgid "product"
 msgstr ""
 
-#: catalogue/models.py:102
+#: catalogue/models.py:127
 msgid "producten"
 msgstr ""
 
-#: catalogue/models.py:115
+#: catalogue/models.py:158
+msgid "foto"
+msgstr ""
+
+#: catalogue/models.py:159
+msgid "korte beschrijving"
+msgstr ""
+
+#: catalogue/models.py:160
 msgid "Product"
 msgstr ""
 
-#: catalogue/models.py:119
-msgid "Display order"
+#: catalogue/models.py:161
+msgid "weergave volgorde"
 msgstr ""
 
-#: catalogue/models.py:120
-msgid "Date created"
+#: catalogue/models.py:162
+msgid "datum toegevoegd"
 msgstr ""
 
-#: catalogue/models.py:125
+#: catalogue/models.py:167
 msgid "product afbeelding"
 msgstr ""
 
-#: catalogue/models.py:126
+#: catalogue/models.py:168
 msgid "product afbeeldingen"
 msgstr ""
 

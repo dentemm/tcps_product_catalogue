@@ -12,6 +12,26 @@ from django.shortcuts import get_object_or_404
 from braces.views import LoginRequiredMixin
 
 from .models import *
+from . import models
+
+# Create your views here
+class SupplierProductListView(ListView):
+
+	context_object_name = 'item_list'
+	template_name = 'item_list.html'
+
+
+	def get_queryset(self):
+
+		print 'supplier product list view get_queryset'
+		print self.args[0]
+
+		self.supplier = get_object_or_404(models.Supplier, slug=self.args[0])
+
+		print self.supplier
+
+		return models.Product.objects.filter(supplier=self.supplier)
+
 
 
 def logout_view(request):

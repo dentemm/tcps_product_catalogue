@@ -8,6 +8,8 @@ urlpatterns = [
 
     url(r'^dashboard/$', views.DashboardView.as_view(), name='dashboard'),
 
+    url(r'^suppliers/([\w-]+)/$', views.SupplierProductListView.as_view(), name='jeej'),
+
     url(r'^dashboard/logout/$', 'django.contrib.auth.views.logout', {'next_page': 'category-list'}, name='logout'),
 
     url(r'^test/(?P<slug>[\w-]+)/$', views.CategoryView.as_view(), name='test'),

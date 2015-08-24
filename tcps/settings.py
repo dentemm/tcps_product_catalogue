@@ -51,7 +51,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'braces',
     'apptemplates',
-    'solid_i18n',
+    #'solid_i18n',
 
     #Custom apps
     'catalogue',
