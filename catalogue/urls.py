@@ -8,7 +8,9 @@ urlpatterns = [
 
     url(r'^dashboard/$', views.DashboardView.as_view(), name='dashboard'),
 
-    url(r'^suppliers/([\w-]+)/$', views.SupplierProductListView.as_view(), name='jeej'),
+    url(r'^suppliers/([\w-]+)/$', views.SupplierProductListView.as_view(), name='supplier-product-list'),
+    url(r'^subcategory/([\w-]+)/$', views.SubcategoryProductListView.as_view(), name='subcategory-product-list'),
+    url(r'^category/([\w-]+)/$', views.CategorySubCategoryListView.as_view(), name='category-subcategory-list'),
 
     url(r'^dashboard/logout/$', 'django.contrib.auth.views.logout', {'next_page': 'category-list'}, name='logout'),
 

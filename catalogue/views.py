@@ -8,29 +8,62 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
-
 from braces.views import LoginRequiredMixin
 
 from .models import *
 from . import models
 
 # Create your views here
-class SupplierProductListView(ListView):
+class SupplierProductListView(views.generic.ListView):
+	'''
+	Allows to show product list for given supplier in URL	
+	'''
 
 	context_object_name = 'item_list'
 	template_name = 'item_list.html'
 
+	def get_queryset(self):
+
+		self.supplier = get_object_or_404(models.Supplier, slug=self.args[0])
+		return models.Product.objects.filter(supplier=self.supplier)
+
+class SubcategoryProductListView(views.generic.ListView):
+	'''
+	Allows to show product list for given subcategory in URL
+	'''
+
+	context_object_name = 'item_list'
+	template_name = 'item_list.html'
 
 	def get_queryset(self):
 
-		print 'supplier product list view get_queryset'
-		print self.args[0]
+		self.subcategory = get_object_or_404(models.SubCategory, slug=self.args[0])
+		return models.Product.objects.filter(subcategory=self.subcategory)
 
-		self.supplier = get_object_or_404(models.Supplier, slug=self.args[0])
 
-		print self.supplier
+class ProductDetailView(views.generic.DetailView):
+	'''
+	Shows product details
+	'''
 
-		return models.Product.objects.filter(supplier=self.supplier)
+	model = models.Product
+	template_name = 'product_detail.html'
+
+class CategorySubCategoryListView(views.generic.ListView):
+	'''
+	Allows to show subcategory list for given category in URL
+	'''
+
+	context_object_name = 'item_list'
+	template_name = 'item_list.html'
+
+	def get_queryset(self):
+
+		self.category = get_object_or_404(models.Category, slug=self.args[0])
+		return models.SubCategory.objects.filter(parent_category=self.category)
+
+
+
 
 
 
@@ -275,11 +308,7 @@ class SupplierDeleteView(AjaxResponseMixin, DeleteView):
 		self.slug = kwargs['slug']
 		return super(SubCategoryDeleteView, self).dispatch(*args, **kwargs)
 
-#Product views
-class ProductDetailView(views.generic.DetailView):
 
-	model = Product
-	template_name = 'product_detail.html'
 
 
 
