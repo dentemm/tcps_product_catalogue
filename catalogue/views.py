@@ -24,8 +24,13 @@ class SupplierProductListView(views.generic.ListView):
 
 	def get_queryset(self):
 
-		self.supplier = get_object_or_404(models.Supplier, slug=self.args[0])
+		supplier = self.kwargs['supplier']
+
+		self.supplier = get_object_or_404(models.Supplier, slug=supplier)
 		return models.Product.objects.filter(supplier=self.supplier)
+
+		#self.supplier = get_object_or_404(models.Supplier, slug=self.args[0])
+		#return models.Product.objects.filter(supplier=self.supplier)
 
 class SubcategoryProductListView(views.generic.ListView):
 	'''
@@ -37,7 +42,9 @@ class SubcategoryProductListView(views.generic.ListView):
 
 	def get_queryset(self):
 
-		self.subcategory = get_object_or_404(models.SubCategory, slug=self.args[0])
+		subcategory = self.kwargs['subcategory']
+
+		self.subcategory = get_object_or_404(models.SubCategory, slug=subcategory)
 		return models.Product.objects.filter(subcategory=self.subcategory)
 
 
@@ -59,12 +66,10 @@ class CategorySubCategoryListView(views.generic.ListView):
 
 	def get_queryset(self):
 
-		self.category = get_object_or_404(models.Category, slug=self.args[0])
+		category = self.kwargs['category']
+
+		self.category = get_object_or_404(models.Category, slug=category)
 		return models.SubCategory.objects.filter(parent_category=self.category)
-
-
-
-
 
 
 def logout_view(request):
@@ -169,7 +174,7 @@ class CategoryDetailView(DetailView):
 
 class CategoryListView(LoginRequiredMixin, ListView):
 
-	print 'category list view'
+	#print 'category list view'
 
 	model = Category
 	context_object_name = 'item_list'
@@ -203,7 +208,7 @@ class CategoryDeleteView(AjaxResponseMixin, DeleteView):
 	template_name = 'item_delete.html'
 
 	def delete_ajax(self, request, *args, **kwargs):
-		print 'ajax delete CategoryDeleteView'
+		#print 'ajax delete CategoryDeleteView'
 
 		self.object = self.get_object()
 		self.object.delete()
@@ -250,7 +255,7 @@ class SubCategoryDeleteView(AjaxResponseMixin, DeleteView):
 	template_name = 'item_delete.html'
 
 	def delete_ajax(self, request, *args, **kwargs):
-		print 'ajax delete SubCategoryDeleteView'
+		#print 'ajax delete SubCategoryDeleteView'
 
 		self.object = self.get_object()
 		self.object.delete()
@@ -296,7 +301,7 @@ class SupplierDeleteView(AjaxResponseMixin, DeleteView):
 	template_name = 'item_delete.html'
 
 	def delete_ajax(self, request, *args, **kwargs):
-		print 'ajax delete SupplierDeleteView'
+		#print 'ajax delete SupplierDeleteView'
 
 		self.object = self.get_object()
 		self.object.delete()
@@ -343,7 +348,7 @@ class ProductDeleteView(AjaxResponseMixin, DeleteView):
 	template_name = 'item_delete.html'
 
 	def delete_ajax(self, request, *args, **kwargs):
-		print 'ajax delete ProductDeleteView'
+		#print 'ajax delete ProductDeleteView'
 
 		self.object = self.get_object()
 		self.object.delete()
@@ -363,7 +368,7 @@ class ProductPhotoDetailView(DetailView):
 
 class ProductPhotoListView(ListView):
 
-	print 'product photo list view'
+	#print 'product photo list view'
 
 	model = ProductPhoto
 	context_object_name = 'item_list'
@@ -402,7 +407,7 @@ class ProductPhotoDeleteView(AjaxResponseMixin, DeleteView):
 	template_name = 'item_delete.html'
 
 	def delete_ajax(self, request, *args, **kwargs):
-		print 'ajax delete ProductPhotoDeleteView'
+		#print 'ajax delete ProductPhotoDeleteView'
 
 		self.object = self.get_object()
 		self.object.delete()
@@ -422,7 +427,8 @@ class CategoryView(AjaxResponseMixin, View):
 
 		item = get_object_or_404(self.model, slug=kwargs['slug'])
 
-		print 'test view: ' + item.__str__()
+		#print 'test view: ' + item.__str__()
+
 
 		return render(request, 'item_edit.html', 
 			{"item": item}
@@ -430,13 +436,13 @@ class CategoryView(AjaxResponseMixin, View):
 
 class UserListView(ListView):
 
-	print 'user list view' 
+	#print 'user list view' 
 
 	User = get_user_model()
 	context_object_name = 'item_list'
 	template_name = 'item_list.html'
 
-	print 'hier?'
+	#print 'hier?'
 
 	def get_queryset(self):
 
