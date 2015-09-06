@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block extrahead %}
+    <link rel="prefetch" href="{% static 'images/zoom.png' %}">
+{% endblock extrahead %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fancybox/jquery.fancybox-v=2.1.5.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/cms-toolbar-fix.css' %}">
+{% endblock extra_css %}
+
+{% block navbar %}{% endblock navbar %}
+{% block content %}{% endblock content %}
+{% block footer %}
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-4">
+                    <span class="verkoopsvoorwaarden">Verkoopsvoorwaarden</span>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <span class="btw">BTW-nr xxx.xxx.xxx</span>
+                </div> 
+                <div class="col-12 col-sm-4">
+                    <span class="copyright">Copyright &copy; TCPS 2015</span>
+                </div>               
+            </div>
+        </div>
+    </footer>
+{% endblock footer %}
+{% block modals %}{% endblock modals %}
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/html5shiv.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-migrate-1.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fancybox/jquery.fancybox.pack-v=2.1.5.js' %}"></script>
+
+        <!-- fancybox init -->
+    <script>
+    $(document).ready(function(e) {
+        var lis = $('.nav > li');
+        menu_focus( lis[0], 1 );
+        
+        $(".fancybox").fancybox({
+            padding: 10,
+            helpers: {
+                overlay: {
+                    locked: false
+                }
+            }
+        });
+    });
+    </script>
+{% endblock extra_js %}
