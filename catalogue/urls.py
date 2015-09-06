@@ -6,6 +6,9 @@ from . import views
 urlpatterns = [
     #url(r'^(?P<slug>[^/]+)/$', CategoryCreateView.as_view(), name='category_detail'),
 
+    url(r'^test/overview/$', views.TestProductOverviewPage.as_view(), name='product-overview'),
+
+
     url(r'^dashboard/$', views.DashboardView.as_view(), name='dashboard'),
 
     url(r'^suppliers/(?P<supplier>[\w-]+)/$', views.SupplierProductListView.as_view(), name='supplier-product-list'),
@@ -58,4 +61,7 @@ urlpatterns = [
     url(r'^dashboard/user/list/$', views.UserListView.as_view(), name='user-list'),
 
     url(r'^temm/(?P<slug>[\w-]+)$', views.ProductDetailView.as_view(), name='user-detail'),
+
+
+    url(r'^test/overview/$', views.TestProductOverviewPage.as_view(), name='product-overview'),
 ]

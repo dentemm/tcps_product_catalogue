@@ -8,10 +8,36 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
+# Test to get advanced home page going
+from django.http import HttpResponse
+
+
 from braces.views import LoginRequiredMixin
 
 from .models import *
 from . import models
+
+'''
+class HomePageView(views.View):
+
+	def get(self, request):
+		return nul'''
+
+
+
+
+class TestProductOverviewPage(views.generic.ListView):
+
+	print 'in TestProductOverviewPage klasse'
+
+	model = models.Category
+	context_object_name = 'category_list'
+	template_name = 'producten.html'
+	
+	def get_queryset(self):
+		return self.model.objects.all()
+
+
 
 # Create your views here
 class SupplierProductListView(views.generic.ListView):
