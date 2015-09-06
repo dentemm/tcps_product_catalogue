@@ -2,28 +2,57 @@
 
 {% load staticfiles %}
 
-{% block content %}
+{% block navbar %}
+	<a class="navbar-brand hidden-xs" href="#" title="Herladen van de TCPS website"><img src="images/logo5.png"></a>
+	<a class="home" href="index.html" title="Terug naar homepage"><span class="icon-2x icon-home pull-right"></span> </a>
+	<div class="navbar navbar-fixed-top" data-activeslide="1">
+		<div class="container">
+			<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div><!-- /.container -->
+	</div><!-- /.navbar -->
+{% endblock navbar %}
 
-{% for category in category_list %}
-    <div class="col-xs-4 col-lg-4 col-sm-6">
-        <div class="panel-heading">
-            <a role="button" data-toggle="collapse" data-parent="#accordion">
-                <img scr="{% static 'afbeeldingen/diepvriezer.png' %}" class="img-thumbnail">
-            </a>
-        </div>
-        <h3 class="font-semibold prodtitle">Diepvriezers</h3>
-            <div id="diepvriezers" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">Klik op een subcategorie om de producten te verkennen:
-                    <div class="panel-body">
-                        <button type="button" class="btn btn-default btn-lg" href="#UTV-koffer" data-toggle="modal">-80°C koffer modellen</button>
-                        <button type="button" class="btn btn-default btn-lg" href="#UTV-rechtstaand" data-toggle="modal">-80°C rechtstaande modellen</button>
-                        <button type="button" class="btn btn-default btn-lg" href="#UTV-plasma" data-toggle="modal">Plasma vriezers</button>
-                        <button type="button" class="btn btn-default btn-lg" href="#UTV-biomed" data-toggle="modal">Biomedische diepvriezers</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-{% endfor %}
+{% block content %}
+	<div class="slide story" id="slide-product">
+		<div class="container">
+			<div class="row title-row">
+				<div class="col-12 font-thin">Ontdek hier ons <span class="font-semibold">productgamma</span></div>
+			</div><!-- /row -->
+			<div class="row line-row">
+				<div class="hr">&nbsp;</div>
+			</div><!-- /row -->
+			<div class="row subtitle-row">
+				<h2 class="col-12 font-thin">Hieronder kan u een overzicht van onze producten terugvinden. Maak ook gebruik van de zoekfunctie en aarzel niet om <span class="font-semibold">ons te contacteren</span> indien u meer informatie wenst</h2>
+			</div><!-- /row -->
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			{% for category in category_list %}
+			    <div class="col-xs-4 col-lg-4 col-sm-6">
+			        <div class="panel-heading">
+			            <a role="button" data-toggle="collapse" data-parent="#accordion">
+			                <img scr="{% static 'afbeeldingen/diepvriezer.png' %}" class="img-thumbnail">
+			            </a>
+			        </div>
+			        <h3 class="font-semibold prodtitle">Diepvriezers</h3>
+			        <div id="diepvriezers" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			            <div class="panel-body">Klik op een subcategorie om de producten te verkennen:
+			                <div class="panel-body">
+			                    <button type="button" class="btn btn-default btn-lg" href="#UTV-koffer" data-toggle="modal">-80°C koffer modellen</button>
+			                    <button type="button" class="btn btn-default btn-lg" href="#UTV-rechtstaand" data-toggle="modal">-80°C rechtstaande modellen</button>
+			                    <button type="button" class="btn btn-default btn-lg" href="#UTV-plasma" data-toggle="modal">Plasma vriezers</button>
+			                    <button type="button" class="btn btn-default btn-lg" href="#UTV-biomed" data-toggle="modal">Biomedische diepvriezers</button>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			{% endfor %}
+			</div>
+		</div>
+	</div>
 
 {% endblock content %}
 
