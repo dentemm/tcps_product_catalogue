@@ -35,20 +35,27 @@
 				<h2 class="col-12 font-thin">Hieronder kan u een overzicht van onze producten terugvinden. Maak ook gebruik van de zoekfunctie en aarzel niet om <span class="font-semibold">ons te contacteren</span> indien u meer informatie wenst</h2>
 			</div><!-- /row -->
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<!-- Loop over every category available in database -->
 			{% for category in category_list %}
 			    <div class="col-xs-4 col-lg-4 col-sm-6">
 			        <div class="panel-heading" role="tab" id="headingOne">
-			            <a role="button" data-toggle="collapse" data-parent="#accordion" data-parent="#accordion" href="#diepvriezers" aria-expanded="true" aria-controls="diepvriezers">
-			                <!--<img src="{% static 'afbeeldingen/diepvriezer.png' %}" class="img-thumbnail">-->
+			        	<!-- Collapse panel with subcategories has href which is category.slug -->
+			            <a role="button" data-toggle="collapse" data-parent="#accordion" data-parent="#accordion" href="#{{ category.slug }}" aria-expanded="true" aria-controls="diepvriezers"> 
 			                {% if category.image %}
 			                <img src="{{ category.image.url }}" class="img-thumbnail">
 			                {% endif %}
 			            </a>
 			        </div>
 			        <h3 class="font-semibold prodtitle">{{ category.name|title  }}</h3>
-					<div id="diepvriezers" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			        <!-- Collapse panel for this category, with id of category.slug -->
+					<div id="{{ category.slug }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 					  	<div class="panel-body">Klik op een subcategorie om de producten te verkennen:
 						  	<div class="panel-body">
+						  	<!-- For loop for subcategories of current category -->
+						  	{% for subcategory in category.subcategories.all %}
+						  		<button type="button" class="btn btn-default btn-lg" href="#" data-toggle="modal">{{ subcategory.name|title }}</button>
+						  	{% endfor %}
+
 								<button type="button" class="btn btn-default btn-lg" href="#UTV-koffer" data-toggle="modal">-80°C koffer modellen</button>
 								<button type="button" class="btn btn-default btn-lg" href="#UTV-rechtstaand" data-toggle="modal">-80°C rechtstaande modellen</button>
 								<button type="button" class="btn btn-default btn-lg" href="#UTV-plasma" data-toggle="modal">Plasma vriezers</button>
