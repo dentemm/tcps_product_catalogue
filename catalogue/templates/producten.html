@@ -53,9 +53,8 @@
 						  	<div class="panel-body">
 						  	<!-- For loop for subcategories of current category -->
 						  	{% for subcategory in category.subcategories.all %}
-						  		<button type="button" class="btn btn-default btn-lg" href="#" data-toggle="modal">{{ subcategory.name|title }}</button>
+						  		<button type="button" class="btn btn-default btn-lg" href="{% url 'subcategory-product-list' subcategory=subcategory.slug %}" data-toggle="modal">{{ subcategory.name|title }}</button>
 						  	{% endfor %}
-
 								<button type="button" class="btn btn-default btn-lg" href="#UTV-koffer" data-toggle="modal">-80°C koffer modellen</button>
 								<button type="button" class="btn btn-default btn-lg" href="#UTV-rechtstaand" data-toggle="modal">-80°C rechtstaande modellen</button>
 								<button type="button" class="btn btn-default btn-lg" href="#UTV-plasma" data-toggle="modal">Plasma vriezers</button>
@@ -69,4 +68,33 @@
 		</div>
 	</div>
 {% endblock content %}
+
+{% block modals %}
+    <!-- <div class="modal fade" id="" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="close-modal" data-dismiss="modal">
+	                <div class="lr">
+	                    <div class="rl">
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="container">
+	                <div class="row">
+					    <div class="col-lg-8 col-lg-offset-2">
+	                        <div class="modal-body">
+	                            <h2></h2>
+	                            <h3 class="font-thin textleft">Onze ultra lage temp.vriezers.</h3>
+								<p class="producttext">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lectus lectus, tincidunt elementum dui ut, blandit laoreet ante. Maecenas ex ex, volutpat quis sapien nec, porta dapibus massa. Ut neque eros, iaculis quis vestibulum nec, imperdiet quis massa. Aenean vestibulum aliquam arcu, id imperdiet sapien suscipit et. Suspendisse posuere sed odio id pulvinar. Etiam ultrices tortor urna, et gravida tortor feugiat a. Donec fermentum cursus facilisis. In hac habitasse platea dictumst. In et blandit neque, vitae venenatis libero. Curabitur quis scelerisque nisl. Cras tellus quam, suscipit ac nisl non, viverra commodo ligula.</p>
+								<h3 class="font-thin textleft">Ultra temp. vriezer "1"
+								<img class="img-responsive img-centered" src="images/producten/utv.jpg" alt="" width="100%"></h3>
+	                        </div>
+							<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Sluit dit formulier</button>
+	                    </div>
+					</div>
+	            </div>
+	        </div>
+		</div>
+    </div> -->
+{% endblock modals %}
 
