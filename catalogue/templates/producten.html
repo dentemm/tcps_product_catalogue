@@ -37,7 +37,7 @@
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			{% for category in category_list %}
 			    <div class="col-xs-4 col-lg-4 col-sm-6">
-			        <div class="panel-heading">
+			        <div class="panel-heading" id="headingOne">
 			            <a role="button" data-toggle="collapse" data-parent="#accordion">
 			                <img src="{% static 'afbeeldingen/diepvriezer.png' %}" class="img-thumbnail">
 			                {% if category.image %}
@@ -48,16 +48,6 @@
 			            </a>
 			        </div>
 			        <h3 class="font-semibold prodtitle">{{ category.name|title  }}</h3>
-			        <div id="diepvriezers" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-			            <div class="panel-body">Klik op een subcategorie om de producten te verkennen:
-			                <div class="panel-body">
-			                    <button type="button" class="btn btn-default btn-lg" href="#UTV-koffer" data-toggle="modal">-80°C koffer modellen</button>
-			                    <button type="button" class="btn btn-default btn-lg" href="#UTV-rechtstaand" data-toggle="modal">-80°C rechtstaande modellen</button>
-			                    <button type="button" class="btn btn-default btn-lg" href="#UTV-plasma" data-toggle="modal">Plasma vriezers</button>
-			                    <button type="button" class="btn btn-default btn-lg" href="#UTV-biomed" data-toggle="modal">Biomedische diepvriezers</button>
-			                </div>
-			            </div>
-			        </div>
 			    </div>
 			{% endfor %}
 			</div>
