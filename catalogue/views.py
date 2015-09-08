@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404
 
 # Test to get advanced home page going
 from django.http import HttpResponse
+from django.template.response import TemplateResponse
 
 
 from braces.views import LoginRequiredMixin
@@ -116,7 +117,11 @@ class SubcategoryProductListView(views.generic.ListView, AjaxResponseMixin):
 	def get(self, request, *args, **kwargs):
 		print 'test get'
 
-		return HttpResponse()
+		#return HttpResponse()
+		response = TemplateResponse(request, 'modal_product.html', {})
+
+		return response
+
 
 	def post(self, request, *args, **kwargs):
 		print 'test post'
