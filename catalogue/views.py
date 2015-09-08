@@ -116,17 +116,21 @@ class SubcategoryProductListView(AjaxResponseMixin, views.generic.ListView):
 		ctx['test'] = 'mijn test'
 		return ctx
 
-	def get_ajax(self, request, *args, **kwargs):
+	'''def get_ajax(self, request, *args, **kwargs):
+
+		super(SubcategoryProductListView, self).get(request, *args, **kwargs)
 		print 'test ajax get'
 
 		response = TemplateResponse(request, 'modal_product.html', {})
 
-		return response
+		#return response
+
+		return HttpResponse()'''
 
 	def post_ajax(self, request, *args, **kwargs):
 		print 'test ajax post'
 
-	def get(self, request, *args, **kwargs):
+	'''def get(self, request, *args, **kwargs):
 		print 'test get'
 
 		ctx = super(SubcategoryProductListView, self).get_context_data(**kwargs)
@@ -141,7 +145,7 @@ class SubcategoryProductListView(AjaxResponseMixin, views.generic.ListView):
 		response = super(SubcategoryProductListView, self).get(request,*args,**kwargs)
 
 
-		return response
+		return response'''
 
 
 	def post(self, request, *args, **kwargs):
