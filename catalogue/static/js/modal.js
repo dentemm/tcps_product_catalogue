@@ -16,12 +16,27 @@ function ajax_call(category_slug) {
     $.ajax({
         url: "/products/subcategory/" + category_slug + "/",
         type: "GET",
+        dataType: "html",
         success: function(html) {
             console.log("successful call!");
             console.log(html);
+
+            $("#modal").html(html);
+            /*$("footer").empty();
+            $("footer").remove();
+            console.log("test");*/
+
+            $('#modal').modal('show');
+
+            //update_me(html);
         }
     });
 };
+
+function update_me(html) {
+    $(".modal").empty();
+    $(".modal").remove();
+}
 
 $('#confirmDelete').on('click', function(e) {
 

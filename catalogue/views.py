@@ -89,7 +89,7 @@ class SupplierProductListView(views.generic.ListView):
 		#self.supplier = get_object_or_404(models.Supplier, slug=self.args[0])
 		#return models.Product.objects.filter(supplier=self.supplier)
 
-class SubcategoryProductListView(views.generic.ListView, AjaxResponseMixin):
+class SubcategoryProductListView(AjaxResponseMixin, views.generic.ListView):
 	'''
 	Allows to show product list for given subcategory in URL
 	'''
@@ -101,15 +101,27 @@ class SubcategoryProductListView(views.generic.ListView, AjaxResponseMixin):
 
 	def get_queryset(self):
 
-		print 'test'
+		print 'get queryset'
 
 		subcategory = self.kwargs['subcategory']
 
 		self.subcategory = get_object_or_404(models.SubCategory, slug=subcategory)
 		return models.Product.objects.filter(subcategory=self.subcategory)
 
+	def get_context_data(self, **kwargs):
+
+		print 'get context data called'
+
+		ctx = super(SubcategoryProductListView, self).get_context_data(**kwargs)
+		ctx['test'] = 'mijn test'
+		return ctx
+
 	def get_ajax(self, request, *args, **kwargs):
 		print 'test ajax get'
+
+		response = TemplateResponse(request, 'modal_product.html', {})
+
+		return response
 
 	def post_ajax(self, request, *args, **kwargs):
 		print 'test ajax post'
@@ -117,17 +129,23 @@ class SubcategoryProductListView(views.generic.ListView, AjaxResponseMixin):
 	def get(self, request, *args, **kwargs):
 		print 'test get'
 
+		ctx = super(SubcategoryProductListView, self).get_context_data(**kwargs)
+		ctx['test'] = 'mijn test'
+
+
 		#return HttpResponse()
-		response = TemplateResponse(request, 'modal_product.html', {})
+
+		#response = super(SubcategoryProductListView, self).get(request,*args,**kwargs)
+
+		#response += TemplateResponse(request, 'modal_product.html', ctx)
+		response = super(SubcategoryProductListView, self).get(request,*args,**kwargs)
+
 
 		return response
 
 
 	def post(self, request, *args, **kwargs):
 		print 'test post'
-
-
-
 
 
 class ProductDetailView(views.generic.DetailView):
