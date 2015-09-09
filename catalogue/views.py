@@ -45,11 +45,11 @@ class SubcategoryProductListView(AjaxResponseMixin, views.generic.ListView):
 	#print 'subcategory product list view'
 
 	context_object_name = 'subcategory_list'
-	template_name = 'modal_product.html'
+	template_name = 'modal_subcategory_products.html'
 
 	def get_queryset(self):
 
-		print 'get queryset'
+		#print 'get queryset'
 
 		subcategory = self.kwargs['subcategory']
 

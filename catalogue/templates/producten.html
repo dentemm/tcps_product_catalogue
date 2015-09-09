@@ -55,7 +55,6 @@
 						  	{% for subcategory in category.subcategories.all %}
 						  		<button type="button" id="test-{{ subcategory.slug }}" class="btn btn-default btn-lg subcategory-modal" href="{% url 'subcategory-product-list' subcategory=subcategory.slug %}" data-target="#modal" data-toggle="mdal">{{ subcategory.name|title }}</button>
 						  	{% endfor %}
-
 						  	</div>
 					  	</div>
 					</div>
@@ -73,7 +72,6 @@
 
 {% block extra_js %}
 	{{ block.super }}
-	<!-- <script src="http://malsup.github.com/jquery.form.js"></script> -->
-	<script src="{% static 'js/modal.js' %}"></script>
+	<script src="{% static 'js/modals.js' %}"></script>
 {% endblock extra_js %}
 
