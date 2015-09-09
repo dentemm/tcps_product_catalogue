@@ -1,4 +1,4 @@
-$('.testknop').on('click', function(e) {
+$('.open-modal').on('click', function(e) {
 
     e.preventDefault();
     console.log("Test knop gedrukt!");
@@ -27,11 +27,11 @@ function success_handler(html) {
     $('#modal').modal('show');
 }
 
+$('.next-product').on('click'), function(e) {
+    console.log("Next button pressed!");
+    
+}
 
-/*
-Onderstaande code is nodig voor de CSRF token die Django vereist toe te voegen aan 
-Ajax calls
-*/
 
 // This function gets cookie with a given name
 function getCookie(name) {

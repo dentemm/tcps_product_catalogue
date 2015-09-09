@@ -1,4 +1,4 @@
-<div class="modal-dialog">
+<!-- <div class="modal-dialog">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
             <div class="lr">
@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
-                        <h2>{{ test }}</h2>
+                        <h2>{{ item_list.1.name|title }}</h2>
                         <h3 class="font-thin textleft">Onze ultra lage temp.vriezers.</h3>
                         <p class="producttext">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lectus lectus, tincidunt elementum dui ut, blandit laoreet ante. Maecenas ex ex, volutpat quis sapien nec, porta dapibus massa. Ut neque eros, iaculis quis vestibulum nec, imperdiet quis massa. Aenean vestibulum aliquam arcu, id imperdiet sapien suscipit et. Suspendisse posuere sed odio id pulvinar. Etiam ultrices tortor urna, et gravida tortor feugiat a. Donec fermentum cursus facilisis. In hac habitasse platea dictumst. In et blandit neque, vitae venenatis libero. Curabitur quis scelerisque nisl. Cras tellus quam, suscipit ac nisl non, viverra commodo ligula.</p>
                         <h3 class="font-thin textleft">Ultra temp. vriezer "1"
@@ -21,4 +21,28 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div id="product-carousel" class="carousel slide" data-interval="false"> 
+             <!-- carousel content slides -->
+            <div class="carousel-inner" role="listbox">
+            {% for item in item_list %}
+                <div class="item{% if forloop.first %} active{% endif %}">
+                    <p>
+                        test: {{ item.name }}
+                    </p>
+                </div>
+            {% endfor %}
+            </div>
+            <!-- carousel controls -->
+            <a class="left carousel-control" href="#product-carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            </a>
+            <a class="right carousel-control" href="#product-carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </a>
+        </div> <!-- carousel -->
+    </div> <!-- modal content -->
+</div> <!-- modal dialog -->
