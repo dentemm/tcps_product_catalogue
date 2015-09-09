@@ -1,4 +1,4 @@
-$('.open-modal').on('click', function(e) {
+$('.subcategory-modal').on('click', function(e) {
 
     e.preventDefault();
     console.log("Test knop gedrukt!");
@@ -10,8 +10,9 @@ $('.open-modal').on('click', function(e) {
 });
 
 function ajax_call(category_slug) {
-    console.log("ajax call opgeroepen");
-    console.log("url: products/subcategory/" + category_slug) // sanity check
+    
+    //console.log("ajax call opgeroepen");
+    //console.log("url: products/subcategory/" + category_slug) // sanity check
 
     $.ajax({
         url: "/products/subcategory/" + category_slug + "/",
@@ -23,13 +24,10 @@ function ajax_call(category_slug) {
 
 function success_handler(html) {
 
+    //console.log(html);
+
     $("#modal").html(html);
     $('#modal').modal('show');
-}
-
-$('.next-product').on('click'), function(e) {
-    console.log("Next button pressed!");
-    
 }
 
 

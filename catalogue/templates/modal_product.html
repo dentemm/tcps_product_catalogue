@@ -3,10 +3,10 @@
         <div id="product-carousel" class="carousel slide" data-interval="false"> 
              <!-- carousel content slides -->
             <div class="carousel-inner" role="listbox" style="height:60px;">
-            {% for item in item_list %}
+            {% for subcategory in subcategory_list %}
                 <div class="item{% if forloop.first %} active{% endif %}">
                     <p>
-                        test: {{ item.name }}
+                        test: {{ subcategory.name }}
                     </p>
                 </div>
             {% endfor %}
