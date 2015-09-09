@@ -7,6 +7,9 @@
         <div class="modal-body">
             <p>One fine body&hellip;</p>
             <p>-{{ test }}-</p>
+            {% for item in item_list %}
+            <p> {{ forloop.counter }} </p>
+            {% endfor %}
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

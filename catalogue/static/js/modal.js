@@ -17,56 +17,16 @@ function ajax_call(category_slug) {
         url: "/products/subcategory/" + category_slug + "/",
         type: "GET",
         dataType: "html",
-        success: function(html) {
-            console.log("successful call!");
-            console.log(html);
-
-            $("#modal").html(html);
-            /*$("footer").empty();
-            $("footer").remove();
-            console.log("test");*/
-
-            $('#modal').modal('show');
-
-            //update_me(html);
-        }
+        success: success_handler //Improved readability by creating handler function
     });
 };
 
-function update_me(html) {
-    $(".modal").empty();
-    $(".modal").remove();
+function success_handler(html) {
+
+    $("#modal").html(html);
+    $('#modal').modal('show');
 }
 
-$('#confirmDelete').on('click', function(e) {
-
-    console.log("Confirm delete knop gedrukt");
-    var item_slug = $('#vulin').text();
-    var item_modelname = 
-    console.log(item_slug)
-    delete_item(item_slug);
-});
-
-
-
-function delete_item(modelname, slug) {
-    console.log("Delete functie opgeroepen");
-    console.log("products/categorie/delete/"+slug) // sanity check
-    $.ajax({
-        url: "/products/dashboard/categorie/delete/" + slug,
-        type: "DELETE",
-        data: {
-            test: "test"
-        },
-        success: function(json){
-            console.log(json);
-            $('#myModaal').modal('hide')
-            console.log(slug);
-            $('#item-'+slug).parents('tr').remove(); //Remove tr visueel, zodat page refresh niet nodig is
-        }
-    });
-
-};
 
 /*
 Onderstaande code is nodig voor de CSRF token die Django vereist toe te voegen aan 

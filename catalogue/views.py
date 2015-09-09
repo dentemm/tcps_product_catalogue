@@ -127,8 +127,6 @@ class SubcategoryProductListView(AjaxResponseMixin, views.generic.ListView):
 
 		return HttpResponse()'''
 
-	def post_ajax(self, request, *args, **kwargs):
-		print 'test ajax post'
 
 	'''def get(self, request, *args, **kwargs):
 		print 'test get'
@@ -147,9 +145,6 @@ class SubcategoryProductListView(AjaxResponseMixin, views.generic.ListView):
 
 		return response'''
 
-
-	def post(self, request, *args, **kwargs):
-		print 'test post'
 
 
 class ProductDetailView(views.generic.DetailView):
