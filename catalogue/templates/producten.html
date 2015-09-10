@@ -5,6 +5,10 @@
 {% block extra_css %}
     {{ block.super }}
     <link rel="stylesheet" href="{% static 'css/stylep.css' %}">
+
+    <!-- Owl Carousel stylesheets -->
+	<link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}"><!-- Important Owl stylesheet -->
+	<link rel="stylesheet" href="{% static 'owl-carousel/owl.theme.css' %}"><!-- Default Theme -->
 {% endblock extra_css %}
 
 {% block navbar %}
@@ -67,11 +71,66 @@
 
 {% block modals %}
 	<div class="modal fade" id="modal" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+		        <div class="close-modal" data-dismiss="modal">
+		            <div class="lr">
+		                <div class="rl">
+		                </div>
+		            </div>
+		        </div>
+		        <div class="container">
+		            <div class="row">
+		                <div class="col-12">
+		                    <div class="modal-body">
+		                        <div id="owl-demo" class="owl-carousel owl-theme">
+		                            <div class="item">
+		                                <h2>Ultra lage temperatuurvriezers #1</h2>
+		                                <h3 class="font-thin">Panasonic MDF-U76V-PE</h3>
+		                                <p class="producttext">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lectus lectus, tincidunt elementum dui ut, blandit laoreet ante. </p>
+		                                <img class="img-responsive img-centered" src="images/producten/utv.jpg">
+		                            </div>
+		                            <div class="item">
+		                                <h2>Ultra lage temperatuurvriezers #2</h2>
+		                                <h3 class="font-thin">Panasonic MDF-U55V-PE</h3>
+		                                <p class="producttext">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lectus lectus, tincidunt elementum dui ut, blandit laoreet ante. </p>
+		                                <img class="img-responsive img-centered" src="images/producten/MDF-U76V-PE.jpg">
+		                            </div>
+		                            <div class="item">
+		                                <h2>Ultra lage temperatuurvriezers #3</h2>
+		                                <h3 class="font-thin">Panasonic MDF-U33V-PE</h3>
+		                                <p class="producttext">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lectus lectus, tincidunt elementum dui ut, blandit laoreet ante. </p>
+		                                <img class="img-responsive img-centered" src="images/producten/MDF-C2156VAN_8.jpg">
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Sluit dit formulier</button>
+		                </div>
+		            </div>
+		        </div>
+		    </div> <!-- modal content -->
+		</div> <!-- modal dialog -->
 	</div>
 {% endblock modals %}
 
 {% block extra_js %}
 	{{ block.super }}
-	<script src="{% static 'js/modals.js' %}"></script>
+	<script src="{% static 'js/modals.js' %}"></script> <!-- Ajax calls to Django backend -->
+	<script src="{% static 'owl-carousel/owl.carousel.min.js' %}"></script> <!-- Owl Carousel -->
+
+	<!-- javascript owlcarousel setup -->
+	<script>
+    $(document).ready(function() {
+     
+      	$("#owl-demo").owlCarousel({
+
+          	navigation : true, // Show next and prev buttons
+		  	navigationText : ["Vorige","Volgende"],
+          	slideSpeed : 300,
+          	paginationSpeed : 400,
+          	singleItem:true
+      	});  
+    });
+	</script>
 {% endblock extra_js %}
 
