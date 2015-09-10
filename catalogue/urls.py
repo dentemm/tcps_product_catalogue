@@ -7,17 +7,12 @@ urlpatterns = [
     #url(r'^(?P<slug>[^/]+)/$', CategoryCreateView.as_view(), name='category_detail'),
 
     url(r'^overview/$', views.TestProductOverviewPage.as_view(), name='product-overview'),
-
-
-
+    url(r'^category/(?P<category>[\w-]+)/$', views.CategorySubCategoryListView.as_view(), name='category-subcategory-list'),
     url(r'^suppliers/(?P<supplier>[\w-]+)/$', views.SupplierProductListView.as_view(), name='supplier-product-list'),
     url(r'^subcategory/(?P<subcategory>[\w-]+)/$', views.SubcategoryProductListView.as_view(), name='subcategory-product-list'),
-    url(r'^category/(?P<category>[\w-]+)/$', views.CategorySubCategoryListView.as_view(), name='category-subcategory-list'),
-
-
 
     url(r'^category/(?P<slug>[\w]+)/$', views.CategoryDetailView.as_view(), name='category-detail'),
 
 
-    url(r'^test/overview/$', views.TestProductOverviewPage.as_view(), name='product-overview'),
+    #url(r'^test/overview/$', views.TestProductOverviewPage.as_view(), name='product-overview'),
 ]

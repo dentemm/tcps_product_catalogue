@@ -1,15 +1,26 @@
 $('.subcategory-modal').on('click', function(e) {
 
     e.preventDefault();
-    console.log("Test knop gedrukt!");
-    var item_slug = $(this).attr('id').split(/-(.+)/)[1]; //Get slug via id, split achter eerste dash
-    console.log(item_slug);
+    console.log('Subcategory!');
+    var subcategory_slug = $(this).attr('id').split(/-(.+)/)[1]; //Get slug via id, split achter eerste dash
+    console.log(subcategory_slug);
     
-    ajax_call(item_slug);
+    ajax_subcategory(subcategory_slug);
 
 });
 
-function ajax_call(category_slug) {
+$('.supplier-modal').on('click', function(e) {
+
+    e.preventDefault();
+    console.log('Supplier!');
+    var supplier_slug = $(this).attr('id').split(/-(.+)/[1]);
+    console.log(supplier_slug);
+
+    ajax_supplier(supplier_slug);
+
+});
+
+function ajax_subcategory(category_slug) {
     
     //console.log("ajax call opgeroepen");
     //console.log("url: products/subcategory/" + category_slug) // sanity check
@@ -22,9 +33,19 @@ function ajax_call(category_slug) {
     });
 };
 
+function ajax_supplier(supplier_slug) {
+
+    $.ajax({
+        url: "/products/supplier/" + supplier_slug + "/",
+        type: "GET",
+        dataType: "html",
+        success: success_handler
+    });
+};
+
 function success_handler(html) {
 
-    console.log(html);
+    //console.log(html);
 
     $("#modal").html(html);
     $('#modal').modal('show');
