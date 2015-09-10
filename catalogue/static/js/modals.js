@@ -24,9 +24,9 @@ function ajax_call(category_slug) {
 
 function success_handler(html) {
 
-    //console.log(html);
+    console.log(html);
 
-    //$("#modal").html(html);
+    $("#modal").html(html);
     $('#modal').modal('show');
 }
 
