@@ -29,6 +29,7 @@
 {% block content %}
 	<div class="slide story" id="slide-product">
 		<div class="container">
+			{% placeholder 'products-marketing-text' %}
 			<div class="row title-row">
 				<div class="col-12 font-thin">Ontdek hier ons <span class="font-semibold">productgamma</span></div>
 			</div><!-- /row -->
@@ -40,7 +41,14 @@
 			</div><!-- /row -->
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 			<!-- Loop over every category available in database -->
-			{% for category in category_list %}
+			{% if not category_list.all %}
+				<div class="row">
+					<div class="col-sm-8 col-sm-offset-2">
+						<h3 class="text-danger">--- Let op! Er zijn geen categorieen, je kan deze aanmaken in de admin interface ---</h3>
+					</div>
+				</div>
+			{% else %}
+				{% for category in category_list %}
 			    <div class="col-xs-4 col-lg-4 col-sm-6">
 			        <div class="panel-heading" role="tab" id="headingOne">
 			        	<!-- Collapse panel with subcategories has href which is category.slug -->
@@ -56,14 +64,19 @@
 					  	<div class="panel-body">Klik op een subcategorie om de producten te verkennen:
 						  	<div class="panel-body">
 						  	<!-- For loop for subcategories of current category -->
-						  	{% for subcategory in category.subcategories.all %}
-						  		<button type="button" id="test-{{ subcategory.slug }}" class="btn btn-default btn-lg subcategory-modal" href="{% url 'subcategory-product-list' subcategory=subcategory.slug %}" data-target="#modal" data-toggle="mdal">{{ subcategory.name|title }}</button>
-						  	{% endfor %}
+						  	{% if category.subcategories.all %}
+							  	{% for subcategory in category.subcategories.all %}
+							  	<button type="button" id="test-{{ subcategory.slug }}" class="btn btn-default btn-lg subcategory-modal" href="{% url 'subcategory-product-list' subcategory=subcategory.slug %}" data-target="#modal" data-toggle="mdal">{{ subcategory.name|title }}</button>
+							  	{% endfor %}
+							{% else %}
+								<h3 class="text-danger">--- Deze categorie bezit geen subcategorieen ---</h3>
+							{% endif %}
 						  	</div>
 					  	</div>
 					</div>
 				</div>
-			{% endfor %}
+				{% endfor %}
+			{% endif %}
 			</div>
 		</div>
 	</div>
