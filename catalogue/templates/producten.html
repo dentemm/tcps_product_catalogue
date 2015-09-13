@@ -12,18 +12,26 @@
 {% endblock extra_css %}
 
 {% block navbar %}
-	<a class="navbar-brand hidden-xs" href="#" title="Herladen van de TCPS website"><img src="images/logo5.png"></a>
-	<a class="home" href="index.html" title="Terug naar homepage"><span class="icon-2x icon-home pull-right"></span> </a>
-	<div class="navbar navbar-fixed-top" data-activeslide="1">
-		<div class="container">
-			<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</div><!-- /.container -->
-	</div><!-- /.navbar -->
+    <a class="navbar-brand hidden-xs" href="#" title="Herladen van de TCPS website"><img src="{% static 'images/logo5.png' %}"></a>
+    <a class="home" href="index.html" title="Terug naar homepage"><span class="icon-2x icon-home pull-right"></span> </a>
+    <div class="navbar navbar-fixed-top" data-activeslide="1">
+        <div class="container">
+            <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="nav-collapse collapse navbar-responsive-collapse">
+                <ul class="nav row">
+                    <li class="col-12 col-sm-2 pull-right"><a href="#"><span class="icon-2x icon-home pull-right"></span> <span class="text pull-right">HOME</span></a></li>
+                </ul>
+                <div class="row">
+                    <div class="col-sm-2 active-menu"></div>
+                </div>
+            </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+    </div><!-- /.navbar -->
 {% endblock navbar %}
 
 {% block content %}
