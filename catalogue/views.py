@@ -18,8 +18,17 @@ class TestProductOverviewPage(views.generic.ListView):
 	def get_queryset(self):
 		return self.model.objects.all()
 
+class SupplierOverviewPage(views.generic.ListView):
+
+	model = models.Supplier
+	context_object_name = 'supplier_list'
+	template_name = 'supplier-products.html'
+
+	def get_queryset(self):
+		return self.model.objects.all()
+
 # Create your views here
-class SupplierProductListView(views.generic.ListView):
+class SupplierProductListView(AjaxResponseMixin, views.generic.ListView):
 	'''
 	Allows to show product list for given supplier in URL	
 	'''
