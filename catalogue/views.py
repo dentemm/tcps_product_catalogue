@@ -33,8 +33,10 @@ class SupplierProductListView(AjaxResponseMixin, views.generic.ListView):
 	Allows to show product list for given supplier in URL	
 	'''
 
+	print 'supplier product list view'
+
 	context_object_name = 'supplier_list'
-	template_name = 'item_list.html'
+	template_name = 'modal-supplier-products.html'
 
 	def get_queryset(self):
 
