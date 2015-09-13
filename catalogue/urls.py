@@ -7,6 +7,7 @@ urlpatterns = [
     #url(r'^(?P<slug>[^/]+)/$', CategoryCreateView.as_view(), name='category_detail'),
 
     url(r'^overview/$', views.TestProductOverviewPage.as_view(), name='product-overview'),
+    url(r'^overview/suppliers/$', views.SupplierOverviewPage.as_view(), name='supplier-product-overview'),
     url(r'^category/(?P<category>[\w-]+)/$', views.CategorySubCategoryListView.as_view(), name='category-subcategory-list'),
     url(r'^suppliers/(?P<supplier>[\w-]+)/$', views.SupplierProductListView.as_view(), name='supplier-product-list'),
     url(r'^subcategory/(?P<subcategory>[\w-]+)/$', views.SubcategoryProductListView.as_view(), name='subcategory-product-list'),
