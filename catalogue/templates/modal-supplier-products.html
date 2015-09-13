@@ -11,13 +11,16 @@
                 <div class="col-12">
                     <div class="modal-body">
                         <div id="owl-demo" class="owl-carousel owl-theme">
-                        {% for product in product_list %}
+                        {% if product_list %}
+                            {% for product in product_list %}
                             <div class="item">
                                 <h2>{{ product.supplier.name| title}}</h2>
                                 <h3>{{ product.name|title }}</h3>
+                                <h1>{{ forloop.counter }}</h1>
                                 <p class="producttext">Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
                             </div>
-                        {% endfor %}
+                            {% endfor %}
+                        {% endif }
                         </div>
                     </div>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Sluit dit formulier</button>
@@ -26,6 +29,7 @@
         </div>
     </div> <!-- modal content -->
 </div> <!-- modal dialog -->
+
 
 <!-- javascript owlcarousel setup -->
 <script>

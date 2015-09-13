@@ -6,19 +6,20 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="modal-body">
             <div class="row">
                 <div class="col-12">
-                    <div class="modal-body">
-                        <div id="owl-demo" class="owl-carousel owl-theme">
+                    <div id="owl-demo" class="owl-carousel owl-theme">
+                    {% if product_list %}
                         {% for product in product_list %}
-                            <div class="item">
-                                <h2>{{ product.subcategory.name| title}}</h2>
-                                <h3>{{ product.name|title }}</h3>
-                                <p class="producttext">Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-                            </div>
-                        {% endfor %}
+                        <div>
+                            <h2>{{ product.subcategory.name| title}}</h2>
+                            <h3>{{ product.name|title }}</h3>
+                            <p class="producttext">Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
                         </div>
+                        {% endfor %}
+                    {% else %}
+                    {% endif %}
                     </div>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Sluit dit formulier</button>
                 </div>
@@ -28,13 +29,13 @@
 </div> <!-- modal dialog -->
 
 <!-- javascript owlcarousel setup -->
-<script>
+<script type="text/javascript" defer>
 $(document).ready(function() {
  
     $("#owl-demo").owlCarousel({
 
         navigation : true, // Show next and prev buttons
-        navigationText : ["Vorige","Volgende"],
+        navigationText:["Vorige","Volgende"],
         slideSpeed : 300,
         paginationSpeed : 400,
         singleItem:true
