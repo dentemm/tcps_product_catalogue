@@ -1,3 +1,5 @@
+{% load staticfiles i18n %}
+
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
@@ -12,10 +14,36 @@
                     <div id="owl-demo" class="owl-carousel owl-theme">
                     {% if product_list %}
                         {% for product in product_list %}
-                        <div>
-                            <h2>{{ product.subcategory.name| title}}</h2>
-                            <h3>{{ product.name|title }}</h3>
-                            <p class="producttext">Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">{{ product.subcategory.name| title}}</h2>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h3>{{ product.name|title }}</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <img src="{% static 'product.jpg' %}" class="img-responsive img-circle" />
+                                        <br>
+                                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-9">
+                                        <h4>Description</h4>
+                                        <p class="producttext">Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+                                    </div>
+                                </div>
+                                {% if product.product_folder %}
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h4>Product folder</h4>
+                                        <a href="{{ product.product_folder.url }}">Link</a>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
                         </div>
                         {% endfor %}
                     {% else %}
@@ -32,14 +60,7 @@
 <script type="text/javascript" defer>
 $(document).ready(function() {
  
-    $("#owl-demo").owlCarousel({
-
-        navigation : true, // Show next and prev buttons
-        navigationText:["Vorige","Volgende"],
-        slideSpeed : 300,
-        paginationSpeed : 400,
-        singleItem:true
-    });  
+ 
 });
 </script>
 

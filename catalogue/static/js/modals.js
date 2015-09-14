@@ -49,6 +49,16 @@ function success_handler(html) {
 
     $("#modal").html(html);
     $('#modal').modal('show');
+
+    // Start Owl Carousel
+    $("#owl-demo").owlCarousel({
+
+        navigation : true, // Show next and prev buttons
+        navigationText:["Vorige","Volgende"],
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem:true
+    }); 
 }
 
 
