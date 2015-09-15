@@ -50,7 +50,10 @@ function success_handler(html) {
     $("#modal").html(html);
     $('#modal').modal('show');
 
-    // Start Owl Carousel
+        // Start Owl Carousel
+
+    console.log("owlCarousel call")
+
     $("#owl-demo").owlCarousel({
 
         navigation : true, // Show next and prev buttons
