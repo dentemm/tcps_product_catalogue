@@ -27,6 +27,15 @@ class SupplierOverviewPage(views.generic.ListView):
 	def get_queryset(self):
 		return self.model.objects.all()
 
+class ProductListView(views.generic.ListView):
+
+	model = models.Product
+	context_object_name = 'product_list'
+	template_name = 'producten.html'
+
+	def get_queryset(self):
+		return self.model.objects.all()
+
 # Create your views here
 class SupplierProductListView(AjaxResponseMixin, views.generic.ListView):
 	'''

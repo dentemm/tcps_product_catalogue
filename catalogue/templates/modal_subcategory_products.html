@@ -11,8 +11,8 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-12">
-                    <div id="owl-demo" class="owl-carousel owl-theme">
                     {% if product_list %}
+                    <div id="owl-demo" class="owl-carousel owl-theme">
                         {% for product in product_list %}
                         <div class="panel panel-info">
                             <div class="panel-heading">
@@ -46,9 +46,11 @@
                             </div>
                         </div>
                         {% endfor %}
-                    {% else %}
-                    {% endif %}
                     </div>
+                    <div class="test"></div>
+                    {% else %}
+
+                    {% endif %}
                     <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Sluit dit formulier</button>
                 </div>
             </div>
@@ -57,7 +59,7 @@
 </div> <!-- modal dialog -->
 
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+
 <!-- javascript owlcarousel setup -->
 <script type="text/javascript">
 $(document).ready(function() {

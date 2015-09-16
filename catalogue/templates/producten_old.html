@@ -1,0 +1,108 @@
+{% extends 'layout.html' %}
+
+{% load staticfiles %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/stylep.css' %}">
+
+    <!-- Owl Carousel stylesheets -->
+	<!--<link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}">--><!-- Important Owl stylesheet -->
+	<!--<link rel="stylesheet" href="{% static 'owl-carousel/owl.theme.css' %}">--><!-- Default Theme -->
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" async>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css" async>
+
+
+{% endblock extra_css %}
+
+{% block navbar %}
+    <a class="navbar-brand hidden-xs" href="#" title="Herladen van de TCPS website"><img src="{% static 'images/logo5.png' %}"></a>
+    <a class="home" href="index.html" title="Terug naar homepage"><span class="icon-2x icon-home pull-right"></span> </a>
+    <div class="navbar navbar-fixed-top" data-activeslide="1">
+        <div class="container">
+            <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="nav-collapse collapse navbar-responsive-collapse">
+                <ul class="nav row">
+                    <li class="col-12 col-sm-2 pull-right"><a href="#"><span class="icon-2x icon-home pull-right"></span> <span class="text pull-right">HOME</span></a></li>
+                </ul>
+                <div class="row">
+                    <div class="col-sm-2 active-menu"></div>
+                </div>
+            </div><!-- /.nav-collapse -->
+        </div><!-- /.container -->
+    </div><!-- /.navbar -->
+{% endblock navbar %}
+
+{% block content %}
+	<div class="slide story" id="slide-product">
+		<div class="container">
+			<div class="row title-row">
+				<div class="col-12 font-thin">Ontdek hier ons <span class="font-semibold">productgamma</span></div>
+			</div><!-- /row -->
+			<div class="row line-row">
+				<div class="hr">&nbsp;</div>
+			</div><!-- /row -->
+			<div class="row subtitle-row">
+				<h2 class="col-12 font-thin">Hieronder kan u een overzicht van onze producten terugvinden. Maak ook gebruik van de zoekfunctie en aarzel niet om <span class="font-semibold">ons te contacteren</span> indien u meer informatie wenst</h2>
+			</div><!-- /row -->
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			<!-- Loop over every category available in database -->
+			{% if not category_list.all %}
+				<div class="row">
+					<div class="col-sm-8 col-sm-offset-2">
+						<h3 class="text-danger">--- Let op! Er zijn geen categorieen, je kan deze aanmaken in de admin interface ---</h3>
+					</div>
+				</div>
+			{% else %}
+				{% for category in category_list %}
+			    <div class="col-xs-4 col-lg-4 col-sm-6">
+			        <div class="panel-heading" role="tab" id="headingOne">
+			        	<!-- Collapse panel with subcategories has href which is category.slug -->
+			            <a role="button" data-toggle="collapse" data-parent="#accordion" data-parent="#accordion" href="#{{ category.slug }}" aria-expanded="true" aria-controls="diepvriezers"> 
+			                {% if category.image %}
+			                <img src="{{ category.image.url }}" class="img-thumbnail">
+			                {% endif %}
+			            </a>
+			        </div>
+			        <h3 class="font-semibold prodtitle">{{ category.name|title  }}</h3>
+			        <!-- Collapse panel for this category, with id of category.slug -->
+					<div id="{{ category.slug }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+					  	<div class="panel-body">Klik op een subcategorie om de producten te verkennen:
+						  	<div class="panel-body">
+						  	<!-- For loop for subcategories of current category -->
+						  	{% if category.subcategories.all %}
+							  	{% for subcategory in category.subcategories.all %}
+							  	<button type="button" id="test-{{ subcategory.slug }}" class="btn btn-default btn-lg subcategory-modal" href="{% url 'subcategory-product-list' subcategory=subcategory.slug %}" data-target="#modal" data-toggle="mdal">{{ subcategory.name|title }}</button>
+							  	{% endfor %}
+							{% else %}
+								<h3 class="text-danger">--- Deze categorie bezit geen subcategorieen ---</h3>
+							{% endif %}
+						  	</div>
+					  	</div>
+					</div>
+				</div>
+				{% endfor %}
+			{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock content %}
+
+{% block modals %}
+	<div class="modal fade" id="modal" role="dialog" aria-hidden="true">
+	</div>
+{% endblock modals %}
+
+{% block extra_js %}
+	{{ block.super }}
+	<script src="{% static 'js/modals.js' %}" defer></script> <!-- Ajax calls to Django backend -->
+	<script src="{% static 'owl-carousel/owl.carousel.min.js' %}" async></script> <!-- Owl Carousel -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" defer></script>
+{% endblock extra_js %}
+
