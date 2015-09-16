@@ -51,7 +51,7 @@
 			<div class="col-10 col-offset-1">
 				<div class="row">
 				{% for product in product_list %}
-					<div class="col-3 item-to-tag" data-item-tags="tag1, tag2, tag3">
+					<div class="col-3 item" data-item-tags="tag1, tag2, tag3">
 						<div class="panel panel-info">
 							<div class="panel-heading">
 								<h2 class="panel-title">{{ product.name }}</h2>
@@ -85,7 +85,7 @@
 
 	<script type="text/javascript">
 		$('div.tagsort-tags-container').tagSort({
-  			selector:'.item-to-tag'
+  			selector:'.item'
 		});
 	</script>
 {% endblock extra_js %}
