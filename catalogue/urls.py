@@ -11,6 +11,8 @@ urlpatterns = [
 
     url(r'^overview/products/$', views.ProductListView.as_view(), name='products-list'),
 
+    url(r'^test/tim/$', views.TestView.as_view(), name='test-tim'),
+
 
     url(r'^category/(?P<category>[\w-]+)/$', views.CategorySubCategoryListView.as_view(), name='category-subcategory-list'),
     url(r'^suppliers/(?P<supplier>[\w-]+)/$', views.SupplierProductListView.as_view(), name='supplier-product-list'),

@@ -4,15 +4,57 @@ $('button.category').on('click', function(e) {
 	console.log('Toggle!!!');
 
 	if($(this).hasClass('active')) {
-		console.log('active');
-		var myClass = $(this).attr("class");
-   		alert(myClass);
+		// Add the necessary tags 
+		
+
+		categorie = $.trim($(this).text());
+		console.log(categorie);
+		console.log('spatie');
+
+		ajax_call(categorie);
 	}
 
 	else {
+		// Remove the necessary tags
 		console.log('nope');
-		var myClass = $(this).attr("class");
-   		alert(myClass);
+
+
+
+		//var myClass = $(this).attr("class");
+   		//alert(myClass);
 	}
+
+	function ajax_call(category_name) {
+
+		$.ajax({
+			url:"/products/test/tim/",
+			type: "GET",
+			data: {
+				test: category_name
+			},
+			success: my_handler
+		});
+
+
+		/*$.ajax({
+		url: "/products/dashboard/categorie/delete/" + slug,
+		type: "DELETE",
+		data: {
+			test: "test"
+		},
+		success: function(json){
+			console.log(json);
+			$('#myModaal').modal('hide')
+			console.log(slug);
+			$('#item-'+slug).parents('tr').remove(); //Remove tr visueel, zodat page refresh niet nodig is
+		}
+	});*/
+
+	};
+
+	function my_handler() {
+
+		console.log("successful handled");
+	};
 
 });

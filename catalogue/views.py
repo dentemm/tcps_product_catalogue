@@ -35,17 +35,17 @@ class ProductListView(views.generic.ListView):
 
 	# custom stuff
 	categories = models.Category.objects.all()
-	suppliers = models.Supplier.objects.all()
-	subcategories = models.SubCategory.objects.all()
+	# suppliers = models.Supplier.objects.all()
+	# subcategories = models.SubCategory.objects.all()
 
 
 	def get_context_data(self, **kwargs):
 		ctx = super(ProductListView, self).get_context_data(**kwargs)
 		ctx['categories'] = self.categories
-		ctx['suppliers'] = self.suppliers
-		ctx['subcategories'] = self.subcategories
+		# ctx['suppliers'] = self.suppliers
+		# ctx['subcategories'] = self.subcategories
 
-		print "aantal= " + str(models.SubCategory.objects.all().count())
+		# print "aantal= " + str(models.SubCategory.objects.all().count())
 
 		return ctx
 
@@ -255,6 +255,16 @@ class CategoryDeleteView(AjaxResponseMixin, views.generic.DeleteView):
 
 
 
+class TestView(AjaxResponseMixin, views.generic.ListView):
 
+	model = models.Category
+	context_object_name = 'category_list'
+	template_name = 'producten.html'
+	
+	def get_queryset(self):
+
+		print self.request.GET.get('test', 'leeg')
+
+		return self.model.objects.all()
 
 
