@@ -45,6 +45,8 @@ class ProductListView(views.generic.ListView):
 		ctx['suppliers'] = self.suppliers
 		ctx['subcategories'] = self.subcategories
 
+		print "aantal= " + str(models.SubCategory.objects.all().count())
+
 		return ctx
 
 
