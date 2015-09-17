@@ -4,6 +4,21 @@ from django.conf import settings
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse_lazy
 
+'''
+# Custom QuerySets
+class SubCategoryQuerySet(models.Queryset):
+
+	def freezers(self):
+		return self.filter(parent_category='')
+
+# Custom model managers
+
+class CategorySubCategoryManager(models.Manager):
+
+	def get_queryset(self):
+		return super(CategorySubcategoryManager, self).get_queryset().filter(parent_category=)
+'''
+
 
 # Create your models here.
 class MetaOptionsMixin(object):

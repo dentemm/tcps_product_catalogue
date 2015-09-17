@@ -33,8 +33,32 @@ class ProductListView(views.generic.ListView):
 	context_object_name = 'product_list'
 	template_name = 'producten.html'
 
+	# custom stuff
+	categories = models.Category.objects.all()
+	suppliers = models.Supplier.objects.all()
+	subcategories = models.SubCategory.objects.all()
+
+
+	def get_context_data(self, **kwargs):
+		ctx = super(ProductListView, self).get_context_data(**kwargs)
+		ctx['categories'] = self.categories
+		ctx['suppliers'] = self.suppliers
+		ctx['subcategories'] = self.subcategories
+
+		return ctx
+
+
 	def get_queryset(self):
 		return self.model.objects.all()
+
+
+
+	def get_categories(self):
+		return models.Category.objects.all()
+
+
+
+
 
 # Create your views here
 class SupplierProductListView(AjaxResponseMixin, views.generic.ListView):
@@ -80,6 +104,13 @@ class SubcategoryProductListView(AjaxResponseMixin, views.generic.ListView):
 
 		self.subcategory = get_object_or_404(models.SubCategory, slug=subcategory)
 		return models.Product.objects.filter(subcategory=self.subcategory)
+
+
+class CategorySubcategoryListView(AjaxResponseMixin, views.generic.ListView):
+
+	context_object_name = 'category-list'
+	template_name = ''
+
 
 
 class ProductDetailView(views.generic.DetailView):
@@ -219,6 +250,7 @@ class CategoryDeleteView(AjaxResponseMixin, views.generic.DeleteView):
 
 		self.slug = kwargs['slug']
 		return super(CategoryDeleteView, self).dispatch(*args, **kwargs)
+
 
 
 
