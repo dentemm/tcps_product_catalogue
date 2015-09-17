@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
-from braces.views import LoginRequiredMixin, AjaxResponseMixin
+from braces.views import LoginRequiredMixin, AjaxResponseMixin, JSONResponseMixin
 
 from . import models
 
@@ -255,7 +255,7 @@ class CategoryDeleteView(AjaxResponseMixin, views.generic.DeleteView):
 
 
 
-class TestView(AjaxResponseMixin, views.generic.ListView):
+class TestView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListView):
 
 	model = models.Category
 	context_object_name = 'category_list'
@@ -266,5 +266,14 @@ class TestView(AjaxResponseMixin, views.generic.ListView):
 		print self.request.GET.get('test', 'leeg')
 
 		return self.model.objects.all()
+
+	def get_ajax(self, request, *args, **kwargs):
+
+		qset = self.get_queryset()
+		json_dict = list(qset.values('name'))
+
+		return self.render_json_response(json_dict)
+
+
 
 

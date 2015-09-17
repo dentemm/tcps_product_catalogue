@@ -5,18 +5,23 @@ $('button.category').on('click', function(e) {
 
 	if($(this).hasClass('active')) {
 		// Add the necessary tags 
+
+		console.log('category removed');
 		
 
 		categorie = $.trim($(this).text());
 		console.log(categorie);
 		console.log('spatie');
 
-		ajax_call(categorie);
+		//ajax_call(categorie);
 	}
 
 	else {
 		// Remove the necessary tags
-		console.log('nope');
+		console.log('category added');
+
+		categorie = $.trim($(this).text());
+		ajax_call(categorie);
 
 
 
@@ -52,9 +57,12 @@ $('button.category').on('click', function(e) {
 
 	};
 
-	function my_handler() {
+	function my_handler(json) {
 
 		console.log("successful handled");
+		console.log(json);
+
+
 	};
 
 });
