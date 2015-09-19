@@ -33,18 +33,15 @@ class ProductListView(views.generic.ListView):
 	context_object_name = 'product_list'
 	template_name = 'producten.html'
 
-	# custom stuff
+	# custom logic
 	categories = models.Category.objects.all() # we definitely need all categories
-	suppliers = models.Supplier.objects.all() # we could use all supplier
+	# suppliers = models.Supplier.objects.all() # we could use all supplier
 	# subcategories = models.SubCategory.objects.all()
 
 
 	def get_context_data(self, **kwargs):
 
 		ctx = super(ProductListView, self).get_context_data(**kwargs) # Fetch all products
-		ctx['categories'] = self.categories
-		ctx['suppliers'] = self.suppliers
-
 
 		self.selected = self.request.GET.get('selected', 'empty')
 		print 'categorie geselecteerd? ' + self.selected
@@ -52,6 +49,8 @@ class ProductListView(views.generic.ListView):
 		if self.selected != 'empty':
 			self.get_suppliers_and_subcategories(self.selected)
 			ctx['subcategories'] = self.subcategories
+
+		ctx['categories'] = self.categories
 
 		return ctx
 
@@ -71,16 +70,10 @@ class ProductListView(views.generic.ListView):
 
 		print 'hmm? ' + current_category.name
 
-		#self.suppliers = current_category.suppliers
 		self.subcategories = models.SubCategory.objects.filter(parent_category=current_category)
+		self.suppliers = models.Supplier.objects.filter(categories__in=self.subcategories)
 
 		print 'aantal subs: ' + str(self.subcategories.count())
-
-
-
-
-
-
 
 
 
