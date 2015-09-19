@@ -43,6 +43,8 @@ class ProductListView(views.generic.ListView):
 
 		ctx = super(ProductListView, self).get_context_data(**kwargs) # Fetch all products
 		ctx['categories'] = self.categories
+		ctx['suppliers'] = self.suppliers
+
 
 		self.selected = self.request.GET.get('selected', 'empty')
 		print 'categorie geselecteerd? ' + self.selected
@@ -50,10 +52,6 @@ class ProductListView(views.generic.ListView):
 		if self.selected != 'empty':
 			self.get_suppliers_and_subcategories(self.selected)
 			ctx['subcategories'] = self.subcategories
-
-
-		ctx['suppliers'] = self.suppliers
-
 
 		return ctx
 

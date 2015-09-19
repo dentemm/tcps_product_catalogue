@@ -67,12 +67,16 @@
 				{% endfor %}
 			{% endif %}
 			</div>
+			<div class="col-10 col-offset-1">	
+				<div class="tagsort-tags-container">
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-10 col-offset-1">
 				<div class="row">
 				{% for product in product_list %}
-					<div class="col-3 item" data-item-tags="tag1, tag2, tag3">
+					<div class="col-3 item" data-item-tags="{{ product.supplier }}, {{ product.subcategory }}, {{ product.subcategory.parent_category }}">
 						<div class="panel panel-info">
 							<div class="panel-heading">
 								<h2 class="panel-title">{{ product.name }}</h2>
