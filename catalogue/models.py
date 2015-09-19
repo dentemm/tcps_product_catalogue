@@ -167,6 +167,15 @@ class Product(MetaOptionsMixin, models.Model):
 		'''
 		return (self.subcategory.parent_category.name + self._category_separator + self.subcategory.name).title()
 
+	def get_supplier_name(self):
+
+		return self.supplier.name
+
+	def get_subcategory_name(self):
+
+		return self.subcategory.name
+
+
 
 class ProductPhoto(MetaOptionsMixin, models.Model):
 

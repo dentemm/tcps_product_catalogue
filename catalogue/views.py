@@ -34,14 +34,23 @@ class ProductListView(views.generic.ListView):
 	template_name = 'producten.html'
 
 	# custom stuff
-	categories = models.Category.objects.all()
+	categories = models.Category.objects.all() # we definitely need all categories
 	# suppliers = models.Supplier.objects.all()
 	# subcategories = models.SubCategory.objects.all()
 
 
 	def get_context_data(self, **kwargs):
-		ctx = super(ProductListView, self).get_context_data(**kwargs)
+
+		ctx = super(ProductListView, self).get_context_data(**kwargs) # Fetch all products
 		ctx['categories'] = self.categories
+
+		self.selected = self.request.GET.get('selected', 'empty')
+		print 'categorie geselecteerd? ' + self.selected
+
+		if self.selected != 'empty':
+			self.get_suppliers_and_subcategories(self.selected)
+
+
 		# ctx['suppliers'] = self.suppliers
 		# ctx['subcategories'] = self.subcategories
 
@@ -57,6 +66,20 @@ class ProductListView(views.generic.ListView):
 
 	def get_categories(self):
 		return models.Category.objects.all()
+
+
+	def get_suppliers_and_subcategories(self, category):
+
+		current_category = models.Category.objects.get(name=category)
+
+		print 'hmm? ' + current_category.name
+
+		#self.suppliers = current_category.suppliers
+		self.subcategories = current_category.subcategories
+
+
+
+
 
 
 
@@ -257,7 +280,7 @@ class CategoryDeleteView(AjaxResponseMixin, views.generic.DeleteView):
 
 class TestView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListView):
 
-	model = models.Category
+	model = models.SubCategory
 	context_object_name = 'category_list'
 	template_name = 'producten.html'
 	
@@ -265,7 +288,11 @@ class TestView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListView):
 
 		print self.request.GET.get('test', 'leeg')
 
-		return self.model.objects.all()
+		cat = self.request.GET.get('test', 'leeg')
+
+		print 'name= ' + cat
+
+		return self.model.objects.filter(name=cat)
 
 	def get_ajax(self, request, *args, **kwargs):
 
@@ -273,6 +300,7 @@ class TestView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListView):
 		json_dict = list(qset.values('name'))
 
 		return self.render_json_response(json_dict)
+
 
 
 
