@@ -27,7 +27,7 @@ class SupplierOverviewPage(views.generic.ListView):
 	def get_queryset(self):
 		return self.model.objects.all()
 
-class ProductListView(views.generic.ListView):
+class ProductListView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListView):
 
 	model = models.Product
 	context_object_name = 'product_list'
@@ -37,6 +37,40 @@ class ProductListView(views.generic.ListView):
 	categories = models.Category.objects.all() # we definitely need all categories
 	# suppliers = models.Supplier.objects.all() # we could use all supplier
 	# subcategories = models.SubCategory.objects.all()
+
+	def get_ajax(self, request, *args, **kwargs):
+
+		print 'in ajax'
+
+		selected = self.request.GET.get('selected', 'empty')
+
+		ctx = self.get_context_data
+
+
+		print selected
+
+		self.get_suppliers_and_subcategories(selected)
+
+		subs = self.subcategories.values_list('name', flat=True)
+		sups = self.suppliers.values_list('name', flat=True)
+
+		print subs
+		print sups
+
+		my_dict = {}
+
+		my_dict['subcategories'] = subs
+		my_dict['suppliers'] = sups
+
+		json_dict = {"test": my_dict}
+
+		print json_dict
+
+		return JsonResponse(json_dict)
+
+		#return self.render_json_response(json_dict)
+
+
 
 
 	def get_context_data(self, **kwargs):
@@ -279,7 +313,7 @@ class TestView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListView):
 	
 	def get_queryset(self):
 
-		print self.request.GET.get('test', 'leeg')
+		print self.request.GET.get('selected', 'empty')
 
 		cat = self.request.GET.get('test', 'leeg')
 

@@ -32,10 +32,10 @@ $('button.category').on('click', function(e) {
 	function ajax_call(category_name) {
 
 		$.ajax({
-			url:"/products/test/tim/",
+			url:"/products/overview/products/",
 			type: "GET",
 			data: {
-				test: category_name
+				selected: category_name
 			},
 			success: my_handler
 		});
