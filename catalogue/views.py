@@ -1,6 +1,8 @@
+import json
+
 from django import views
 from django.core.urlresolvers import reverse_lazy
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import get_object_or_404
 
 from braces.views import LoginRequiredMixin, AjaxResponseMixin, JSONResponseMixin
@@ -44,14 +46,15 @@ class ProductListView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListVi
 
 		selected = self.request.GET.get('selected', 'empty')
 
-		ctx = self.get_context_data
-
-
+		#ctx = self.get_context_data
 		print selected
 
 		self.get_suppliers_and_subcategories(selected)
 
 		subs = self.subcategories.values_list('name', flat=True)
+
+		print 'eerste'
+
 		sups = self.suppliers.values_list('name', flat=True)
 
 		print subs
@@ -59,14 +62,31 @@ class ProductListView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListVi
 
 		my_dict = {}
 
-		my_dict['subcategories'] = subs
-		my_dict['suppliers'] = sups
+		sub1 = subs[0]
+		sub2 = subs[1]
 
-		json_dict = {"test": my_dict}
+
+		my_dict['subcategories'] = [sub1, sub2]
+		my_dict['suppliers'] = sups[0]
+
+		json_dict = json.dumps(my_dict)
+
 
 		print json_dict
+		print my_dict
 
-		return JsonResponse(json_dict)
+		#print subs[0]
+		#print sups[0]
+
+
+		#print json_dict
+
+		return JsonResponse(my_dict)
+
+		#return JsonResponse(my_dict)
+
+		#return HttpResponse(json.dumps(json_dict),
+                    #content_type='application/json; charset=utf8')
 
 		#return self.render_json_response(json_dict)
 

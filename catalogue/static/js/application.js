@@ -21,6 +21,9 @@ $('button.category').on('click', function(e) {
 		console.log('category added');
 
 		categorie = $.trim($(this).text());
+
+		console.log(categorie)
+
 		ajax_call(categorie);
 
 
@@ -34,10 +37,19 @@ $('button.category').on('click', function(e) {
 		$.ajax({
 			url:"/products/overview/products/",
 			type: "GET",
+			contentType: 'application/json',
 			data: {
 				selected: category_name
 			},
-			success: my_handler
+			//success: my_handler
+			success: function(json) {
+				console.log(json);
+			},
+
+			error: function(xhr, ajaxOptions, thrownError) {
+				console.log(xhr.status);
+				alert(thrownError);
+			}
 		});
 
 
@@ -61,7 +73,6 @@ $('button.category').on('click', function(e) {
 
 		console.log("successful handled");
 		console.log(json);
-
 
 	};
 
