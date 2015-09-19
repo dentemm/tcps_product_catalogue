@@ -35,7 +35,7 @@ class ProductListView(views.generic.ListView):
 
 	# custom stuff
 	categories = models.Category.objects.all() # we definitely need all categories
-	# suppliers = models.Supplier.objects.all()
+	suppliers = models.Supplier.objects.all() # we could use all supplier
 	# subcategories = models.SubCategory.objects.all()
 
 
@@ -49,12 +49,11 @@ class ProductListView(views.generic.ListView):
 
 		if self.selected != 'empty':
 			self.get_suppliers_and_subcategories(self.selected)
+			ctx['subcategories'] = self.subcategories
 
 
-		# ctx['suppliers'] = self.suppliers
-		# ctx['subcategories'] = self.subcategories
+		ctx['suppliers'] = self.suppliers
 
-		# print "aantal= " + str(models.SubCategory.objects.all().count())
 
 		return ctx
 
@@ -75,7 +74,10 @@ class ProductListView(views.generic.ListView):
 		print 'hmm? ' + current_category.name
 
 		#self.suppliers = current_category.suppliers
-		self.subcategories = current_category.subcategories
+		self.subcategories = models.SubCategory.objects.filter(parent_category=current_category)
+
+		print 'aantal subs: ' + str(self.subcategories.count())
+
 
 
 

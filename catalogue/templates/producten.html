@@ -48,9 +48,23 @@
 			<div class="col-10 col-offset-1">
 			{% if categories %}
 				{% for category in categories %}
-				<button class="btn btn-info category" type="button" data-toggle="button">{{ category.name }}</a>
+				<button class="btn btn-info category" type="button" data-toggle="button">{{ category.name }}</button>
 				{% endfor %}
 			{% else %}
+			{% endif %}
+			</div>
+			<div class="col-10 col-offset-1">
+			{% if subcategories %}
+				{% for subcategory in subcategories %}
+				<button class="btn btn-warning" type="button" data-toggle="button">{{ subcategory.name }}</button>
+				{% endfor %}
+			{% endif %}
+			</div>
+			<div class="col-10 col-offset-1">
+			{% if suppliers %}
+				{% for supplier in suppliers %}
+				<button class="btn btn-danger" type="button" data-toggle="button">{{ supplier.name }}</button>
+				{% endfor %}
 			{% endif %}
 			</div>
 		</div>
