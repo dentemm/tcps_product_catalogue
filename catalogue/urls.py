@@ -11,7 +11,7 @@ urlpatterns = [
 
     url(r'^overview/products/$', views.ProductListView.as_view(), name='products-list'),
 
-    url(r'^test/tim/$', views.TestView.as_view(), name='test-tim'),
+    url(r'^test/tim/$', views.CategorySubCategoryListView.as_view(), name='testview'),
 
 
     url(r'^category/(?P<category>[\w-]+)/$', views.CategorySubCategoryListView.as_view(), name='category-subcategory-list'),

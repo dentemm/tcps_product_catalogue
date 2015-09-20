@@ -40,10 +40,19 @@ class ProductListView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListVi
 	# suppliers = models.Supplier.objects.all() # we could use all supplier
 	# subcategories = models.SubCategory.objects.all()
 
+	
 	def get_ajax(self, request, *args, **kwargs):
+
+
+		'''
+		context_object_name = 'category_list'
+		model = models.Category
+		template_name = 'subcategory-tag-buttons.html'
+		'''
 
 		print 'ajax call'
 
+		
 		selected = self.request.GET.get('selected', 'empty')
 		#print selected
 
@@ -158,10 +167,29 @@ class SubcategoryProductListView(AjaxResponseMixin, views.generic.ListView):
 		return models.Product.objects.filter(subcategory=self.subcategory)
 
 
-class CategorySubcategoryListView(AjaxResponseMixin, views.generic.ListView):
+class CategorySubCategoryListView(AjaxResponseMixin, views.generic.ListView):
 
-	context_object_name = 'category-list'
-	template_name = ''
+	model = models.SubCategory
+	context_object_name = 'subcategory-list'
+	template_name = 'subcategory-tag-buttons.html'
+
+	def get_queryset(self):
+
+		# super(self, CategorySubCategoryListView).get_queryset()
+
+		category_name = self.request.GET.get('selected', 'empty')
+		parent = models.Category.objects.filter(name=category_name)
+
+		print parent
+
+		filtered = self.model.objects.all()
+		print 'filtered' + str(filtered)
+
+		test2 = self.model.objects.filter(parent_category=parent)
+
+		print test2
+
+		return self.model.objects.filter(parent_category=parent)
 
 
 
@@ -173,24 +201,6 @@ class ProductDetailView(views.generic.DetailView):
 	model = models.Product
 	template_name = 'product_detail.html'
 
-class CategorySubCategoryListView(views.generic.ListView):
-	'''
-	Allows to show subcategory list for given category in URL
-	'''
-
-	context_object_name = 'item_list'
-	template_name = 'item_list.html'
-
-	def get_queryset(self):
-
-		category = self.kwargs['category']
-
-		self.category = get_object_or_404(models.Category, slug=category)
-		return models.SubCategory.objects.filter(parent_category=self.category)
-
-
-def logout_view(request):
-    logout(request)
 
 
 # Create your views here.

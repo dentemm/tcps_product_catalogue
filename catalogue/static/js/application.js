@@ -35,9 +35,11 @@ $('button.category').on('click', function(e) {
 	function ajax_call(category_name) {
 
 		$.ajax({
-			url:"/products/overview/products/",
+			//url:"/products/overview/products/",
+			url:"/products/test/tim/",
 			type: "GET",
-			contentType: 'application/json',
+			//contentType: 'application/json',
+			//contentType: 'html',
 			data: {
 				selected: category_name
 			},
@@ -54,6 +56,15 @@ $('button.category').on('click', function(e) {
 
 		console.log("successful handled");
 		console.log(json);
+
+		/*var categories = json['subcategories']
+		var suppliers = json['suppliers']
+
+		console.log(categories)
+		console.log(suppliers)*/
+	};
+
+	function create_subcategory_buttons() {
 
 	};
 });
