@@ -42,56 +42,36 @@ class ProductListView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListVi
 
 	def get_ajax(self, request, *args, **kwargs):
 
-		print 'in ajax'
+		print 'ajax call'
 
 		selected = self.request.GET.get('selected', 'empty')
-
-		#ctx = self.get_context_data
-		print selected
+		#print selected
 
 		self.get_suppliers_and_subcategories(selected)
 
 		subs = self.subcategories.values_list('name', flat=True)
-
-		print 'eerste'
-
 		sups = self.suppliers.values_list('name', flat=True)
 
-		print subs
-		print sups
+		subcategories = []
+		suppliers = []
+
+		for sub in subs:
+			subcategories.append(sub)
+
+		for sup in sups:
+			suppliers.append(sup)
+
+		#print subcategories
+		#print suppliers
 
 		my_dict = {}
 
-		sub1 = subs[0]
-		sub2 = subs[1]
+		my_dict['subcategories'] = subcategories
+		my_dict['suppliers'] = suppliers
 
-
-		my_dict['subcategories'] = [sub1, sub2]
-		my_dict['suppliers'] = sups[0]
-
-		json_dict = json.dumps(my_dict)
-
-
-		print json_dict
-		print my_dict
-
-		#print subs[0]
-		#print sups[0]
-
-
-		#print json_dict
+		#print my_dict
 
 		return JsonResponse(my_dict)
-
-		#return JsonResponse(my_dict)
-
-		#return HttpResponse(json.dumps(json_dict),
-                    #content_type='application/json; charset=utf8')
-
-		#return self.render_json_response(json_dict)
-
-
-
 
 	def get_context_data(self, **kwargs):
 

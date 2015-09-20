@@ -41,32 +41,13 @@ $('button.category').on('click', function(e) {
 			data: {
 				selected: category_name
 			},
-			//success: my_handler
-			success: function(json) {
-				console.log(json);
-			},
+			success: my_handler,
 
 			error: function(xhr, ajaxOptions, thrownError) {
 				console.log(xhr.status);
 				alert(thrownError);
 			}
 		});
-
-
-		/*$.ajax({
-		url: "/products/dashboard/categorie/delete/" + slug,
-		type: "DELETE",
-		data: {
-			test: "test"
-		},
-		success: function(json){
-			console.log(json);
-			$('#myModaal').modal('hide')
-			console.log(slug);
-			$('#item-'+slug).parents('tr').remove(); //Remove tr visueel, zodat page refresh niet nodig is
-		}
-	});*/
-
 	};
 
 	function my_handler(json) {
@@ -75,5 +56,4 @@ $('button.category').on('click', function(e) {
 		console.log(json);
 
 	};
-
 });
