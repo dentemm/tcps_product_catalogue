@@ -118,7 +118,7 @@ class ProductListView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListVi
 
 		print 'aantal subs: ' + str(self.subcategories.count())
 
-class TagsForCategoryView(views.generic.ListView):
+class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 
 	model = models.Product
 	context_object_name = 'product_list'
@@ -128,6 +128,7 @@ class TagsForCategoryView(views.generic.ListView):
 	category_tags = []
 	subcategory_tags = []
 	supplier_tags = []
+
 
 	def get_queryset(self):
 
@@ -139,8 +140,6 @@ class TagsForCategoryView(views.generic.ListView):
 			return self.model.objects.all()
 
 		else:
-			#print 'categorie geselecteerd!'
-
 			filtered_queryset = self.model.objects.filter(subcategory__parent_category__name__iexact=self.category_name)
 
 			if filtered_queryset.count() == 0:
@@ -154,26 +153,19 @@ class TagsForCategoryView(views.generic.ListView):
 	def get_context_data(self, **kwargs):
 
 		ctx = super(TagsForCategoryView, self).get_context_data(**kwargs)
-
 		self.category_tags = list(models.Category.objects.values_list('name', flat=True))
-
-		#print 'lijst: ' + str(self.category_tags)
 
 		if self.category_name != '':
 
 			current_category = models.Category.objects.get(name__iexact=self.category_name)
-			#print 'hier sie: ' +str(current_category)
-
-			#self.subcategory_tags = list(models.SubCategory.objects.values_list('name', flat=True))
-			#self.supplier_tags = 
 
 			filtered_subs = models.SubCategory.objects.filter(parent_category=current_category)
 			self.subcategory_tags = filtered_subs.values_list('name', flat=True)
 
 			self.supplier_tags = filtered_subs.values_list('suppliers__name', flat=True)
 
-			print 'subs: ' + str(self.subcategory_tags)
-			print 'sups: ' + str(self.supplier_tags)
+			#print 'subs: ' + str(self.subcategory_tags)
+			#print 'sups: ' + str(self.supplier_tags)
 
 		else:
 
@@ -181,6 +173,15 @@ class TagsForCategoryView(views.generic.ListView):
 			self.supplier_tags = models.Supplier.objects.values_list('name', flat=True)
 
 		return ctx
+
+	def render_to_response(self, context, **response_kwargs):
+
+		if self.request.is_ajax():
+
+			print 'ajax'
+
+		else:
+			return super(TagsForCategoryView, self).render_to_response(context, **response_kwargs)
 
 
 

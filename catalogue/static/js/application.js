@@ -36,7 +36,7 @@ $('button.category').on('click', function(e) {
 
 		$.ajax({
 			//url:"/products/overview/products/",
-			url:"/products/test/tim/",
+			url:"/products/overview/all/",
 			type: "GET",
 			//contentType: 'application/json',
 			//contentType: 'html',
