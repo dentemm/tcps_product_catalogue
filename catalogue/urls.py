@@ -22,4 +22,7 @@ urlpatterns = [
 
 
     #url(r'^test/overview/$', views.TestProductOverviewPage.as_view(), name='product-overview'),
+
+
+    url(r'^overview/all/$', views.TagsForCategoryView.as_view(), name='tagview'),
 ]

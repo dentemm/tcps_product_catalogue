@@ -118,6 +118,69 @@ class ProductListView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListVi
 
 		print 'aantal subs: ' + str(self.subcategories.count())
 
+class TagsForCategoryView(views.generic.ListView):
+
+	model = models.Product
+	context_object_name = 'product_list'
+	template_name = 'producten.html'
+
+	category_name = ''
+	category_tags = []
+	subcategory_tags = []
+	supplier_tags = []
+
+	def get_queryset(self):
+
+		self.category_name = self.request.GET.get('selected', 'empty')
+
+		if self.category_name == 'empty':
+
+			self.category_name = ''
+			return self.model.objects.all()
+
+		else:
+			#print 'categorie geselecteerd!'
+
+			filtered_queryset = self.model.objects.filter(subcategory__parent_category__name__iexact=self.category_name)
+
+			if filtered_queryset.count() == 0:
+
+				self.category_name = ''
+				return self.model.objects.all()
+
+			else:
+				return filtered_queryset
+				
+	def get_context_data(self, **kwargs):
+
+		ctx = super(TagsForCategoryView, self).get_context_data(**kwargs)
+
+		self.category_tags = list(models.Category.objects.values_list('name', flat=True))
+
+		#print 'lijst: ' + str(self.category_tags)
+
+		if self.category_name != '':
+
+			current_category = models.Category.objects.get(name__iexact=self.category_name)
+			#print 'hier sie: ' +str(current_category)
+
+			#self.subcategory_tags = list(models.SubCategory.objects.values_list('name', flat=True))
+			#self.supplier_tags = 
+
+			filtered_subs = models.SubCategory.objects.filter(parent_category=current_category)
+			self.subcategory_tags = filtered_subs.values_list('name', flat=True)
+
+			self.supplier_tags = filtered_subs.values_list('suppliers__name', flat=True)
+
+			print 'subs: ' + str(self.subcategory_tags)
+			print 'sups: ' + str(self.supplier_tags)
+
+		else:
+
+			self.subcategory_tags = models.SubCategory.objects.values_list('name', flat=True)
+			self.supplier_tags = models.Supplier.objects.values_list('name', flat=True)
+
+		return ctx
 
 
 
@@ -180,14 +243,14 @@ class CategorySubCategoryListView(AjaxResponseMixin, views.generic.ListView):
 		category_name = self.request.GET.get('selected', 'empty')
 		parent = models.Category.objects.filter(name=category_name)
 
-		print parent
+		print 'parent: ' + str(parent)
 
 		filtered = self.model.objects.all()
-		print 'filtered' + str(filtered)
+		print 'all ' + str(filtered)
 
 		test2 = self.model.objects.filter(parent_category=parent)
 
-		print test2
+		print 'filtered:' + str(test2)
 
 		return self.model.objects.filter(parent_category=parent)
 
