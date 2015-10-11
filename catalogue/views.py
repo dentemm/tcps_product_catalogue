@@ -136,6 +136,7 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 
 		if self.category_name == 'empty':
 
+			# Default case = ''
 			self.category_name = ''
 			return self.model.objects.all()
 
@@ -144,10 +145,14 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 
 			if filtered_queryset.count() == 0:
 
+				# If count = 0: doesn't exists so fallback to default case of ''
 				self.category_name = ''
 				return self.model.objects.all()
 
 			else:
+
+				print 'aantal = ' + str(filtered_queryset.count())
+
 				return filtered_queryset
 				
 	def get_context_data(self, **kwargs):
@@ -160,27 +165,43 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 			current_category = models.Category.objects.get(name__iexact=self.category_name)
 
 			filtered_subs = models.SubCategory.objects.filter(parent_category=current_category)
-			self.subcategory_tags = filtered_subs.values_list('name', flat=True)
 
-			self.supplier_tags = filtered_subs.values_list('suppliers__name', flat=True)
+			self.subcategory_tags = list(filtered_subs.values_list('name', flat=True))
+			self.supplier_tags = list(filtered_subs.values_list('suppliers__name', flat=True))
 
 			#print 'subs: ' + str(self.subcategory_tags)
 			#print 'sups: ' + str(self.supplier_tags)
 
 		else:
 
-			self.subcategory_tags = models.SubCategory.objects.values_list('name', flat=True)
-			self.supplier_tags = models.Supplier.objects.values_list('name', flat=True)
+			self.subcategory_tags = list(models.SubCategory.objects.values_list('name', flat=True))
+			self.supplier_tags = list(models.Supplier.objects.values_list('name', flat=True))
+
+		ctx['categories'] = self.category_tags
+		ctx['subcategories'] = self.subcategory_tags
+		ctx['suppliers'] = self.supplier_tags
 
 		return ctx
 
 	def render_to_response(self, context, **response_kwargs):
 
+		return super(TagsForCategoryView, self).render_to_response(context, **response_kwargs)
+
+
 		if self.request.is_ajax():
 
+			json_dict = {
+				'suppliers': self.supplier_tags,
+				'subcategories': self.subcategory_tags
+			}
+
 			print 'ajax'
+			print JsonResponse(json_dict)
 
 		else:
+
+			print 'render to response'
+
 			return super(TagsForCategoryView, self).render_to_response(context, **response_kwargs)
 
 

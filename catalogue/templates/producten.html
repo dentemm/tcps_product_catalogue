@@ -48,7 +48,8 @@
 			<div class="col-10 col-offset-1">
 			{% if categories %}
 				{% for category in categories %}
-				<button class="btn btn-info category" type="button" data-toggle="button">{{ category.name }}</button>
+				<!--<button class="btn btn-info category" type="button" data-toggle="button">{{ category }}</button>-->
+				<a class="btn btn-info category" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category }}</a>
 				{% endfor %}
 			{% else %}
 			{% endif %}
@@ -56,14 +57,14 @@
 			<div class="col-10 col-offset-1">
 			{% if subcategories %}
 				{% for subcategory in subcategories %}
-				<button class="btn btn-warning" type="button" data-toggle="button">{{ subcategory.name }}</button>
+				<button class="btn btn-warning" type="button" data-toggle="button">{{ subcategory }}</button>
 				{% endfor %}
 			{% endif %}
 			</div>
 			<div class="col-10 col-offset-1">
 			{% if suppliers %}
 				{% for supplier in suppliers %}
-				<button class="btn btn-danger" type="button" data-toggle="button">{{ supplier.name }}</button>
+				<button class="btn btn-danger" type="button" data-toggle="button">{{ supplier }}</button>
 				{% endfor %}
 			{% endif %}
 			</div>
