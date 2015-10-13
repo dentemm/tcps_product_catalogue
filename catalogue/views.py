@@ -283,6 +283,8 @@ class ProductDetailView(views.generic.DetailView):
 	Shows product details
 	'''
 
+	print 'product detail open'
+
 	model = models.Product
 	template_name = 'modal_product_detail.html'
 
@@ -352,7 +354,7 @@ class CategoryDetailView(views.generic.DetailView):
 	model = models.Category
 	template_name = 'category_detail.html'
 
-	
+
 
 class CategoryListView(LoginRequiredMixin, views.generic.ListView):
 

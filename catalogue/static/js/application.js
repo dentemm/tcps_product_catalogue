@@ -68,3 +68,14 @@ $('button.category').on('click', function(e) {
 
 	};
 });
+
+$('body').on('hidden.bs.modal', '#mymodal', function () {
+  $(this).removeData('bs.modal');
+});
+
+/*
+$('.btn-modal').on('click', function(e) {
+
+	console.log('modal open!');
+
+});*/ 
