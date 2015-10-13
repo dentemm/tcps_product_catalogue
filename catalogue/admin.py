@@ -16,7 +16,8 @@ class SupplierCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-	exclude = ('slug', )
+	#exclude = ('slug', )
+	pass
 
 @admin.register(ProductPhoto)
 class ProductPhotoAdmin(admin.ModelAdmin):

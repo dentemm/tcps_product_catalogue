@@ -85,11 +85,13 @@
 							<div class="panel-body">
 								<p>
 									<button type="button" data-toggle="modal" data-target="#mymodal">Launch modal</button>
+									<button type="button" href="{% url 'product-detail' product.slug %}">text</button>
+									<a href="{% url 'product-detail' product.slug %}">text</a>
 								</p>
 							</div>
 						</div>
 					</div>
-					{% endfor %}
+				{% endfor %}
 				</div>
 			<!--</div>
 		</div>-->

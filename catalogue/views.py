@@ -284,7 +284,9 @@ class ProductDetailView(views.generic.DetailView):
 	'''
 
 	model = models.Product
-	template_name = 'product_detail.html'
+	template_name = 'modal_product_detail.html'
+
+
 
 
 
@@ -349,6 +351,8 @@ class CategoryDetailView(views.generic.DetailView):
 
 	model = models.Category
 	template_name = 'category_detail.html'
+
+	
 
 class CategoryListView(LoginRequiredMixin, views.generic.ListView):
 
