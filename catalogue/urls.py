@@ -25,4 +25,5 @@ urlpatterns = [
 
 
     url(r'^overview/all/$', views.TagsForCategoryView.as_view(), name='tagview'),
+    url(r'^product/(?P<slug>[\w]+)/$', views.ProductDetailView.as_view(), name='product-detail')
 ]

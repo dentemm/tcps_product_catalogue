@@ -2,7 +2,9 @@ from django.db import models
 from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.template.defaultfilters import slugify
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
+
+#from . import views
 
 '''
 # Custom QuerySets
@@ -148,7 +150,8 @@ class Product(MetaOptionsMixin, models.Model):
 		return self.name
 
 	def get_absolute_url(self):
-		return reverse_lazy('product-list')
+		#return reverse_lazy('product-list') #test
+		return reverse('product-detail', kwargs={'slug':self.slug})
 
 	def save(self, *args, **kwargs):
 
