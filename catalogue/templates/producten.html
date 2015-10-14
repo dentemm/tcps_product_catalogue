@@ -4,7 +4,8 @@
 
 {% block extra_css %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'css/stylep.css' %}">
+    <!--<link rel="stylesheet" href="{% static 'css/stylep.css' %}">-->
+    
 
     <!-- Owl Carousel stylesheets -->
 	<link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}"><!-- Important Owl stylesheet -->
@@ -14,17 +15,18 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css" async>-->
 
 	<link rel="stylesheet" href="{% static 'tagsort/tagsort.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
 
 {% endblock extra_css %}
 
 {% block navbar %}
-    <a class="navbar-brand hidden-xs" href="#" title="Herladen van de TCPS website"><img src="{% static 'images/logo5.png' %}"></a>
+    <!--<a class="navbar-brand hidden-xs" href="#" title="Herladen van de TCPS website"><img src="{% static 'images/logo5.png' %}"></a>
     <a class="home" href="index.html" title="Terug naar homepage"><span class="icon-2x icon-home pull-right"></span> </a>
     <div class="navbar navbar-fixed-top" data-activeslide="1">
-        <div class="container">
+        <div class="container">-->
             <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -36,9 +38,14 @@
                 <div class="row">
                     <div class="col-sm-2 active-menu"></div>
                 </div>
-            </div><!-- /.nav-collapse -->
-        </div><!-- /.container -->
-    </div><!-- /.navbar -->
+            </div>--><!-- /.nav-collapse -->
+        <!--</div>--><!-- /.container -->
+    <!--</div>--><!-- /.navbar -->
+
+	<div class="navibar">
+		<a class="navbar-brand" href="#" title="Herladen van de TCPS website"><img src="{% static 'images/logo5.png' %}"></a>
+		<div class="title">TCPS productenpagina</div>
+	</div>
 {% endblock navbar %}
 
 {% block content %}
@@ -69,7 +76,7 @@
 			{% endif %}
 			</div>-->
 			<div class="col-lg-12 col-lg-offset-0">	
-				<div class="tagsort-tags-container">
+				<div class="tagsort-tags-container row justify tags-container">
 				</div>
 			</div>
 		</div>

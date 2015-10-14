@@ -1,0 +1,168 @@
+html,body {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: #FFF;
+    font-family: "Titillium Web",sans-serif;
+    font-weight: normal;
+}
+
+.item .wrapper img {
+  width: 100%;
+}
+
+.item {
+  height: 550px;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+}
+		
+
+.item .wrapper {
+  background-color: #FFF;
+  box-shadow: 2px 2px 14px #d8d8d8;
+  height: auto;
+  padding: 2px;
+  margin: 10px;
+}
+		
+		
+.item .wrapper .item-tags {
+  font-size: 14px;
+  padding: 2px;
+  color: #2096cd;
+}
+
+.item .wrapper .item-link {
+  color: #2096cd;
+  font-size: 14px;
+  margin-top:10px;
+  padding: 2px;
+  margin-bottom: -5px;
+}
+
+.tagsort-tags-container {
+	margin: 40px 0;
+	width:100%;
+}
+		
+.text {
+	font-size: 1.5em;
+	padding: 2px;
+	color: #2096cd;
+}
+
+.text2 {
+	font-size: 1em;
+	text-align: justify;
+	padding: 2px;
+
+}
+
+.items-container {
+  background-color: #f8f8f8;
+  margin: 0 -15px;
+}
+
+.container-page {
+	padding: 10px;
+}
+
+.link {
+	color: #333;
+	font-weight: bold;
+}
+
+.tagsort-tags-container span {
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  color: #CCC;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.5em;
+  line-height: 10px;
+  margin: 5px;
+  padding: 9px;
+  transition: all 0.2s ease-in-out 0s;
+}
+
+
+
+.tagsort-tags-container span:hover{
+	border:1px solid #2096cd;
+	color:#FFF;
+	background-color:#CDB320;
+}
+
+.subcategorie span:hover{
+	border:2px solid #666;
+	color:#FFF;
+	background-color:#CD2027;
+}
+
+.leverancier span:hover{
+	border:2px solid #666;
+	color:#FFF;
+	background-color:#13D146;
+}
+
+.tagsort-tags-container span.tagsort-active {
+  background-color: #CDB320;
+  border: 2px solid #666;
+  color: #FFF;
+}
+
+.subcategorie span.tagsort-active {
+  background-color: #CD2027;
+  border: 2px solid #666;
+  color: #FFF;
+}
+
+.leverancier span.tagsort-active {
+  background-color: #13D146;
+  border: 2px solid #666;
+  color: #FFF;
+}
+
+.navbar-brand {
+  margin-top: -20px;
+  display: inline;
+}
+
+.navibar {
+	width: 100%;
+	background-color: #F0F0F0;
+	padding: 20px;
+	color:#2096cd;
+	height: 75px;
+	border-bottom: 1px solid #2096cd;
+}
+
+.title {
+	border-bottom: 2px;
+	border: #FFF;
+	font-size: 20px;
+	float: right;
+}
+
+body {
+	background-color: #FFF;
+}
+
+.categorie h2 {
+	font-size: 22px;
+	padding: 5px;
+	color: #2096cd;
+	border-bottom: 3px solid #13D146;
+}
+
+.justify {
+	text-align: left;
+}
+
+img {
+  border-bottom: 1px solid #d8d8d8;
+  padding-bottom: 0;
+  vertical-align: middle;
+}
