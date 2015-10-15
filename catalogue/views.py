@@ -430,7 +430,7 @@ class TestView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListView):
 		return self.render_json_response(json_dict)
 
 
-class DentemmView(views.TemplateView):
+class DentemmView(views.generic.TemplateView):
 
 	template_name = 'product_overview.html'
 
