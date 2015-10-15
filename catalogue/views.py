@@ -434,4 +434,6 @@ class DentemmView(views.generic.TemplateView):
 
 	template_name = 'product_overview.html'
 
+class TestHomePage(views.generic.TemplateView):
 
+	template_name = 'index_test.html'
