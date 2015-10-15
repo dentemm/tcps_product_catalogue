@@ -5,3 +5,8 @@
 .app-footer a {
   color: #fff;
 }
+
+.featured-list .icon,
+.featured-list h3 {
+  color: #685d9f;
+}
