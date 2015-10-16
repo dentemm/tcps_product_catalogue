@@ -4,21 +4,48 @@
 
 {% block extra_css %}
 	<link rel="stylesheet" href="{% static 'bootstrap_marketing/toolkit-startup.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/custom_css.css' %}">
 {% endblock extra_css %}
 
 
 {% block content %}
 <div class="container">
+	<h1>Onze Producten</h1>
 	<div class="callout">
-	  	<div class="callout-content">
-	  		<input type="text">
-	    	<strong>Explore this thing.</strong> Learn more about this thing.
-	  	</div>
-	  	<div class="callout-secondary">
-	    	<button class="btn btn-sm btn-info">Get started</button>
+  		<div class="callout-content">
+    		Selecteer 1 of meerdere producten uit onderstaande lijst, en vraag hier je offerte aan!
+  		</div>
+  		<div class="callout-secondary">
+    		<button class="btn btn-sm btn-info">Offerte</button>
 	  	</div>
 	</div>
 	<div clas="row">
+		<div class="col-md-3 col-sm-4 col-xs-6">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h4 class="m-y-0">Product Naam</h4>
+					<p class="m-y-0">Panasonic</p>
+				</div>
+				<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+				<div class="panel-body">
+					<strong>Categorie</strong><br>Subcategorie lang
+					<hr>
+					<p>
+					Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+					<button class="btn btn-default-outline pull-right" type="button">
+					 	Offerte <span class="icon icon-block"></span>
+					</button>
+					<!--<button class="btn btn-success" type="button">
+					 	Offerte <span class="icon icon-check"></span>
+					</button>-->
+				</div>
+				<!--<div class="panel panel-default m-x">
+					<div class="panel-body">
+						Categorie - Subcategorie<br>Leverancier
+					</div>
+				</div>-->				
+			</div>
+		</div>
 		<div class="col-md-3 col-sm-4 col-xs-6">
 			<div class="panel panel-info">
 				<div class="panel-heading">
@@ -36,6 +63,7 @@
 						</label>
 					</div>
 				</div>
+
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-4 col-xs-6">
