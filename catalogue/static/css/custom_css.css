@@ -11,6 +11,18 @@
   color: #685d9f;
 }
 
+/*test*/
+/*
+.panel-info>.panel-heading {
+	background-color: #5bc0de;
+	border-color: #5bc0de;
+}
+.panel {
+	border: 2px solid;
+	border-color: #5bc0de;
+}*/
+/*end test*/
+
 /*Toevoeging: smallere marges*/
 .m-a-sm {
 	margin: 10px !important;
