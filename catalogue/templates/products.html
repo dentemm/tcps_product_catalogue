@@ -19,7 +19,7 @@
 
 		{% if categories %}
 			{% for category in categories %}
-			<a class="btn btn-info-outline" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category|title }}</a>
+			<a class="btn btn-info-outline {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category|title }}</a>
 			{% endfor %}
 		{% else %}
 		{% endif %}
@@ -37,6 +37,12 @@
 
 
 		<h4>Tags</h4>
+
+		--{{ selection }}--
+
+		{% if selection == False %}
+			Selecteer een categorie uit de lijst hierboven
+		{% endif %}
 
 		<!-- for loop for suppliers and sub categories -->
 

@@ -130,6 +130,7 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 	category_tags = []
 	subcategory_tags = []
 	supplier_tags = []
+	selection = False
 
 
 	def get_queryset(self):
@@ -154,6 +155,7 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 			else:
 
 				print 'aantal = ' + str(filtered_queryset.count())
+				self.selection = True
 
 				return filtered_queryset
 				
@@ -182,6 +184,7 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 		ctx['categories'] = self.category_tags
 		ctx['subcategories'] = self.subcategory_tags
 		ctx['suppliers'] = self.supplier_tags
+		ctx['selection'] = self.selection
 
 		return ctx
 
