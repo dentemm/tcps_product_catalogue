@@ -1,0 +1,477 @@
+{% extends 'layout.html' %}
+
+{% load staticfiles %}
+
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static 'bootstrap_marketing/toolkit-startup.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/custom_css.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+	<div class="block block-inverse app-block">
+		<div class="container">
+			<h1>Onze Producten</h1>
+		</div>
+	</div>
+	<div class="container">
+		<h4>Categorieën</h4>
+		<!-- for loop voor categorieen -->
+
+		{% if categories %}
+			{% for category in categories %}
+			<a class="btn btn-info-outline" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category|title }}</a>
+			{% endfor %}
+		{% else %}
+		{% endif %}
+
+		<button class="btn btn-info-outline m-y-xs">Diepvriezers</button>
+		<button class="btn btn-info-outline m-y-xs">Koelkasten</button>
+		<button class="btn btn-info-outline m-y-xs">Incubatoren</button>
+		<button class="btn btn-info-outline m-y-xs">Handschoenkasten</button>
+		<button class="btn btn-info-outline m-y-xs">Overige</button>
+		<button class="btn btn-info-outline m-y-xs">Sterilisatie</button>
+		<button class="btn btn-info-outline m-y-xs">Vacuum Technologie</button>
+		<button class="btn btn-info-outline m-y-xs">vriesdrogers</button>
+		<button class="btn btn-info-outline m-y-xs">Klimaatkasten</button>
+		<button class="btn btn-info-outline m-y-xs">Veiligheidskabinetten</button>
+
+
+		<h4>Tags</h4>
+
+		<!-- for loop for suppliers and sub categories -->
+
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+
+
+		<div class="callout m-t">
+	  		<div class="callout-content">
+	    		Selecteer 1 of meerdere producten uit onderstaande lijst, en vraag hier je offerte aan!
+	  		</div>
+	  		<div class="callout-secondary">
+	    		<button class="btn btn-sm btn-info">Offerte</button>
+		  	</div>
+		</div>
+		<div clas="row">
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4 class="m-y-0">Product Naam</h4>
+						<p class="m-y-0">Panasonic</p>
+					</div>
+					<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+					<div class="panel-body">
+						<strong>Categorie</strong><br>Subcategorie lang
+						<hr>
+						<p>
+						Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+						<button class="btn btn-default-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+						<button class="btn btn-success-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-check"></span>
+						</button>
+					</div>
+					<!--<div class="panel panel-default m-x">
+						<div class="panel-body">
+							Categorie - Subcategorie<br>Leverancier
+						</div>
+					</div>-->				
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4 class="m-y-0">Product Naam</h4>
+						<p class="m-y-0">Panasonic</p>
+					</div>
+					<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+					<div class="panel-body">
+						<strong>Categorie</strong><br>Subcategorie lang
+						<hr>
+						<p>
+						Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+						<button class="btn btn-default-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+						<button class="btn btn-success-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-check"></span>
+						</button>
+					</div>
+					<!--<div class="panel panel-default m-x">
+						<div class="panel-body">
+							Categorie - Subcategorie<br>Leverancier
+						</div>
+					</div>-->				
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4 class="m-y-0">Product Naam</h4>
+						<p class="m-y-0">Panasonic</p>
+					</div>
+					<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+					<div class="panel-body">
+						<strong>Categorie</strong><br>Subcategorie lang
+						<hr>
+						<p>
+						Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+						<button class="btn btn-default-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+						<button class="btn btn-success-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-check"></span>
+						</button>
+					</div>
+					<!--<div class="panel panel-default m-x">
+						<div class="panel-body">
+							Categorie - Subcategorie<br>Leverancier
+						</div>
+					</div>-->				
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4 class="m-y-0">Product Naam</h4>
+						<p class="m-y-0">Panasonic</p>
+					</div>
+					<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+					<div class="panel-body">
+						<strong>Categorie</strong><br>Subcategorie lang
+						<hr>
+						<p>
+						Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+						<button class="btn btn-default-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+						<button class="btn btn-success-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-check"></span>
+						</button>
+					</div>
+					<!--<div class="panel panel-default m-x">
+						<div class="panel-body">
+							Categorie - Subcategorie<br>Leverancier
+						</div>
+					</div>-->				
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4 class="m-y-0">Product Naam</h4>
+						<p class="m-y-0">Panasonic</p>
+					</div>
+					<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+					<div class="panel-body">
+						<strong>Categorie</strong><br>Subcategorie lang
+						<hr>
+						<p>
+						Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+						<button class="btn btn-default-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+						<button class="btn btn-success-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-check"></span>
+						</button>
+					</div>
+					<!--<div class="panel panel-default m-x">
+						<div class="panel-body">
+							Categorie - Subcategorie<br>Leverancier
+						</div>
+					</div>-->				
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4 class="m-y-0">Product Naam</h4>
+						<p class="m-y-0">Panasonic</p>
+					</div>
+					<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+					<div class="panel-body">
+						<strong>Categorie</strong><br>Subcategorie lang
+						<hr>
+						<p>
+						Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+						<button class="btn btn-default-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+						<button class="btn btn-success-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-check"></span>
+						</button>
+					</div>
+					<!--<div class="panel panel-default m-x">
+						<div class="panel-body">
+							Categorie - Subcategorie<br>Leverancier
+						</div>
+					</div>-->				
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4 class="m-y-0">Product Naam</h4>
+						<p class="m-y-0">Panasonic</p>
+					</div>
+					<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+					<div class="panel-body">
+						<strong>Categorie</strong><br>Subcategorie lang
+						<hr>
+						<p>
+						Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+						<button class="btn btn-default-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+						<button class="btn btn-success-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-check"></span>
+						</button>
+					</div>
+					<!--<div class="panel panel-default m-x">
+						<div class="panel-body">
+							Categorie - Subcategorie<br>Leverancier
+						</div>
+					</div>-->				
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Titel</h3>
+					</div>
+					<img class="img-responsive" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Interieur_overzicht_lege_ruimte_met_balkenplafond_-_Groessen_-_20323903_-_RCE.jpg">
+					<div class="panel-body">
+						Inhoud
+						<hr>
+						<div class="checkbox custom-control custom-checkbox">
+							<label>
+								<input type="checkbox">
+								<span class="custom-control-indicator"></span>
+								Offerte aanvraag?
+							</label>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-bold panel-info">
+	      			<div class="panel-body">
+	        			<h3 class="m-y-0">Rhianna Loud</h3>
+	      			</div>
+	      			<img class="img-rounded img-responsive" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Interieur_overzicht_lege_ruimte_met_balkenplafond_-_Groessen_-_20323903_-_RCE.jpg">
+	      			<div class="panel-body p-b-0">
+	      				<p>Released on Dropp 6 weeks early</p>
+	        			<hr>
+	        			<p>Rihanna was the first artist to reach out to Dropp to coordinate her leak. We knew it was going to be the largest unofficial album drop in history. We doubled server capacity and made a shit ton of coffee.</p>
+	        			<div class="checkbox custom-control custom-checkbox">
+							<label>
+								<input type="checkbox">
+								<span class="custom-control-indicator"></span>
+								Offerte aanvraag?
+							</label>
+						</div>
+						<button class="btn btn-default-outline pull-right m-a" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+	      			</div>
+	    		</div>
+	    	</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-bold panel-info">
+	      			<div class="panel-body">
+	        			<h3 class="m-y-0">Rhianna Loud</h3>
+	      			</div>
+	      			<img class="img-rounded img-responsive" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Interieur_overzicht_lege_ruimte_met_balkenplafond_-_Groessen_-_20323903_-_RCE.jpg">
+	      			<div class="panel-body p-b-0">
+	      				<p>Released on Dropp 6 weeks early</p>
+	        			<hr>
+	        			<p>Rihanna was the first artist to reach out to Dropp to coordinate her leak. We knew it was going to be the largest unofficial album drop in history. We doubled server capacity and made a shit ton of coffee.</p>
+	        			<div class="checkbox custom-control custom-checkbox">
+							<label>
+								<input type="checkbox">
+								<span class="custom-control-indicator"></span>
+								Offerte aanvraag?
+							</label>
+						</div>
+						<button class="btn btn-default-outline pull-right m-a" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+	      			</div>
+	    		</div>
+	    	</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-bold panel-info">
+	      			<div class="panel-body">
+	        			<h3 class="m-y-0">Rhianna Loud</h3>
+	      			</div>
+	      			<img class="img-rounded img-responsive" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Interieur_overzicht_lege_ruimte_met_balkenplafond_-_Groessen_-_20323903_-_RCE.jpg">
+	      			<div class="panel-body p-b-0">
+	      				<p>Released on Dropp 6 weeks early</p>
+	        			<hr>
+	        			<p>Rihanna was the first artist to reach out to Dropp to coordinate her leak. We knew it was going to be the largest unofficial album drop in history. We doubled server capacity and made a shit ton of coffee.</p>
+	        			<div class="checkbox custom-control custom-checkbox">
+							<label>
+								<input type="checkbox">
+								<span class="custom-control-indicator"></span>
+								Offerte aanvraag?
+							</label>
+						</div>
+						<button class="btn btn-default-outline pull-right m-a" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+	      			</div>
+	    		</div>
+	    	</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-bold panel-info">
+	      			<div class="panel-body">
+	        			<h3 class="m-y-0">Rhianna Loud</h3>
+	      			</div>
+	      			<img class="img-rounded img-responsive" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Interieur_overzicht_lege_ruimte_met_balkenplafond_-_Groessen_-_20323903_-_RCE.jpg">
+	      			<div class="panel-body p-b-0">
+	      				<p>Released on Dropp 6 weeks early</p>
+	        			<hr>
+	        			<p>Rihanna was the first artist to reach out to Dropp to coordinate her leak. We knew it was going to be the largest unofficial album drop in history. We doubled server capacity and made a shit ton of coffee.</p>
+	        			<div class="checkbox custom-control custom-checkbox">
+							<label>
+								<input type="checkbox">
+								<span class="custom-control-indicator"></span>
+								Offerte aanvraag?
+							</label>
+						</div>
+						<button class="btn btn-default-outline pull-right m-a" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+	      			</div>
+	    		</div>
+	    	</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-bold panel-info">
+	      			<div class="panel-body">
+	        			<h3 class="m-y-0">Rhianna Loud</h3>
+	      			</div>
+	      			<img class="img-rounded img-responsive" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Interieur_overzicht_lege_ruimte_met_balkenplafond_-_Groessen_-_20323903_-_RCE.jpg">
+	      			<div class="panel-body p-b-0">
+	      				<p>Released on Dropp 6 weeks early</p>
+	        			<hr>
+	        			<p>Rihanna was the first artist to reach out to Dropp to coordinate her leak. We knew it was going to be the largest unofficial album drop in history. We doubled server capacity and made a shit ton of coffee.</p>
+	        			<div class="checkbox custom-control custom-checkbox">
+							<label>
+								<input type="checkbox">
+								<span class="custom-control-indicator"></span>
+								Offerte aanvraag?
+							</label>
+						</div>
+						<button class="btn btn-default-outline pull-right m-a" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+	      			</div>
+	    		</div>
+	    	</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-bold panel-info">
+	      			<div class="panel-body">
+	        			<h3 class="m-y-0">Rhianna Loud</h3>
+	      			</div>
+	      			<img class="img-rounded img-responsive" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Interieur_overzicht_lege_ruimte_met_balkenplafond_-_Groessen_-_20323903_-_RCE.jpg">
+	      			<div class="panel-body p-b-0">
+	      				<p>Released on Dropp 6 weeks early</p>
+	        			<hr>
+	        			<p>Rihanna was the first artist to reach out to Dropp to coordinate her leak. We knew it was going to be the largest unofficial album drop in history. We doubled server capacity and made a shit ton of coffee.</p>
+	        			<div class="checkbox custom-control custom-checkbox">
+							<label>
+								<input type="checkbox">
+								<span class="custom-control-indicator"></span>
+								Offerte aanvraag?
+							</label>
+						</div>
+						<button class="btn btn-default-outline pull-right m-a" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+	      			</div>
+	    		</div>
+	    	</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-bold panel-info">
+	      			<div class="panel-body">
+	        			<h3 class="m-y-0">Rhianna Loud</h3>
+	      			</div>
+	      			<img class="img-rounded img-responsive" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Interieur_overzicht_lege_ruimte_met_balkenplafond_-_Groessen_-_20323903_-_RCE.jpg">
+	      			<div class="panel-body p-b-0">
+	      				<p>Released on Dropp 6 weeks early</p>
+	        			<hr>
+	        			<p>Rihanna was the first artist to reach out to Dropp to coordinate her leak. We knew it was going to be the largest unofficial album drop in history. We doubled server capacity and made a shit ton of coffee.</p>
+	        			<div class="checkbox custom-control custom-checkbox">
+							<label>
+								<input type="checkbox">
+								<span class="custom-control-indicator"></span>
+								Offerte aanvraag?
+							</label>
+						</div>
+						<button class="btn btn-default-outline pull-right m-a" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+	      			</div>
+	    		</div>
+	    	</div>
+	    	<div class="col-md-3 col-sm-4 col-xs-6">
+	    		<div class="thumbnail">
+	    			<img class="img-rounded" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Interieur_overzicht_lege_ruimte_met_balkenplafond_-_Groessen_-_20323903_-_RCE.jpg">
+	    			<div class="caption">
+	    				<h3 class="info">Title</h3>
+	    				<p>
+	    					Nulla vitae elit libero, a pharetra augue. Donec ullamcorper nulla non metus auctor fringilla.
+	    				</p>
+	    			</div>
+	    		</div>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Titel</h3>
+					</div>
+					<img class="img-responsive" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Interieur_overzicht_lege_ruimte_met_balkenplafond_-_Groessen_-_20323903_-_RCE.jpg">
+					<div class="panel-body">
+						<img class="img-responsive img-rounded" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Interieur_overzicht_lege_ruimte_met_balkenplafond_-_Groessen_-_20323903_-_RCE.jpg">
+						Inhoud
+						<div class="checkbox custom-control custom-checkbox">
+							<label>
+							<input type="checkbox">
+							<span class="custom-control-indicator"></span>test
+							</label>
+						</div>
+						<hr>
+
+						<div class="checkbox custom-control custom-checkbox">
+							<label>
+								<input type="checkbox">
+								<span class="custom-control-indicator"></span>
+								Offerte aanvraag?
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

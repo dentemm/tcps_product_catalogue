@@ -23,8 +23,12 @@ urlpatterns = [
 
     #url(r'^test/overview/$', views.TestProductOverviewPage.as_view(), name='product-overview'),
 
-
+    # Overview page, and only main view for this application
     url(r'^overview/all/$', views.TagsForCategoryView.as_view(), name='tagview'),
+
+
+
+
     url(r'^product/(?P<slug>[\w-]+)/$', views.ProductDetailView.as_view(), name='product-detail'),
 
     url(r'^dentemm/$', views.DentemmView.as_view(), name='dentemm'),

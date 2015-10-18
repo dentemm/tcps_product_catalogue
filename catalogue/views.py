@@ -122,7 +122,9 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 
 	model = models.Product
 	context_object_name = 'product_list'
-	template_name = 'producten.html'
+	#template_name = 'producten.html'
+	template_name = 'products.html'
+
 
 	category_name = ''
 	category_tags = []
