@@ -9,18 +9,47 @@
 {% endblock extra_css %}
 
 {% block content %}
-	<div class="block block-angle">
-		test
+	<div class="block block-inverse text-center">
+		
 	</div>
-	<div class="block block-angle">
+	<div class="block block-inverse text-center">
 		<div class="block-foreground">
-			
+		    <h1 class="block-title">An embed block</h1>
+		    <h4 class="text-muted">Use block-background to integrate interactive backgrounds.</h4>
+		    <button class="btn btn-default btn-outline m-t">With a simple button</button>
 		</div>
 		<div class="block-background">
 			<iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1snl!2sbe!4v1445280429103!6m8!1m7!1s7vM6olqyB4thXl9gioiOsg!2m2!1d50.93970968177591!2d4.747733925664985!3f111.03374735738105!4f-2.4801915315198784!5f0.7820865974627469" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
 		</div>
 	</div>
 	<div class="block block-angle">test</div>
+	<div class="block block-bordered-lg">
+		<div id="mycarousel" class="carousel carousel-light slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#mycarousel" data-slide-to="0"></li>
+				<li data-target="#mycarousel" data-slide-to="1"></li>
+				<li data-target="#mycarousel" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<div class="block">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-8 col-sm-offset-2">
+								<p class="text-center">
+									Donec ullamcorper nulla non metus auctor fringilla. Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper.
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 col-sm-offset-0 p-a-0">
+								<img class="img img-responsive" src="http://www2.imec.be/content/user/Image/ITFpress2010/400new.jpg">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock content %}
 
 {% block extra_js %}
