@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% load staticfiles %}
+
+
+{% block extra_css %}
+	<link rel="stylesheet" href="{% static 'bootstrap_marketing/toolkit-startup.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/custom_css.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+	<div class="block block-angle block-bordered">
+		<div class="block-background">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10619.551132679993!2d4.748334432139891!3d50.93692592078471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c15dc17c2f0ae1%3A0xfb721debd448c388!2sWingepark%2C+3110+Rotselaar!5e1!3m2!1snl!2sbe!4v1445280232887" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+		</div>
+	</div>
+	<div class="block block-angle block-bordered block-inverse">
+		test
+	</div>
+	<div class="block block-angle block-bordered">
+		test
+	</div>
+{% endblock content %}
+
+{% block extra_js %}
+	{{ block.super }}
+	<script type="text/javascript" src="{% static 'js/toolkit.min.js' %}"></script>
+{% endblock extra_js %}

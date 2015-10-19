@@ -8,6 +8,21 @@
 	<link rel="stylesheet" href="{% static 'css/custom_css.css' %}">
 {% endblock extra_css %}
 
+{% block content %}
+	<div class="block block-angle">
+		test
+	</div>
+	<div class="block block-angle">
+		<div class="block-foreground">
+			
+		</div>
+		<div class="block-background">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1snl!2sbe!4v1445280429103!6m8!1m7!1s7vM6olqyB4thXl9gioiOsg!2m2!1d50.93970968177591!2d4.747733925664985!3f111.03374735738105!4f-2.4801915315198784!5f0.7820865974627469" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+		</div>
+	</div>
+	<div class="block block-angle">test</div>
+{% endblock content %}
+
 {% block extra_js %}
 	{{ block.super }}
 	<script type="text/javascript" src="{% static 'js/toolkit.min.js' %}"></script>
