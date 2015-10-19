@@ -442,3 +442,7 @@ class DentemmView(views.generic.TemplateView):
 class TestHomePage(views.generic.TemplateView):
 
 	template_name = 'index_test.html'
+
+class ServiceView(views.generic.TemplateView):
+
+	template_name = 'services.html'

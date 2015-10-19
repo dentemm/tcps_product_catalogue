@@ -26,6 +26,8 @@ urlpatterns = [
     # Overview page, and only main view for this application
     url(r'^overview/all/$', views.TagsForCategoryView.as_view(), name='tagview'),
 
+    url(r'^services/$', views.ServiceView.as_view(), name='services'),
+
 
 
 
