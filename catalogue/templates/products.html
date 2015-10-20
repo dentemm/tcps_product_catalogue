@@ -17,7 +17,8 @@
 		</div>
 	</div>
 	<div class="container">
-		<h4>Categorieën</h4>
+		<h4 class="m-b-xs">Categorieën</h4>
+		<p><small>-- Selecteer een categorie om de productenlijst te filteren --</small></p>
 		<!-- for loop voor categorieen -->
 
 		<a class="btn btn-default-outline m-b-xs">test</a>
@@ -29,14 +30,18 @@
 		<a class="btn btn-default-outline m-b-xs">geestign</a>
 		<a class="btn btn-default-outline m-b-xs">test</a>
 
-		{% if categories %}
-			{% for category in categories %}
-			<a class="btn btn-warning-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category|title }}</a>
-			{% endfor %}
-		{% else %}
-		{% endif %}
+	<!-- Category loop -->
+	{% if categories %}
+		{% for category in categories %}
+		<a class="btn btn-warning-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category|title }}</a>
+		{% endfor %}
+	{% else %}
+	{% endif %}
+
+	<!-- Tag loop-->
+	{% if selection != False %}
 		<h4>Tags</h4>
-		<!-- Container for tags (categories and suppliers) -->
+		<p><small>-- Selecteer 1 of meerdere tags om de productenlijst nog meer te filteren --</small></p>
 		<div class="tagsort-tags-container">
 			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
 			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
@@ -51,11 +56,27 @@
 			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
 			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
 		</div>
+	{% endif %}
 
-		--{{ selection }}--
+		<!-- Container for tags (categories and suppliers) -->
+		<!--<div class="tagsort-tags-container">
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		</div>-->
 
-		{% if selection == False %}
-			Selecteer een categorie uit de lijst hierboven
+
+		{% if selection != False %}
+
 		{% endif %}
 
 		<!-- for loop for suppliers and sub categories -->
