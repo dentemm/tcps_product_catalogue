@@ -5,6 +5,9 @@
 {% block extra_css %}
 	<link rel="stylesheet" href="{% static 'bootstrap_marketing/toolkit-startup.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/custom_css.css' %}">
+
+	<link rel="stylesheet" href="{% static 'tagsort/tagsort.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/stylep.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
@@ -19,24 +22,13 @@
 
 		{% if categories %}
 			{% for category in categories %}
-			<a class="btn btn-info-outline {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category|title }}</a>
+			<a class="btn btn-warning-outline {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category|title }}</a>
 			{% endfor %}
 		{% else %}
 		{% endif %}
-
-		<button class="btn btn-info-outline m-y-xs">Diepvriezers</button>
-		<button class="btn btn-info-outline m-y-xs">Koelkasten</button>
-		<button class="btn btn-info-outline m-y-xs">Incubatoren</button>
-		<button class="btn btn-info-outline m-y-xs">Handschoenkasten</button>
-		<button class="btn btn-info-outline m-y-xs">Overige</button>
-		<button class="btn btn-info-outline m-y-xs">Sterilisatie</button>
-		<button class="btn btn-info-outline m-y-xs">Vacuum Technologie</button>
-		<button class="btn btn-info-outline m-y-xs">vriesdrogers</button>
-		<button class="btn btn-info-outline m-y-xs">Klimaatkasten</button>
-		<button class="btn btn-info-outline m-y-xs">Veiligheidskabinetten</button>
-
-
 		<h4>Tags</h4>
+		<div class="tagsort-tags-container">
+		</div>
 
 		--{{ selection }}--
 
@@ -76,6 +68,42 @@
 	    		<button class="btn btn-sm btn-info">Offerte</button>
 		  	</div>
 		</div>
+
+		{% if product_list %}
+		<div class="row">
+			{% for product in product_list %}
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h4 class="m-y-0">{{ product.name|title }}</h4>
+						<p class="m-y-0">Panasonic</p>
+					</div>
+					<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+					<div class="panel-body">
+						<strong>Categorie</strong><br>Subcategorie lang
+						<hr>
+						<p>
+						Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+						<button class="btn btn-default-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-block"></span>
+						</button>
+						<button class="btn btn-success-outline pull-right" type="button">
+						 	Offerte <span class="icon icon-check"></span>
+						</button>
+					</div>			
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		{% endif %}
+
+
+
+
+
+
+
+
 		<div clas="row">
 			<div class="col-md-3 col-sm-4 col-xs-6">
 				<div class="panel panel-info">
@@ -481,3 +509,13 @@
 		</div>
 	</div>
 {% endblock content %}
+
+{% block extra_js %}
+	{{ block.super }}
+	<script type="text/javascript" src="{% static 'tagsort/tagsort_edit.js' %}"></script>
+	<script type="text/javascript">
+		$('div.tagsort-tags-container').tagSort({
+  			selector:'.tagsort-item'
+		});
+	</script>
+{% endblock extra_js %}
