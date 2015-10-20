@@ -34,6 +34,7 @@
 	{% if categories %}
 		{% for category in categories %}
 		<a class="btn btn-warning-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category|title }}</a>
+		<button class="category btn btn-info-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}">{{ category.title }}</button>
 		{% endfor %}
 	{% else %}
 	{% endif %}
@@ -56,45 +57,22 @@
 			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
 			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
 		</div>
-	{% endif %}
+	{% else %}
 
-		<!-- Container for tags (categories and suppliers) -->
-		<!--<div class="tagsort-tags-container">
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		</div>-->
+	{% endif %}		
 
-
-		{% if selection != False %}
-
-		{% endif %}
-
-		<!-- for loop for suppliers and sub categories -->
-
-		
-
-
-		<div class="callout m-t">
+		<!-- Quotation -->
+		<!--<div class="callout m-t">
 	  		<div class="callout-content">
 	    		Selecteer 1 of meerdere producten uit onderstaande lijst, en vraag hier je offerte aan!
 	  		</div>
 	  		<div class="callout-secondary">
 	    		<button class="btn btn-sm btn-info">Offerte</button>
 		  	</div>
-		</div>
+		</div>-->
 
 		{% if product_list %}
-		<div class="row">
+		<div class="row m-t-md">
 			{% for product in product_list %}
 			<div class="col-md-3 col-sm-4 col-xs-6 tagsort-item" data-item-tags="{{ product.supplier }}, {{ product.subcategory }}, {{ product.subcategory.parent_category }}">
 				<div class="panel panel-info">
@@ -537,6 +515,7 @@
 {% block extra_js %}
 	{{ block.super }}
 	<script type="text/javascript" src="{% static 'tagsort/tagsort_edit.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/application.js' %}"></script>
 	<script type="text/javascript">
 		$('div.tagsort-tags-container').tagSort({
   			selector:'.tagsort-item',
