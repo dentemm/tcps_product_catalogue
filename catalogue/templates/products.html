@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="{% static 'css/custom_css.css' %}">
 
 	<link rel="stylesheet" href="{% static 'tagsort/tagsort.min.css' %}">
-	<link rel="stylesheet" href="{% static 'css/stylep.css' %}">
+	<link rel="stylesheet" href="{% static 'tagsort/tagsort_edit.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
@@ -20,14 +20,36 @@
 		<h4>Categorieën</h4>
 		<!-- for loop voor categorieen -->
 
+		<a class="btn btn-default-outline m-b-xs">test</a>
+		<a class="btn btn-default-outline m-b-xs">opvulsel</a>
+		<a class="btn btn-default-outline m-b-xs">wordt genegeerd</a>
+		<a class="btn btn-default-outline m-b-xs">aanvullen</a>
+		<a class="btn btn-default-outline m-b-xs">jaja</a>
+		<a class="btn btn-default-outline m-b-xs">feest</a>
+		<a class="btn btn-default-outline m-b-xs">geestign</a>
+		<a class="btn btn-default-outline m-b-xs">test</a>
+
 		{% if categories %}
 			{% for category in categories %}
-			<a class="btn btn-warning-outline {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category|title }}</a>
+			<a class="btn btn-warning-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category|title }}</a>
 			{% endfor %}
 		{% else %}
 		{% endif %}
 		<h4>Tags</h4>
+		<!-- Container for tags (categories and suppliers) -->
 		<div class="tagsort-tags-container">
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
 		</div>
 
 		--{{ selection }}--
@@ -38,26 +60,7 @@
 
 		<!-- for loop for suppliers and sub categories -->
 
-		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		
 
 
 		<div class="callout m-t">
@@ -72,7 +75,7 @@
 		{% if product_list %}
 		<div class="row">
 			{% for product in product_list %}
-			<div class="col-md-3 col-sm-4 col-xs-6">
+			<div class="col-md-3 col-sm-4 col-xs-6 tagsort-item" data-item-tags="{{ product.supplier }}, {{ product.subcategory }}, {{ product.subcategory.parent_category }}">
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h4 class="m-y-0">{{ product.name|title }}</h4>
@@ -515,7 +518,9 @@
 	<script type="text/javascript" src="{% static 'tagsort/tagsort_edit.js' %}"></script>
 	<script type="text/javascript">
 		$('div.tagsort-tags-container').tagSort({
-  			selector:'.tagsort-item'
+  			selector:'.tagsort-item',
+  			tagWrapper: 'button',
+  			displaySelector: '.test',
 		});
 	</script>
 {% endblock extra_js %}

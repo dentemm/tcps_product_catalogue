@@ -1,7 +1,7 @@
 .tagsort-tags-container span{
 
 	display:inline-block;
-	border:2px solid #CCC;
+	border:1px solid #CCC;
 	color:#AAA;
 	font-size:12px;
 	line-height:10px;
@@ -18,12 +18,12 @@
 }
 
 .tagsort-tags-container span:hover{
-	border:2px solid #000;
+	border:1px solid #000;
 	color:#FFF;background-color:#000;
 }
 
 .tagsort-tags-container span.tagsort-active{
-	border:2px solid #000;
+	border:1px solid #000;
 	color:#000;
 	background-color:transparent;
 }

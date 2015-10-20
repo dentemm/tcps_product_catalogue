@@ -20,10 +20,12 @@
           var tags_exclusive = {elements: [], tags: []};
 
           var tagElement = $(document.createElement(options.tagWrapper)); // Maak een <span> element aan
+          tagElement.addClass('btn btn-xs btn-pill btn-default m-l-xs m-y-xs');
 
           elements.each(function(i){ // Voor elk element:
 
             $element = $(this);
+
 
             var tagsData = $element.data('item-tags'), // Selecteer de tags, via het data attribute 'data-item-tags'
             elementTags = tagsData.match(/,\s+/) ? tagsData.split(', ') : tagsData.split(','); // De tags zelf zijn gescheiden door komma's
@@ -54,7 +56,7 @@
           var display = [[],[]];
           $.each(tags.elements, function(element_key, element){
             var showElement = true;
-            tagSortEngine.container.find('.tagsort-active').each(function(i){
+            tagSortEngine.container.find('.active').each(function(i){
               if(tags.tags[element_key].indexOf($(this).text()) == -1){
                 showElement = false;
                 display[0].push(element);
@@ -70,7 +72,7 @@
 
         inclusiveSort: function(tags, elements){
           var display = [[],[]]
-          tagSortEngine.container.find('.tagsort-active').each(function(i){
+          tagSortEngine.container.find('.active').each(function(i){
             $.each(tags[$(this).text().toLowerCase()],function(element_key, element){
               display[1].push(element);
 
@@ -88,8 +90,10 @@
           var tagElement = tagSortEngine.container.find(options.tagWrapper);
 
           tagElement.click(function(){
-            $(this).toggleClass('tagsort-active');
-            if(!tagElement.hasClass('tagsort-active')){
+            //$(this).toggleClass('tagsort-active');
+            //if(!tagElement.hasClass('tagsort-active')){
+            $(this).toggleClass('active');
+            if(!tagElement.hasClass('active')) {
               elements.fadeIn(options.fadeTime);
             }
             else {
