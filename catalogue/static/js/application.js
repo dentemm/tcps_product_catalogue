@@ -8,6 +8,8 @@ $(function() {
 		$(this).addClass('active');
 
 		// 2. Ajax call for currently chosen category
+		console.log($(this).text());
+		console.log($(this).data('slug'))
 	});
 
 

@@ -33,11 +33,13 @@
 	<!-- Category loop -->
 	{% if categories %}
 		{% for category in categories %}
-		<a class="btn btn-warning-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category|title }}</a>
-		<button class="category btn btn-info-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}">{{ category.title }}</button>
+		<a class="btn btn-warning-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category.name|title }}</a>
+		<button class="category btn btn-info-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" data-slug="{{ category.slug }}">{{ category.name|title }}</button>
 		{% endfor %}
 	{% else %}
 	{% endif %}
+
+
 
 	<!-- Tag loop-->
 	{% if selection != False %}

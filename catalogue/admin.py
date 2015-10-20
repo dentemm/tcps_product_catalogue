@@ -4,7 +4,8 @@ from .models import Category, SubCategory, Supplier, Product, ProductPhoto
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-	exclude = ('slug', )
+	#exclude = ('slug', )
+	pass
 
 @admin.register(SubCategory)
 class SubCategoryAdmin(admin.ModelAdmin):

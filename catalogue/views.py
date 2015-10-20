@@ -126,7 +126,8 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 	template_name = 'products.html'
 
 
-	category_name = ''
+	#category_name = ''
+	category_slug = ''
 	category_tags = []
 	subcategory_tags = []
 	supplier_tags = []
@@ -135,8 +136,10 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 
 	def get_queryset(self):
 
-		self.category_name = self.request.GET.get('selected', 'empty')
+		#self.category_name = self.request.GET.get('selected', 'empty')
+		self.category_slug = self.request.GET.get('selected', 'empty')
 
+		'''
 		if self.category_name == 'empty':
 
 			# Default case = ''
@@ -158,15 +161,37 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 				self.selection = True
 
 				return filtered_queryset
+		'''
+
+		if self.category_slug == 'empty':
+
+			self.category_slug = ''
+			return self.model.objects.all()
+
+		else:
+			filtered_queryset = self.model.objects.filter(subcategory__parent_category__slug__iexact=self.category_slug)
+
+			if filtered_queryset.count() == 0:
+				self.category_slug = ''
+				return self.model.objects.all()
+
+			else:
+				return filtered_queryset
 				
 	def get_context_data(self, **kwargs):
 
+		print 'slug= ' + self.category_slug
+
 		ctx = super(TagsForCategoryView, self).get_context_data(**kwargs)
-		self.category_tags = list(models.Category.objects.values_list('name', flat=True))
+		#self.category_tags = list(models.Category.objects.values_list('name', flat=True))
+		self.category_tags = models.Category.objects.all()
 
-		if self.category_name != '':
+		print 'aantal tags: ' + str(self.category_tags.count())
 
-			current_category = models.Category.objects.get(name__iexact=self.category_name)
+		if self.category_slug != '':
+
+			#current_category = models.Category.objects.get(name__iexact=self.category_name)
+			current_category = models.Category.objects.get(slug__iexact=self.category_slug)
 
 			filtered_subs = models.SubCategory.objects.filter(parent_category=current_category)
 
@@ -177,6 +202,7 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 			#print 'sups: ' + str(self.supplier_tags)
 
 		else:
+
 
 			self.subcategory_tags = list(models.SubCategory.objects.values_list('name', flat=True))
 			self.supplier_tags = list(models.Supplier.objects.values_list('name', flat=True))
