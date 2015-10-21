@@ -10,8 +10,8 @@ $(function() {
 		// 2. Ajax call for currently chosen category
 		slug = $(this).data('slug');
 
-		console.log($(this).text());
-		console.log($(this).data('slug'))
+		//console.log($(this).text());
+		//console.log($(this).data('slug'))
 
 		ajax_call(slug);
 
@@ -38,17 +38,16 @@ $(function() {
 	};
 
 	function my_handler (data) {
-		console.log('successfull ajax call!');
+		//console.log('successfull ajax call!');
 		//console.log(data);
 
-		$('div.products').html(data);
+		$('div.products-container').html(data);
 
 		$('div.tagsort-tags-container').tagSort({
   			selector:'.tagsort-item',
   			tagWrapper: 'button',
   			displaySelector: '.test',
 		});
-
 	};
 });
 

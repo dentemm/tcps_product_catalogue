@@ -19,54 +19,20 @@
 	<div class="container">
 		<h4 class="m-b-xs">Categorieën</h4>
 		<p><small>-- Selecteer een categorie om onderstaande productlijst te filteren --</small></p>
-		<a class="btn btn-default-outline m-b-xs">test</a>
-		<a class="btn btn-default-outline m-b-xs">opvulsel</a>
-		<a class="btn btn-default-outline m-b-xs">wordt genegeerd</a>
-		<a class="btn btn-default-outline m-b-xs">aanvullen</a>
-		<a class="btn btn-default-outline m-b-xs">jaja</a>
-		<a class="btn btn-default-outline m-b-xs">feest</a>
-		<a class="btn btn-default-outline m-b-xs">geestign</a>
-		<a class="btn btn-default-outline m-b-xs">test</a>
+
 
 	<!-- Category loop -->
 	{% if categories %}
 		{% for category in categories %}
-		<!--<a class="btn btn-warning-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category.name|title }}</a>-->
-		<a class="btn btn-warning-outline m-b-xs" href="{% url 'tagview' %}?selected={{ category.slug|lower }}">{{ category.name|title}}</a>
 		<button class="category btn btn-info-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" data-slug="{{ category.slug }}">{{ category.name|title }}</button>
 		{% endfor %}
 	{% else %}
 	{% endif %}
 
-	<!--((( {{ selection }} )))-->
-
-
-	<!-- Tag loop-->
-	{% if selection == False %}
-		<!--<h4>Tags</h4>
-		<p><small>-- Selecteer 1 of meerdere tags om de productenlijst nog meer te filteren --</small></p>
-		<div class="tagsort-tags-container">
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		</div>-->
-	{% else %}
-
-	{% endif %}		
-
-
-		{% if product_list %}
-		<div class="row products m-t-md">
-			{% for product in product_list %}
+	<div class="products-container">
+	{% if product_list %}
+		<div class="row m-t-md">
+		{% for product in product_list %}
 			<div class="col-md-3 col-sm-4 col-xs-6 tagsort-item" data-item-tags="{{ product.supplier }}, {{ product.subcategory }}, {{ product.subcategory.parent_category }}">
 				<div class="panel panel-danger">
 					<div class="panel-heading">
@@ -88,9 +54,10 @@
 					</div>			
 				</div>
 			</div>
-			{% endfor %}
+		{% endfor %}
 		</div>
-		{% endif %}
+	{% endif %}
+	</div>
 
 
 
@@ -99,7 +66,7 @@
 
 
 
-		<div clas="row">
+		<!--<div clas="row">
 			<div class="col-md-3 col-sm-4 col-xs-6">
 				<div class="panel panel-info">
 					<div class="panel-heading">
@@ -118,12 +85,7 @@
 						<button class="btn btn-success-outline pull-right" type="button">
 						 	Offerte <span class="icon icon-check"></span>
 						</button>
-					</div>
-					<!--<div class="panel panel-default m-x">
-						<div class="panel-body">
-							Categorie - Subcategorie<br>Leverancier
-						</div>
-					</div>-->				
+					</div>			
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-4 col-xs-6">
@@ -144,12 +106,7 @@
 						<button class="btn btn-success-outline pull-right" type="button">
 						 	Offerte <span class="icon icon-check"></span>
 						</button>
-					</div>
-					<!--<div class="panel panel-default m-x">
-						<div class="panel-body">
-							Categorie - Subcategorie<br>Leverancier
-						</div>
-					</div>-->				
+					</div>			
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-4 col-xs-6">
@@ -170,12 +127,7 @@
 						<button class="btn btn-success-outline pull-right" type="button">
 						 	Offerte <span class="icon icon-check"></span>
 						</button>
-					</div>
-					<!--<div class="panel panel-default m-x">
-						<div class="panel-body">
-							Categorie - Subcategorie<br>Leverancier
-						</div>
-					</div>-->				
+					</div>			
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-4 col-xs-6">
@@ -196,12 +148,7 @@
 						<button class="btn btn-success-outline pull-right" type="button">
 						 	Offerte <span class="icon icon-check"></span>
 						</button>
-					</div>
-					<!--<div class="panel panel-default m-x">
-						<div class="panel-body">
-							Categorie - Subcategorie<br>Leverancier
-						</div>
-					</div>-->				
+					</div>			
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-4 col-xs-6">
@@ -222,12 +169,7 @@
 						<button class="btn btn-success-outline pull-right" type="button">
 						 	Offerte <span class="icon icon-check"></span>
 						</button>
-					</div>
-					<!--<div class="panel panel-default m-x">
-						<div class="panel-body">
-							Categorie - Subcategorie<br>Leverancier
-						</div>
-					</div>-->				
+					</div>				
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-4 col-xs-6">
@@ -248,12 +190,7 @@
 						<button class="btn btn-success-outline pull-right" type="button">
 						 	Offerte <span class="icon icon-check"></span>
 						</button>
-					</div>
-					<!--<div class="panel panel-default m-x">
-						<div class="panel-body">
-							Categorie - Subcategorie<br>Leverancier
-						</div>
-					</div>-->				
+					</div>			
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-4 col-xs-6">
@@ -274,12 +211,7 @@
 						<button class="btn btn-success-outline pull-right" type="button">
 						 	Offerte <span class="icon icon-check"></span>
 						</button>
-					</div>
-					<!--<div class="panel panel-default m-x">
-						<div class="panel-body">
-							Categorie - Subcategorie<br>Leverancier
-						</div>
-					</div>-->				
+					</div>			
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-4 col-xs-6">
@@ -299,7 +231,6 @@
 							</label>
 						</div>
 					</div>
-
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-4 col-xs-6">
@@ -501,7 +432,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>-->
 	</div>
 {% endblock content %}
 
