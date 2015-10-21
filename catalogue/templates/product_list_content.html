@@ -1,29 +1,45 @@
-test
+<!--test-->
+<!DOCTYPE html>
 
-		{% if product_list %}
-		<div class="row products m-t-md">
-			{% for product in product_list %}
-			<div class="col-md-3 col-sm-4 col-xs-6 tagsort-item" data-item-tags="{{ product.supplier }}, {{ product.subcategory }}, {{ product.subcategory.parent_category }}">
-				<div class="panel panel-info">
-					<div class="panel-heading">
-						<h4 class="m-y-0">{{ product.name|title }}</h4>
-						<p class="m-y-0">Panasonic</p>
-					</div>
-					<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
-					<div class="panel-body">
-						<strong>Categorie</strong><br>Subcategorie lang
-						<hr>
-						<p>
-						Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-						<button class="btn btn-default-outline pull-right" type="button">
-						 	Offerte <span class="icon icon-block"></span>
-						</button>
-						<button class="btn btn-success-outline pull-right" type="button">
-						 	Offerte <span class="icon icon-check"></span>
-						</button>
-					</div>			
-				</div>
+	<h4>Tags</h4>
+	<p><small>-- Selecteer 1 of meerdere tags om de productenlijst nog meer te filteren --</small></p>
+	<div class="tagsort-tags-container">
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+		<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
+	</div>
+
+{% if product_list %}
+	{% for product in product_list %}
+	<div class="col-md-3 col-sm-4 col-xs-6 tagsort-item" data-item-tags="{{ product.supplier }}, {{ product.subcategory }}, {{ product.subcategory.parent_category }}">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h4 class="m-y-0">{{ product.name|title }}</h4>
+				<p class="m-y-0">Panasonic</p>
 			</div>
-			{% endfor %}
+			<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+			<div class="panel-body">
+				<strong>Categorie</strong><br>Subcategorie lang
+				<hr>
+				<p>
+				Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+				<button class="btn btn-default-outline pull-right" type="button">
+				 	Offerte <span class="icon icon-block"></span>
+				</button>
+				<button class="btn btn-success-outline pull-right" type="button">
+				 	Offerte <span class="icon icon-check"></span>
+				</button>
+			</div>			
 		</div>
-		{% endif %}
+	</div>
+	{% endfor %}
+{% endif %}

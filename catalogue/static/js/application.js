@@ -39,9 +39,15 @@ $(function() {
 
 	function my_handler (data) {
 		console.log('successfull ajax call!');
-		console.log(data);
+		//console.log(data);
 
-		$('div.jaja').html(data);
+		$('div.products').html(data);
+
+		$('div.tagsort-tags-container').tagSort({
+  			selector:'.tagsort-item',
+  			tagWrapper: 'button',
+  			displaySelector: '.test',
+		});
 
 	};
 });

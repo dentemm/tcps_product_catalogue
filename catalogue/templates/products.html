@@ -18,9 +18,7 @@
 	</div>
 	<div class="container">
 		<h4 class="m-b-xs">Categorieën</h4>
-		<p><small>-- Selecteer een categorie om de productenlijst te filteren --</small></p>
-		<!-- for loop voor categorieen -->
-
+		<p><small>-- Selecteer een categorie om onderstaande productlijst te filteren --</small></p>
 		<a class="btn btn-default-outline m-b-xs">test</a>
 		<a class="btn btn-default-outline m-b-xs">opvulsel</a>
 		<a class="btn btn-default-outline m-b-xs">wordt genegeerd</a>
@@ -40,11 +38,12 @@
 	{% else %}
 	{% endif %}
 
+	<!--((( {{ selection }} )))-->
 
 
 	<!-- Tag loop-->
-	{% if selection != False %}
-		<h4>Tags</h4>
+	{% if selection == False %}
+		<!--<h4>Tags</h4>
 		<p><small>-- Selecteer 1 of meerdere tags om de productenlijst nog meer te filteren --</small></p>
 		<div class="tagsort-tags-container">
 			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
@@ -59,32 +58,17 @@
 			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
 			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
 			<button type="button" class="btn btn-xs btn-pill btn-default m-y-xs">Default</button>
-		</div>
+		</div>-->
 	{% else %}
 
 	{% endif %}		
 
-		<!-- Quotation -->
-		<!--<div class="callout m-t">
-	  		<div class="callout-content">
-	    		Selecteer 1 of meerdere producten uit onderstaande lijst, en vraag hier je offerte aan!
-	  		</div>
-	  		<div class="callout-secondary">
-	    		<button class="btn btn-sm btn-info">Offerte</button>
-		  	</div>
-		</div>-->
-		<div class=" row jaja">
-			
-		</div>
-
-		<hr>
-		<hr>
 
 		{% if product_list %}
 		<div class="row products m-t-md">
 			{% for product in product_list %}
 			<div class="col-md-3 col-sm-4 col-xs-6 tagsort-item" data-item-tags="{{ product.supplier }}, {{ product.subcategory }}, {{ product.subcategory.parent_category }}">
-				<div class="panel panel-info">
+				<div class="panel panel-danger">
 					<div class="panel-heading">
 						<h4 class="m-y-0">{{ product.name|title }}</h4>
 						<p class="m-y-0">Panasonic</p>
