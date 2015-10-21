@@ -18,13 +18,14 @@
 	</div>
 	<div class="container">
 		<h4 class="m-b-xs">Categorieën</h4>
-		<p><small>-- Selecteer een categorie om onderstaande productlijst te filteren --</small></p>
+		<!--<p><small>-- Selecteer een categorie om onderstaande productlijst te filteren --</small></p>-->
 
 
 	<!-- Category loop -->
 	{% if categories %}
 		{% for category in categories %}
-		<button class="category btn btn-info-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" data-slug="{{ category.slug }}">{{ category.name|title }}</button>
+		<button class="category btn btn-info-outline m-b-xs {% if forloop.last %}
+		jeej{% endif %}" data-slug="{{ category.slug }}">{{ category.name|title }}</button>
 		{% endfor %}
 	{% else %}
 	{% endif %}
@@ -446,5 +447,11 @@
   			tagWrapper: 'button',
   			displaySelector: '.test',
 		});
+	</script>
+	<script type="text/javascript">
+		$('button.jeej').popover({
+   			'placement':'right',
+   			'content':'Selecteer een categorie om de productlijst te filteren!'
+		}).popover('show');
 	</script>
 {% endblock extra_js %}
