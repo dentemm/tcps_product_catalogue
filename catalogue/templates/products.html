@@ -450,8 +450,9 @@
 	</script>
 	<script type="text/javascript">
 		$('button.jeej').popover({
-   			'placement':'right',
-   			'content':'Selecteer een categorie om de productlijst te filteren!'
+			html: true,
+   			placement:'right',
+   			content:'<button type="button" class="close pull-right">x</button>Selecteer een categorie om de productlijst te filteren!',
 		}).popover('show');
 	</script>
 {% endblock extra_js %}
