@@ -121,9 +121,12 @@ class ProductListView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListVi
 
 class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 
+	print 'entering tags for category view'
+	#print request
+
 	model = models.Product
 	context_object_name = 'product_list'
-	template_name = 'products.html'
+	#template_name = 'products.html'
 
 
 	category_slug = ''
@@ -131,6 +134,20 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 	subcategory_tags = []
 	supplier_tags = []
 	selection = False
+
+	def get_template_names(self):
+
+		if self.request.is_ajax():
+			self.template_name = 'product_list_content.html'
+
+		else:
+			self.template_name = 'products.html'
+
+		print 'template name: ' + self.template_name
+
+		return super(TagsForCategoryView, self).get_template_names()
+
+
 
 
 	def get_queryset(self):
@@ -194,23 +211,28 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 
 		#return super(TagsForCategoryView, self).render_to_response(context, **response_kwargs)
 
-
 		if self.request.is_ajax():
 
-			print 'ajax'
+			print 'ajax rendering'
 
-			qs = serializers.serialize('json', self.get_queryset())
+			#self.template_name = 'product-list-content.html'
 
-			print qs
+			return super(TagsForCategoryView, self).render_to_response(context, **response_kwargs)
+
+			
+			'''
+			my_list = list(self.get_queryset())
+
+
 
 			json_dict = {}
 			json_dict['suppliers'] = self.supplier_tags
 			json_dict['subcategories'] = self.subcategory_tags
-			json_dict['product_list'] = qs
+			json_dict['product_list'] = list(qs)
 
 			print 'json_dict: ' + str(json_dict)
 
-			return JsonResponse(json_dict)
+			return JsonResponse(json_dict)'''
 
 		else:
 
@@ -420,28 +442,6 @@ class CategoryDeleteView(AjaxResponseMixin, views.generic.DeleteView):
 
 
 
-class TestView(JSONResponseMixin, AjaxResponseMixin, views.generic.ListView):
-
-	model = models.SubCategory
-	context_object_name = 'category_list'
-	template_name = 'producten.html'
-	
-	def get_queryset(self):
-
-		print self.request.GET.get('selected', 'empty')
-
-		cat = self.request.GET.get('test', 'leeg')
-
-		print 'name= ' + cat
-
-		return self.model.objects.filter(name=cat)
-
-	def get_ajax(self, request, *args, **kwargs):
-
-		qset = self.get_queryset()
-		json_dict = list(qset.values('name'))
-
-		return self.render_json_response(json_dict)
 
 
 class DentemmView(views.generic.TemplateView):

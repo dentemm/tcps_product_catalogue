@@ -41,7 +41,8 @@ $(function() {
 		console.log('successfull ajax call!');
 		console.log(data);
 
-		console.log(data.product_list[1])
+		$('div.jaja').html(data);
+
 	};
 });
 
