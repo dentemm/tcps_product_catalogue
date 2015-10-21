@@ -4,6 +4,7 @@ from django import views
 from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import get_object_or_404
+from django.core import serializers
 
 from braces.views import LoginRequiredMixin, AjaxResponseMixin, JSONResponseMixin
 
@@ -122,11 +123,9 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 
 	model = models.Product
 	context_object_name = 'product_list'
-	#template_name = 'producten.html'
 	template_name = 'products.html'
 
 
-	#category_name = ''
 	category_slug = ''
 	category_tags = []
 	subcategory_tags = []
@@ -136,32 +135,9 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 
 	def get_queryset(self):
 
-		#self.category_name = self.request.GET.get('selected', 'empty')
 		self.category_slug = self.request.GET.get('selected', 'empty')
 
-		'''
-		if self.category_name == 'empty':
-
-			# Default case = ''
-			self.category_name = ''
-			return self.model.objects.all()
-
-		else:
-			filtered_queryset = self.model.objects.filter(subcategory__parent_category__name__iexact=self.category_name)
-
-			if filtered_queryset.count() == 0:
-
-				# If count = 0: doesn't exists so fallback to default case of ''
-				self.category_name = ''
-				return self.model.objects.all()
-
-			else:
-
-				print 'aantal = ' + str(filtered_queryset.count())
-				self.selection = True
-
-				return filtered_queryset
-		'''
+		print 'get_queryset slug: ' + self.category_slug
 
 		if self.category_slug == 'empty':
 
@@ -216,18 +192,25 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 
 	def render_to_response(self, context, **response_kwargs):
 
-		return super(TagsForCategoryView, self).render_to_response(context, **response_kwargs)
+		#return super(TagsForCategoryView, self).render_to_response(context, **response_kwargs)
 
 
 		if self.request.is_ajax():
 
-			json_dict = {
-				'suppliers': self.supplier_tags,
-				'subcategories': self.subcategory_tags
-			}
-
 			print 'ajax'
-			print JsonResponse(json_dict)
+
+			qs = serializers.serialize('json', self.get_queryset())
+
+			print qs
+
+			json_dict = {}
+			json_dict['suppliers'] = self.supplier_tags
+			json_dict['subcategories'] = self.subcategory_tags
+			json_dict['product_list'] = qs
+
+			print 'json_dict: ' + str(json_dict)
+
+			return JsonResponse(json_dict)
 
 		else:
 

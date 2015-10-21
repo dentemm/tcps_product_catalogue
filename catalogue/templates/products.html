@@ -33,7 +33,8 @@
 	<!-- Category loop -->
 	{% if categories %}
 		{% for category in categories %}
-		<a class="btn btn-warning-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category.name|title }}</a>
+		<!--<a class="btn btn-warning-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" href="{% url 'tagview' %}?selected={{ category|lower }}">{{ category.name|title }}</a>-->
+		<a class="btn btn-warning-outline m-b-xs" href="{% url 'tagview' %}?selected={{ category.slug|lower }}">{{ category.name|title}}</a>
 		<button class="category btn btn-info-outline m-b-xs {% if category|lower == request.GET.selected %}active{% endif %}" data-slug="{{ category.slug }}">{{ category.name|title }}</button>
 		{% endfor %}
 	{% else %}
@@ -74,7 +75,7 @@
 		</div>-->
 
 		{% if product_list %}
-		<div class="row m-t-md">
+		<div class="row products m-t-md">
 			{% for product in product_list %}
 			<div class="col-md-3 col-sm-4 col-xs-6 tagsort-item" data-item-tags="{{ product.supplier }}, {{ product.subcategory }}, {{ product.subcategory.parent_category }}">
 				<div class="panel panel-info">

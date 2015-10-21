@@ -8,48 +8,16 @@ $(function() {
 		$(this).addClass('active');
 
 		// 2. Ajax call for currently chosen category
+		slug = $(this).data('slug');
+
 		console.log($(this).text());
 		console.log($(this).data('slug'))
+
+		ajax_call(slug);
+
 	});
 
-
-});
-
-/*$('button.caegory').on('click', function(e) {
-
-	//e.preventDefault();
-	console.log('Toggle!!!');
-
-	if($(this).hasClass('active')) {
-		// Add the necessary tags 
-
-		console.log('category removed');
-		
-
-		categorie = $.trim($(this).text());
-		console.log(categorie);
-		console.log('spatie');
-
-		//ajax_call(categorie);
-	}
-
-	else {
-		// Remove the necessary tags
-		console.log('category added');
-
-		categorie = $.trim($(this).text());
-
-		console.log(categorie)
-
-		//ajax_call(categorie);
-
-
-
-		//var myClass = $(this).attr("class");
-   		//alert(myClass);
-	}
-
-	function ajax_call(category_name) {
+	function ajax_call(slug) {
 
 		$.ajax({
 			//url:"/products/overview/products/",
@@ -58,7 +26,7 @@ $(function() {
 			//contentType: 'application/json',
 			//contentType: 'html',
 			data: {
-				selected: category_name
+				selected: slug
 			},
 			success: my_handler,
 
@@ -69,36 +37,12 @@ $(function() {
 		});
 	};
 
-	function my_handler(json) {
+	function my_handler (data) {
+		console.log('successfull ajax call!');
+		console.log(data);
 
-		console.log("successful handled");
-		console.log(json);
-
-		var categories = json['subcategories']
-		var suppliers = json['suppliers']
-
-		console.log(categories)
-		console.log(suppliers)
-	};
-
-	function create_subcategory_buttons() {
-
+		console.log(data.product_list[1])
 	};
 });
 
-$('body').on('hidden.bs.modal', '#mymodal', function () {
-  $(this).removeData('bs.modal');
-});*/
-
-
-
-
-
-
-/*
-$('.btn-modal').on('click', function(e) {
-
-	console.log('modal open!');
-
-});*/ 
 
