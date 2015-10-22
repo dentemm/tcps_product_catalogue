@@ -70,3 +70,15 @@
 	margin-top: 5px !important;
 	margin-bottom: 5px !important;
 }
+
+/*.popover {
+    background: #46b8da;
+}
+
+.popover.bottom .arrow:after .popover.to{
+    border-bottom-color: #46b8da;
+}
+
+.popover.right>.arrow:after{
+	border-right-color: #46b8da;
+}*/
