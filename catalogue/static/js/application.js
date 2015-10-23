@@ -1,5 +1,11 @@
 $(function() {
 
+	$('div.tagsort-tags-container').tagSort({
+		selector:'.tagsort-item',
+		tagWrapper: 'button',
+		displaySelector: '.test',
+	});
+
 
 	$('button.category').click(function() {
 

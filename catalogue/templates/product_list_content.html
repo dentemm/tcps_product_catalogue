@@ -9,7 +9,7 @@
 {% if product_list %}
 	<div class="row m-t-md">
 	{% for product in product_list %}
-		<div class="col-md-3 col-sm-4 col-xs-6 tagsort-item" data-item-tags="{{ product.supplier }}, {{ product.subcategory }}, {{ product.subcategory.parent_category }}">
+		<div class="col-md-3 col-sm-4 col-xs-6 tagsort-item" data-item-tags="{{ product.supplier }}, {{ product.subcategory }}">
 			<div class="panel panel-danger">
 				<div class="panel-heading">
 					<h4 class="m-y-0">{{ product.name|title }}</h4>
