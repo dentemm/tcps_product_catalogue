@@ -1,9 +1,15 @@
 $(function() {
 
+	// Initialize tagsort 
 	$('div.tagsort-tags-container').tagSort({
 		selector:'.tagsort-item',
 		tagWrapper: 'button',
 		displaySelector: '.test',
+	});
+
+	// Fix for bootstrap modal window caching
+	$('body').on('hidden.bs.modal', '.modal', function () {
+  		$(this).removeData('bs.modal');
 	});
 
 
