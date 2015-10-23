@@ -39,8 +39,15 @@
 						<div class="panel-heading">
 							<h4 class="m-y-0">{{ product.name|title }}</h4>
 							<p class="m-y-0">Panasonic</p>
+
+							<a data-toggle="modal" data-target="#mymodal" href="{% url 'product-detail' product.slug %}">{{ product.name|title }}</a>
+
+							<!--<button type="button" data-toggle="modal" href="{% url 'product-detail' product.slug %}" data-target="#mymodal">Launch modal</button>-->
+
 						</div>
-						<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+						<a data-toggle="modal" data-target="#mymodal" href="{% url 'product-detail' product.slug %}">
+							<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+						</a>
 						<div class="panel-body">
 							<strong>Categorie</strong><br>Subcategorie lang
 							<hr>
@@ -63,7 +70,23 @@
 {% endblock content %}
 
 {% block modals %}
-
+	<div class="modal fade" id="mymodal" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+  				<!--<div class="modal-header">
+    				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    				<h4 class="modal-title">Modal title</h4>
+  				</div>
+  				<div class="modal-body">
+    				<p>One fine body&hellip;</p>
+  				</div>
+  				<div class="modal-footer">
+    				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    				<button type="button" class="btn btn-primary">Save changes</button>
+  				</div>-->
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
 {% endblock modals %}
 
 {% block extra_js %}
