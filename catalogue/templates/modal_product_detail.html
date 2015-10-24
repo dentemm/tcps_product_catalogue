@@ -6,6 +6,17 @@
 				<strong>{{ product.supplier|title }}</strong>
 		</div>
 		<div class="modal-body">
+			<div class="row">
+				<div class="col-sm-8 col-md-9">
+					<h5 class="m-b-0"><span class="icon icon-address"></span>&nbsp;&nbsp;Product Code</h5>
+					<p>{{ product.product_code }}</p>
+					<h5 class="m-b-0"><span class="icon icon-address"></span>&nbsp;&nbsp;Omschrijving</h5>
+					<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.&hellip;</p>
+				</div>
+				<div class="col-sm-4 col-md-3">
+				<img class="img img-responsive img-thumbnail" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+				</div>
+			</div>
 			<h5 class="m-b-0"><span class="icon icon-address"></span>&nbsp;&nbsp;Omschrijving</h5>
 			<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.&hellip;</p>
 		{% if product.product_folder %}
