@@ -8,17 +8,26 @@
 		<div class="modal-body">
 			<div class="row">
 				<div class="col-sm-8 col-md-9">
-					<h5 class="m-b-0"><span class="icon icon-address"></span>&nbsp;&nbsp;Product Code</h5>
-					<p>{{ product.product_code }}</p>
+					<h5 class="m-b-0"><span class="icon icon-clipboard"></span>&nbsp;&nbsp;Product Code</h5>
+					<p class="m-b-md">{{ product.product_code }}</p>
 					<h5 class="m-b-0"><span class="icon icon-address"></span>&nbsp;&nbsp;Omschrijving</h5>
-					<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.&hellip;</p>
+					<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+					&hellip;
+					<br>
+					<ul>
+						<li>Tortor</li>
+						<li>Sem Ipsum Cras</li>
+						<li>Amet</li>
+						<li>Consectetur Sollicitudin</li>
+					</ul>
+					</p>
 				</div>
 				<div class="col-sm-4 col-md-3">
 				<img class="img img-responsive img-thumbnail" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
 				</div>
 			</div>
-			<h5 class="m-b-0"><span class="icon icon-address"></span>&nbsp;&nbsp;Omschrijving</h5>
-			<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.&hellip;</p>
+			<!--<h5 class="m-b-0"><span class="icon icon-address"></span>&nbsp;&nbsp;Omschrijving</h5>
+			<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.&hellip;</p>-->
 		{% if product.product_folder %}
 			<h5 class="m-b-0"><span class="icon icon-open-book"></span>&nbsp;&nbsp;Documentatie</h5>
 			<a href="{{ product.product_folder.url }}" target="_blank">Link </a> naar product folder
@@ -34,8 +43,8 @@
 				{% endif %}
 				
 			</div>-->
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary">Save changes</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">Sluit venster</button>
+			<button type="button" class="btn btn-info">Offerte aanvragen</button>
 		</div>
 	<!--</div>--><!-- /.modal-content -->
 <!--</div>--><!-- /.modal-dialog -->
