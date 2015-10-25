@@ -1,3 +1,37 @@
+/* navigation bar */
+
+.navbar-default {
+  	background-color: transparent;
+  	border: none;
+}
+
+.navbar-shrink {
+  	background-color: rgba(228, 230, 229, 0.85);
+}
+
+.navbar-default .navbar-nav  > li > a {
+  	color: #FFF;
+  	font-weight: bold;
+}
+
+.navbar-shrink .navbar-nav > li > a {
+  	color: #333;
+  	font-weight: bold;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  	color: #2096cd;
+  	font-weight: bold;
+  	text-decoration: overline;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  	color: #2096CD;
+  	background-color: transparent;
+}
+
+
 /* footer block */
 .app-block {
   background-color: #262F36;

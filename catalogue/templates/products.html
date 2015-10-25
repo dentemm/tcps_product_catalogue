@@ -4,11 +4,16 @@
 
 {% block extra_css %}
 	<link rel="stylesheet" href="{% static 'bootstrap_marketing/toolkit-startup.min.css' %}">
+	<!--<link rel="stylesheet" href="{% static 'bootstrap_marketing/application-startup.css' %}">-->
 	<link rel="stylesheet" href="{% static 'css/custom_css.css' %}">
 
 	<link rel="stylesheet" href="{% static 'tagsort/tagsort.min.css' %}">
 	<link rel="stylesheet" href="{% static 'tagsort/tagsort_edit.css' %}">
 {% endblock extra_css %}
+
+{% block navbar %}
+	{% include 'navbar.html' %}
+{% endblock navbar %}
 
 {% block content %}
 	<div class="block block-inverse app-block">

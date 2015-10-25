@@ -1,0 +1,37 @@
+{% load staticfiles %}
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#scroll-navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+			<a class="navbar-brand visible-lg" href="#" title="Herladen van de TCPS website"><div id="logo"><img src="{% static 'images_new/logo.png' %}"></div></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse text-uppercase" id="scroll-navbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="#home">Home</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#tcps">Over ons</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#producten">Producten</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#diensten">Diensten</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+</nav>
