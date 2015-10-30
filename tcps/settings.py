@@ -114,7 +114,8 @@ LANGUAGES = (
     ('fr', _('French')),
 )
 
-TIME_ZONE = 'UTC'
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'CET' #Central European Time
 
 USE_I18N = True
 
