@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-23 17:57+0000\n"
+"POT-Creation-Date: 2015-10-30 19:48+0100\n"
 "PO-Revision-Date: 2015-04-13 15:01+0000\n"
 "Last-Translator: Sander Steffann <sander@steffann.nl>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/django/language/"
@@ -23,132 +23,136 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: catalogue/models.py:22 catalogue/models.py:52 catalogue/models.py:84
-#: catalogue/models.py:111
+#: catalogue/models.py:39 catalogue/models.py:69 catalogue/models.py:101
+#: catalogue/models.py:128
 msgid "naam"
 msgstr ""
 
-#: catalogue/models.py:23 catalogue/models.py:53 catalogue/models.py:85
-#: catalogue/models.py:112
+#: catalogue/models.py:40 catalogue/models.py:70 catalogue/models.py:102
+#: catalogue/models.py:129
 msgid "slug"
 msgstr ""
 
-#: catalogue/models.py:24 catalogue/models.py:56
+#: catalogue/models.py:41 catalogue/models.py:73
 msgid "afbeelding"
 msgstr ""
 
-#: catalogue/models.py:25
+#: catalogue/models.py:42
 msgid "icoontje"
 msgstr ""
 
-#: catalogue/models.py:31
+#: catalogue/models.py:48
 msgid "categorie"
 msgstr ""
 
-#: catalogue/models.py:32
+#: catalogue/models.py:49
 msgid "categorieen"
 msgstr ""
 
-#: catalogue/models.py:55 catalogue/models.py:93
+#: catalogue/models.py:72 catalogue/models.py:110
 msgid "leverancier"
 msgstr ""
 
-#: catalogue/models.py:62
+#: catalogue/models.py:79
 msgid "subcategorie"
 msgstr ""
 
-#: catalogue/models.py:63
+#: catalogue/models.py:80
 msgid "subcategorieen"
 msgstr ""
 
-#: catalogue/models.py:86
+#: catalogue/models.py:103
 msgid "website url"
 msgstr ""
 
-#: catalogue/models.py:87
+#: catalogue/models.py:104
 msgid "logo"
 msgstr ""
 
-#: catalogue/models.py:94
+#: catalogue/models.py:111
 msgid "leveranciers"
 msgstr ""
 
-#: catalogue/models.py:113
+#: catalogue/models.py:130
 msgid "product code"
 msgstr ""
 
-#: catalogue/models.py:116
+#: catalogue/models.py:133
 msgid "Product folder"
 msgstr ""
 
-#: catalogue/models.py:117
+#: catalogue/models.py:134
 msgid "User manual"
-msgstr ""
+msgstr “Gebruikershandleiding”
 
-#: catalogue/models.py:126
+#: catalogue/models.py:143
 msgid "product"
 msgstr ""
 
-#: catalogue/models.py:127
+#: catalogue/models.py:144
 msgid "producten"
 msgstr ""
 
-#: catalogue/models.py:158
+#: catalogue/models.py:185
 msgid "foto"
 msgstr ""
 
-#: catalogue/models.py:159
+#: catalogue/models.py:186
 msgid "korte beschrijving"
 msgstr ""
 
-#: catalogue/models.py:160
+#: catalogue/models.py:187
 msgid "Product"
 msgstr ""
 
-#: catalogue/models.py:161
+#: catalogue/models.py:188
 msgid "weergave volgorde"
 msgstr ""
 
-#: catalogue/models.py:162
+#: catalogue/models.py:189
 msgid "datum toegevoegd"
 msgstr ""
 
-#: catalogue/models.py:167
+#: catalogue/models.py:194
 msgid "product afbeelding"
 msgstr ""
 
-#: catalogue/models.py:168
+#: catalogue/models.py:195
 msgid "product afbeeldingen"
 msgstr ""
 
-#: catalogue/templates/dashboard_layout.html:26
-#: catalogue/templates/dashboard_layout_backup.html:18
+#: catalogue/templates/old_templates/dashboard_layout.html:26
+#: catalogue/templates/old_templates/dashboard_layout_backup.html:18
 #, fuzzy
 #| msgid "Welcome,"
 msgid "Welcome"
 msgstr "Welkom,"
 
-#: catalogue/templates/dashboard_layout.html:27
-#: catalogue/templates/dashboard_layout_backup.html:19
+#: catalogue/templates/old_templates/dashboard_layout.html:27
+#: catalogue/templates/old_templates/dashboard_layout_backup.html:19
 #, fuzzy
 #| msgid "View on site"
 msgid "Return to site"
 msgstr "Toon op site"
 
-#: catalogue/templates/dashboard_layout.html:28
-#: catalogue/templates/dashboard_layout_backup.html:20
+#: catalogue/templates/old_templates/dashboard_layout.html:28
+#: catalogue/templates/old_templates/dashboard_layout_backup.html:20
 msgid "Account"
 msgstr ""
 
-#: catalogue/templates/dashboard_layout.html:29
-#: catalogue/templates/dashboard_layout_backup.html:21
+#: catalogue/templates/old_templates/dashboard_layout.html:29
+#: catalogue/templates/old_templates/dashboard_layout_backup.html:21
 msgid "Log out"
 msgstr "Afmelden"
+
+#: catalogue/templates/old_templates/fullwidth.html:24
+msgid "Verkoopsvoorwaarden"
+msgstr ""
 
 #~ msgid "Home"
 #~ msgstr "Startpagina"
 
-#~ msgid "Voorpagina"
+#~ msgid “Voorpagina"
 #~ msgstr "Startpagina"
 
 #~ msgid "Successfully deleted %(count)d %(items)s."
