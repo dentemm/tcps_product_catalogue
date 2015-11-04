@@ -34,7 +34,7 @@ $(function() {
 
 		$.ajax({
 			//url:"/products/overview/products/",
-			url:"/products/overview/all/",
+			url:"/products/",
 			type: "GET",
 			//contentType: 'application/json',
 			//contentType: 'html',

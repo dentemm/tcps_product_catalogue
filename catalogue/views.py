@@ -6,7 +6,7 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.core import serializers
 
-from braces.views import LoginRequiredMixin, AjaxResponseMixin, JSONResponseMixin
+from braces.views import LoginRequiredMixin, AjaxResponseMixin
 
 from . import models
 
@@ -105,7 +105,7 @@ class ProductDetailView(views.generic.DetailView):
 	Shows product details
 	'''
 
-	print 'product detail open'
+	#print 'product detail open'
 
 	model = models.Product
 	template_name = 'modal_product_detail.html'
