@@ -54,6 +54,7 @@ coverage.xml
 # settings.py # Mag blijven, want zal worden overschreven door settings_deployment.py
 project.db
 project.db
+db.sqlite3
 *.sqlite3
 
 
