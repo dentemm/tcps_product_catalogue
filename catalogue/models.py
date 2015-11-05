@@ -1,26 +1,10 @@
+# -*- coding: utf-8 -*-
+
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.conf import settings
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse_lazy, reverse
-
-#from . import views
-
-'''
-# Custom QuerySets
-class SubCategoryQuerySet(models.Queryset):
-
-	def freezers(self):
-		return self.filter(parent_category='')
-
-# Custom model managers
-
-class CategorySubCategoryManager(models.Manager):
-
-	def get_queryset(self):
-		return super(CategorySubcategoryManager, self).get_queryset().filter(parent_category=)
-'''
-
 
 # Create your models here.
 class MetaOptionsMixin(object):
@@ -68,7 +52,7 @@ class SubCategory(MetaOptionsMixin, models.Model):
 
 	name = models.CharField(_('naam'), max_length=255, unique=True)
 	slug = models.SlugField(_('slug'), blank=True, unique=True)
-	parent_category = models.ForeignKey('Category', verbose_name='hoofdcategorie', related_name='subcategories')
+	parent_category = models.ForeignKey('Category', verbose_name=_('categorie'), related_name='subcategories')
 	suppliers = models.ManyToManyField('Supplier', verbose_name=_('leverancier'), related_name='categories')
 	image = models.ImageField(_('afbeelding'), upload_to='subcategory/images', blank=True, null=True)
 	# description = models.TextField(_('beschrijving'), null=True, blank=True) //Provided by django cms
@@ -100,7 +84,7 @@ class Supplier(MetaOptionsMixin, models.Model):
 
 	name = models.CharField(_('naam'), max_length=255, unique=True)
 	slug = models.SlugField(_('slug'), blank=True, unique=True)
-	website = models.URLField(_('website url'), blank=True)
+	website = models.URLField(_('link naar website'), blank=True)
 	logo = models.ImageField(_('logo'), upload_to='supplier/logo', max_length=255, blank=True)
 	#description = models.TextField(_('beschrijving'), null=True, blank=True) //Provided by django cms
 
@@ -130,8 +114,8 @@ class Product(MetaOptionsMixin, models.Model):
 	product_code = models.CharField(_('product code'), max_length=128, blank=True, unique=True)
 	supplier = models.ForeignKey(Supplier, verbose_name='leverancier', related_name='products')
 	subcategory = models.ForeignKey(SubCategory, verbose_name='subcategorie', related_name='products')
-	product_folder = models.FileField(_('Product folder'), upload_to='product/documentation', null=True, blank=True)
-	user_manual = models.FileField(_('User manual'), upload_to='product/documentation', null=True, blank=True)
+	product_folder = models.FileField(_('product folder'), upload_to='product/documentation', null=True, blank=True)
+	user_manual = models.FileField(_('manual'), upload_to='product/documentation', null=True, blank=True)
 	# description = models.TextField(_('beschrijving'), null=True, blank=True) //Provided by django cmss
 
 	_slug_separator = '/'
@@ -184,7 +168,7 @@ class ProductPhoto(MetaOptionsMixin, models.Model):
 
 	image = models.ImageField(_('foto'), upload_to='product/photos', max_length=255)
 	alt_text = models.CharField(_('korte beschrijving'), max_length=255, null=True, blank=True)
-	product = models.ForeignKey(Product, verbose_name=_('Product'), related_name='images')
+	product = models.ForeignKey(Product, verbose_name=_('product'), related_name='images')
 	display_order = models.PositiveIntegerField(_('weergave volgorde'), default=0, unique=True)
 	date_created = models.DateTimeField(_('datum toegevoegd'), auto_now_add=True)
 

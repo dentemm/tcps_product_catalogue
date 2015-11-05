@@ -2,9 +2,13 @@
 <!DOCTYPE html>
 
 	<h4>Tags</h4>
+{% if selection == False %}
+	<p><small>-- Selecteer hierboven een catagorie --</small></p>
+
+{% else %}
 	<p><small>-- Selecteer 1 of meerdere tags om de productenlijst nog meer te filteren --</small></p>
-	<div class="tagsort-tags-container m-b-md">
-	</div>
+	<div class="tagsort-tags-container m-b-md"></div>
+{% endif %}
 
 {% if product_list %}
 	<div class="row m-t-md">

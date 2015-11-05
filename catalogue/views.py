@@ -27,7 +27,7 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 	def get_template_names(self):
 
 		if self.request.is_ajax():
-			self.template_name = 'product_list_content.html'
+			self.template_name = 'product-list-content.html'
 
 		else:
 			self.template_name = 'products.html'
@@ -55,6 +55,7 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 				return self.model.objects.all()
 
 			else:
+				self.selection = True
 				return filtered_queryset
 				
 	def get_context_data(self, **kwargs):
@@ -62,7 +63,6 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 		print 'slug= ' + self.category_slug
 
 		ctx = super(TagsForCategoryView, self).get_context_data(**kwargs)
-		#self.category_tags = list(models.Category.objects.values_list('name', flat=True))
 		self.category_tags = models.Category.objects.all()
 
 		print 'aantal tags: ' + str(self.category_tags.count())
@@ -86,19 +86,6 @@ class TagsForCategoryView(AjaxResponseMixin, views.generic.ListView):
 		ctx['selection'] = self.selection
 
 		return ctx
-
-	def render_to_response(self, context, **response_kwargs):
-
-		if self.request.is_ajax():
-
-			#print 'ajax rendering'
-			self.selection = True
-			return super(TagsForCategoryView, self).render_to_response(context, **response_kwargs)
-
-		else:
-
-			#print 'render to response'
-			return super(TagsForCategoryView, self).render_to_response(context, **response_kwargs)
 
 class ProductDetailView(views.generic.DetailView):
 	'''
