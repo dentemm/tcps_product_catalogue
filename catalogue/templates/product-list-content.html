@@ -14,12 +14,14 @@
 	<div class="row m-t-md">
 	{% for product in product_list %}
 		<div class="col-md-3 col-sm-4 col-xs-6 tagsort-item" data-item-tags="{{ product.supplier }}, {{ product.subcategory }}">
-			<div class="panel panel-danger">
+			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h4 class="m-y-0">{{ product.name|title }}</h4>
 					<p class="m-y-0">Panasonic</p>
 				</div>
-				<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+				<a data-toggle="modal" data-target="#mymodal" href="{% url 'product-detail' product.slug %}">
+					<img class="img img-responsive" style="max-height:125px; margin: auto;" src="http://www.maclarenappliance.ca/wp-content/uploads/2015/01/get-the-most-out-of-your-fridge.jpg">
+				</a>
 				<div class="panel-body">
 					<strong>Categorie</strong><br>Subcategorie lang
 					<hr>
